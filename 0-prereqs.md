@@ -2,7 +2,7 @@
 ### Prerequisite information necessary to prepare for Codemotion.es 2015 lab
 
 1.  Install Docker 1.8.1 or later.
-2.  Sign up for an IBM Bluemix account at [https://ibm.biz/codemotion][bluemix-signup-link]
+2.  Sign up for an IBM Bluemix account at [https://bluemix.net][bluemix-signup-link]
 3.  Install the [Cloud Foundry CLI version 6.12.0 or later][cloud-foundry-cli] from the GitHub repository
 4.  Install the [IBM Containers plugin][ibm-containers-cli] for the Cloud Foundry CLI
 5.  Sign up for IBM Containers in IBM Bluemix 
