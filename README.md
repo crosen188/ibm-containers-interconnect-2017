@@ -1,5 +1,5 @@
-# ibm-containers-codemotion
-Labs and tutorials used Codemotion.es 2015 for IBM Containers, a hosted Docker-based container service on IBM Bluemix.
+# IBM Containers Hands-on Lab at InterConnect 2016
+InterConnect 2016 - Labs and tutorials used for IBM Containers, a hosted Docker-based container service on IBM Bluemix.
 
 ## What is IBM Containers?
 
