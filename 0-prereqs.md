@@ -1,5 +1,6 @@
 # IBM Containers - solving problems at light speed with a hosted Docker service
-### Prerequisite information necessary to prepare for Codemotion.es 2015 lab
+### Prerequisite information necessary to prepare for InterConnect 2016 lab
+### Session 1506 - Hands-On Lab Demonstrating the Enterprise-Grade Capabilities of IBM Containers
 
 1.  Install Docker 1.8.1 or later.
 2.  Sign up for an IBM Bluemix account at [https://bluemix.net][bluemix-signup-link]
@@ -11,10 +12,11 @@
     * Enter in a memorable, but usable registry name.  You can only set this value **once** and it cannot be changed afterwards.  This registry name is used across your account when using the IBM Containers service.
     * Choose wisely, make it identifiable, but something you will not mind typing while using the CLI nor something that is embarassing.
 
-For any additional questions or comments prior to the lab at InterConnect 2016, please contact us directly. 
+For any additional questions or comments prior to the lab at InterConnect 2016, please contact us directly: 
 
-   Rick Osowski - Twitter at [@rosowski](https://twitter.com/rosowski) or email osowski@us.ibm.com
-   Chris Rosen - Twitter at [@ChrisRosen188](https://twitter.com/ChrisRosen188) or email crosen@us.ibm.com
+   * Chris Rosen - Twitter at [@ChrisRosen188](https://twitter.com/ChrisRosen188) or email crosen@us.ibm.com
+   * Rick Osowski - Twitter at [@rosowski](https://twitter.com/rosowski) or email osowski@us.ibm.com
+   
 
 
 [bluemix-signup-link]: https://bluemix.net
