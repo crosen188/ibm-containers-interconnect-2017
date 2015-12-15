@@ -1,4 +1,4 @@
-# IBM Containers Hands-on Lab at InterConnect 2016
+# IBM Containers Hands-on Lab 
 [InterConnect 2016] (https://www.ibm.com/cloud-computing/us/en/interconnect/) - Labs and tutorials used for IBM Containers, a hosted Docker-based container service on IBM Bluemix.
 
 ![InterConnect 2016](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/interconnect2016.jpg "InterConnect 2016")
@@ -29,3 +29,26 @@ In this lab, you will learn how to push images to your hosted private registry o
 **Difficulty**: Intermediate
 
 In this lab, you will learn how to bind Bluemix Services to Docker containers, deploy existing applications with one-click via the *Deploy to Bluemix Button*, and understand how the IBM Bluemix DevOps Pipeline can build & deploy your container images automatically.
+
+# Legal Disclaimer:
+IBM’s statements regarding its plans, directions, and intent are subject to change or withdrawal without notice at IBM’s sole discretion.
+
+Information regarding potential future products is intended to outline our general product direction and it should not be relied on in making a purchasing decision. 
+
+The information mentioned regarding potential future products is not a commitment, promise, or legal obligation to deliver any material, code or functionality. Information about potential future products may not be incorporated into any contract. The development, release, and timing of any future features or functionality described for our products remains at our sole discretion.
+
+Performance is based on measurements and projections using standard IBM benchmarks in a controlled environment.  The actual throughput or performance that any user will experience will vary depending upon many factors, including considerations such as the amount of multiprogramming in the user’s job stream, the I/O configuration, the storage configuration, and the workload processed.  Therefore, no assurance can be given that an individual user will achieve results similar to those stated here.
+
+####Acknowledgments and Disclaimers
+
+Availability.  References in this presentation to IBM products, programs, or services do not imply that they will be available in all countries in which IBM operates. 
+
+The workshops, sessions and materials have been prepared by IBM or the session speakers and reflect their own views.  They are provided for informational purposes only, and are neither intended to, nor shall have the effect of being, legal or other guidance or advice to any participant.  While efforts were made to verify the completeness and accuracy of the information contained in this presentation, it is provided AS-IS without warranty of any kind, express or implied. IBM shall not be responsible for any damages arising out of the use of, or otherwise related to, this presentation or any other materials. Nothing contained in this presentation is intended to, nor shall have the effect of, creating any warranties or representations from IBM or its suppliers or licensors, or altering the terms and conditions of the applicable license agreement governing the use of IBM software.
+
+All customer examples described are presented as illustrations of how those customers have used IBM products and the results they may have achieved.  Actual environmental costs and performance characteristics may vary by customer.  Nothing contained in these materials is intended to, nor shall have the effect of, stating or implying that any activities undertaken by you will result in any specific sales, revenue growth or other results.
+
+   © Copyright IBM Corporation 2015. All rights reserved.
+
+•	U.S. Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+
+IBM, the IBM logo, ibm.com, Interconnect, IBM Cloud, and IBM Bluemix are trademarks or registered trademarks of International Business Machines Corporation in the United States, other countries, or both. If these and other IBM trademarked terms are marked on their first occurrence in this information with a trademark symbol (® or ™), these symbols indicate U.S. registered or common law trademarks owned by IBM at the time this information was published. Such trademarks may also be registered or common law trademarks in other countries. A current list of IBM trademarks is available on the Web at “Copyright and trademark information” [here](www.ibm.com/legal/copytrade.shtml).
