@@ -13,7 +13,7 @@
 
 ## Prerequisites
 
-Prior to running this lab, you must have a Bluemix account and setup the IBM Containers command line locally.  Instructions are available in [prereqs](https://github.com/osowski/ibm-containers-codemotion/blob/master/0-prereqs.md).
+Prior to running this lab, you must have a Bluemix account and access to a lab laptop.  Instructions are available in [prereqs](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/0-prereqs.md).
 
 ## Task 1: Verify your environment
 
