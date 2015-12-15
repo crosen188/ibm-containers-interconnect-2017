@@ -1,5 +1,7 @@
 # IBM Containers Hands-on Lab at InterConnect 2016
-InterConnect 2016 - Labs and tutorials used for IBM Containers, a hosted Docker-based container service on IBM Bluemix.
+[InterConnect 2016] (https://www.ibm.com/cloud-computing/us/en/interconnect/) - Labs and tutorials used for IBM Containers, a hosted Docker-based container service on IBM Bluemix.
+
+![InterConnect 2016](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/interconnect2016.jpg "InterConnect 2016")
 
 ## What is IBM Containers?
 
