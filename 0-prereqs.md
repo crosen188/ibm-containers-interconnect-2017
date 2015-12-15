@@ -17,7 +17,7 @@ For any additional questions or comments prior to the lab at InterConnect 2016, 
    * Chris Rosen - Twitter at [@ChrisRosen188](https://twitter.com/ChrisRosen188) or email crosen@us.ibm.com
    * Rick Osowski - Twitter at [@rosowski](https://twitter.com/rosowski) or email osowski@us.ibm.com
    
-
+ 
 
 [bluemix-signup-link]: https://bluemix.net
 [cloud-foundry-cli]: https://github.com/cloudfoundry/cli/releases
