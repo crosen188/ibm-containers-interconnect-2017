@@ -2,11 +2,12 @@
 ##### Prerequisite information necessary to prepare for InterConnect 2016 lab
 ###### Session 1506 - Hands-On Lab Demonstrating the Enterprise-Grade Capabilities of IBM Containers
 
-1.  Install Docker 1.8.1 or later.
+1.  For this lab, the pre-requisite software is already installed, but to continue leveraging IBM Containers on your systems use the following instructions.
+    * Install Docker 1.8.1 or later.
+    * Install the [Cloud Foundry CLI version 6.12.0 or later][cloud-foundry-cli] from the GitHub repository
+    * Install the [IBM Containers plugin][ibm-containers-cli] for the Cloud Foundry CLI
 2.  Sign up for an IBM Bluemix account at [https://bluemix.net][bluemix-signup-link]
-3.  Install the [Cloud Foundry CLI version 6.12.0 or later][cloud-foundry-cli] from the GitHub repository
-4.  Install the [IBM Containers plugin][ibm-containers-cli] for the Cloud Foundry CLI
-5.  Sign up for IBM Containers in IBM Bluemix 
+3.  Log into IBM Bluemix 
     * From the Bluemix dashboard, click **Start Containers**  
     * You will be prompted to **Set registry namespace**.  
     * NOTE: Enter in a memorable, but usable registry name.  You can only set this value **once** and it cannot be changed afterwards.  This registry name is used across your account when using the IBM Containers service.
