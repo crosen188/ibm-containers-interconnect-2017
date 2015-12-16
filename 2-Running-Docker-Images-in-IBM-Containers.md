@@ -129,17 +129,17 @@ You will tag the previously downloaded images with your unique namespace so you 
 
 ## Task 2: Verify security vulnerabilities
 
-One of the fundamental aspects of Docker containers is reuse and the ability to base your containers on top of other containers.  Think of it as inheritance for infrastructure!  But with that comes some heavy responsibility to understand what code you are running on top of and what code you are bringing into your infrastructure through a `docker pull`.  
+One of the fundamental aspects of Docker containers is reuse and the ability to base your images on top of other images.  Think of it as inheritance for infrastructure!  But with that comes some heavy responsibility to understand what code you are running on top of and what code you are bringing into your infrastructure through a `docker pull`.  
 
-To solve this issue, IBM Containers provides **Vulnerability Advisor**, a pre-integrated security scanning tool that will alert you of vulnerable images and can even be configured to prevent deployment of those images.  For now, you will look over the vulnerability assessment of the images you just pushed.
+To solve this issue, IBM Containers provides **Vulnerability Advisor** (VA), a pre-integrated security scanning tool that will alert you of vulnerable images and can even be configured to prevent deployment of those images.  VA can scan any image, regardless of the source, before you deploy a live container from that image  For now, you will look over the vulnerability assessment of the images you just pushed.
 
-1. Go to the [Bluemix Dashboard](https://console.eu-gb.bluemix.net/?direct=classic/#/resources) and click on **CATALOG**.
+1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net/?direct=classic/#/resources) and click on **CATALOG**.
 
 2. Hover over the purple icon for **Mongo**.  This is the Mongo image that you pulled from the public DockerHub registry and pushed into your private registry.
 
   You will see a pop-up with the vulnerability assessment shown inline.  This is a red/yellow/green scale.  Your Mongo image should be a green status of **Safe to Deploy**.  
 
-3. Click on the **Mongo** image and you are taken to the container deployment page.  You won't deploy your container from here, but you can see the vulnerability assessment in full detail.  
+3. Click on the **Let's Chat** image and you are taken to the container deployment page.  You won't deploy your container from here, but you can see the vulnerability assessment in full detail.  
 
   On the right side of the screen, you can see your image's *Vulnerability Assessment* as well as your quota information.  The icon should read *Safe to Deploy* based on your Mongo image upload.
 
