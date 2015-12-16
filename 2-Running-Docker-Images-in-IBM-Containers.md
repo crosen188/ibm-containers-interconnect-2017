@@ -175,7 +175,7 @@ You have reviewed your pushed images, which were sourced from a public repositor
 
 Now that you've pushed your images to Bluemix and reviewed the contents of those images through the IBM Containers Vulnerability Advisor, you can run your images the same way you did locally but without any worry of keeping your laptop on all day, every day!  The commands here you'll run aren't that much different than what you did locally.
 
-1. First, look and see what images are in your Bluemix hosted registry
+1. Back at the terminal command line, look and see what images are in your Bluemix hosted registry
 
          $ cf ic images
          REPOSITORY                                                            TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
