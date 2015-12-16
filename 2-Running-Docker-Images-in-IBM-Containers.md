@@ -254,6 +254,10 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
 
 5. Check out your running app in your browser, at the IP you just bound.  Remember to use port `8080`!
 
+![letschat1](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/14-lets-chat.jpg)
+![letschat2](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/15-lets-chat.jpg)
+![letschat3](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/16-lets-chat.jpg)
+
 ## Task 4: Cleanup
 
 To ensure you have enough free quota to continue with the lab, you need to clean up your container instances.  This can be done through the UI and the **DELETE** button on each container, or you can do this through the CLI with the `cf ic rm -f [CONTAINER_NAME]` command.
