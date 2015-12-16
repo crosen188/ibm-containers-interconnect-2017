@@ -9,8 +9,6 @@
 >- [Prerequisites](#prerequisites)
 - [Task 1: Create a bridge application](#task-1-create-a-bridge-application)
 - [Task 2: Deploy a container bound to Bluemix services](#task-2-deploy-a-container-bound-to-bluemix-services)
-- [Task 3: Review deployment automation steps](#task-3-review-deployment-automation-steps)
-- [Task 4: Run your web app](#task-4-run-your-web-app)
 
 ## Prerequisites
 
