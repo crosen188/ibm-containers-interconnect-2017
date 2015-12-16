@@ -1,5 +1,5 @@
 
-# Lab 2: Docker Web Apps, running on IBM Containers
+# Lab 2: Running Docker Images in IBM Containers
 
 > **Difficulty**: Intermediate
 
@@ -7,168 +7,30 @@
 
 > **Tasks**:
 >- [Prerequisites](#prerequisites)
-- [Task 1: Pull your public images](#task-1-pull-your-public-images)
-- [Task 2: Push your images to Bluemix](#task-2-push-your-images-to-bluemix)
-- [Task 3: Verify security vulnerabilities](#task-3-verify-security-vulnerabilities)
+- [Task 1: Tag the images and upload to IBM Containers Bluemix](#task-tag-the-images-and-upload-to-ibm-containers-bluemix)
+- [Task 2: Verify security vulnerabilities](#task-2-verify-security-vulnerabilities)
 - [Task 4: Run your web app](#task-4-run-your-web-app)
-
-## What is IBM Containers?
-
-**In this lab**, you will learn how to push images to your hosted private registry on Bluemix, evaluate security vulnerabilities for your pushed images, and run an application with two linked container images.  
-
-Use [IBM Containers](http://www.ibm.com/cloud-computing/bluemix/solutions/open-architecture/) to run Docker containers in a hosted cloud environment on IBM Bluemix™. IBM Containers helps you build and deploy containers where you can package your applications and services. Each container is based on an image format, includes a set of standard operations, and is an execution environment in itself.
-
-Containers are virtual software objects that include all the elements that an application needs to run. Each container includes just the app and its dependencies, running as an isolated process on the host operating system. Therefore, it has the benefits of resource isolation and allocation, but is more portable and efficient. Containers help you build high-quality apps, fast.
-
-IBM Bluemix™ provides the IBM Containers infrastructure as a feature that is available in selected regions. Containers enable you to build your app in any language, with any programming tools. On Bluemix, you start developing with containers by using a trusted container image. With your organization’s private registry, you can automate your build pipeline and share artifacts with collaborators through public or private registries, while quickly integrating your container-based applications with over 150 Bluemix services. Containers simplify system administration by providing standardized environments for development and production teams. They help remove the complexity of managing different operating system platforms and underlying infrastructure. Containers help you deploy and run any app on any infrastructure, quickly and reliably.
-
-For those needing an introduction on Docker, please consult https://docs.docker.com.
 
 ## Prerequisites
 
-Prior to running this lab, you must have a Bluemix account and setup the IBM Containers command line locally.  Instructions are available in [prereqs](https://github.com/osowski/ibm-containers-codemotion/blob/master/0-prereqs.md).
+Prior to running this lab, you must have a Bluemix account and setup the IBM Containers command line locally.  Instructions are available in [prereqs](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/0-prereqs.md).  You must have also completed [lab 1](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/1-Intro-to-IBM-Containers-and-Docker.md).
 
 If you are on a trial account, you will want to ensure that you have removed all non-essential containers, as these will impact your quota whether they are running or not.  These can be removed through the Bluemix UI or IBM Containers CLI.
 
-## Task 1: Pull your public images
+## Task 1: Tag the images and upload to IBM Containers Bluemix
 
-In this lab, you will work with two public images, Let's Chat and MongoDB.  First, you will need to pull them down locally before you can tag and push them to your private Bluemix registry.
+You will tag the previously downloaded images with your unique namespace so you can upload those images to your public registry hosted on Bluemix.
 
-1. Pull the MongoDB image from DockerHub
+1.   Make note of your namespace:  
+  
+  $ cf ic namespace get
+  ibm_containers_demo_eu
+  
+  If your namespace is not yet set, you can run:
 
-        $ docker pull mongo
-        Using default tag: latest
-        latest: Pulling from library/mongo
-        68e42ff590bd: Pull complete
-        b4c4e8b590a7: Pull complete
-        f037c6d892c5: Pull complete
-        ...
-        a08422dd6a11: Pull complete
-        99e2f2cde1c3: Pull complete
-        202e2c1fe066: Pull complete
-        Digest: sha256:223d59692269be18696be5c4f48e3d4117c7f11e175fe760f6b575387abc1bba
-        Status: Downloaded newer image for mongo:latest
+  $ cf ic namespace set unique_name_here
 
-2. Pull the Let's Chat image from DockerHub
-
-        $ docker pull sdelements/lets-chat
-        Using default tag: latest
-        latest: Pulling from sdelements/lets-chat
-        7a42f1433a16: Already exists
-        3d88cbf54477: Already exists
-        ed1f86248ba8: Already exists
-        ...
-        5086886076ea: Already exists
-        ca11de166bed: Already exists
-        2409eb7b9e8c: Already exists
-        Digest: sha256:98d1637b93a1fcc493bb00bb122602036b784e3cde25e8b3cae29abd15275206
-        Status: Image is up to date for sdelements/lets-chat:latest
-
-3. You can verify these images are correct and compatible by running the applications locally.
-
-  Start a Mongo instance:  
-  ```
-  $ docker run -d --name lc-mongo mongo  
-  6ef19c325f6fda8f5c0277337dd797d4e31113daa7da92fbe85fe70557bfcb49
-  ```
-
-  Start a Let's Chat instance:   
-  ```
-  $ docker run -d --name lets-chat --link lc-mongo:mongo -p 8080:8080 sdelements/lets-chat
-  4180a983e329947196e317563037bfd0da093ab89add16911de90534c69a7822
-  ```
-
-4. Access the application through your browser.  Depending on your local configuration, you may be able to use localhost as the hostname, but the most common configuration will be using `docker-machine` and will need to acquire the IP address as below.
-
-         $ docker-machine ip default
-         192.168.99.100
-
-  In your browser, access http://192.168.99.100:8080.  
-
-5. You can now optionally stop and remove your local running containers.
-
-  Stop the containers:  
-  ```
-  $ docker stop lets-chat lc-mongo
-  lets-chat
-  lc-mongo
-  ```
-
-  Delete the containers:  
-  ```
-  $ docker rm lets-chat lc-mongo
-  lets-chat
-  lc-mongo
-  ```
-
-  Congratulations, you've pulled and run your first Docker-based web app.  Now you will prepare the images to run them on the IBM Containers service in the cloud.
-
-## Task 2: Push your images to Bluemix
-
-Now that you have pulled and run your images locally, it is time to tag them for use in IBM Containers on Bluemix.  To do so, you will need to tag them with the repository name you created when you setup your Bluemix account for IBM Container usage.
-
-1. Log in to Bluemix
-
-         $ cf login
-         API endpoint: https://api.eu-gb.bluemix.net
-
-         Email> osowski@us.ibm.com
-
-         Password>
-         Authenticating...
-         OK
-
-         Select an org (or press enter to skip):
-         1. osowski@us.ibm.com
-         2. IBM_Containers_Demo_Org
-
-         Org> 2
-         Targeted org IBM_Containers_Demo_Org
-
-         Targeted space IBM_Containers_Demo_Org_EU
-
-         API endpoint:   https://api.eu-gb.bluemix.net (API version: 2.40.0)   
-         User:           osowski@us.ibm.com   
-         Org:            IBM_Containers_Demo_Org   
-         Space:          IBM_Containers_Demo_Org_EU   
-
-2.  Log into the IBM Containers service
-
-         $ cf ic login
-         Client certificates are being retrieved from IBM Containers...
-         Client certificates are being stored in /Users/osowski/.ice/certs/containers-api.eu-gb.bluemix.net...
-         OK
-         Client certificates were retrieved.
-
-         Checking local Docker configuration...
-         OK
-
-         Authenticating with registry at host name registry.eu-gb.bluemix.net
-         OK
-         Your container was authenticated with the IBM Containers registry.
-         Your private Bluemix repository is URL: registry.eu-gb.bluemix.net/ibm_containers_demo_eu
-
-         You can choose from two ways to use the Docker CLI with IBM Containers:
-
-         Option 1: This option allows you to use "cf ic" for managing containers on IBM Containers while still using the Docker CLI directly to manage your local Docker host.
-          Use this Cloud Foundry IBM Containers plug-in without affecting the local Docker environment:
-
-          Example Usage:
-          cf ic ps
-          cf ic images
-
-         Option 2: Use the Docker CLI directly. In this shell, override the local Docker environment to connect to IBM Containers by setting these variables. Copy and paste the following commands:
-          Note: Only Docker commands followed by (Docker) are supported with this option.
-
-          export DOCKER_HOST=tcp://containers-api.eu-gb.bluemix.net:8443
-          export DOCKER_CERT_PATH=/Users/osowski/.ice/certs/containers-api.eu-gb.bluemix.net
-          export DOCKER_TLS_VERIFY=1
-
-          Example Usage:
-          docker ps
-          docker images
-
-2. First tag your MongoDB image.  Remember to use your namespace from the first command below to replace `[NAMESPACE]` in the tag and push commands below.
+2. First tag your MongoDB image.  Remember to use your namespace from the first step to replace `[NAMESPACE]` in the tag and push commands below.
 
   List your images:  
   ```
@@ -178,15 +40,9 @@ Now that you have pulled and run your images locally, it is time to tag them for
   sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
   ```
 
-  Make note of your namespace:  
-  ```
-  $ cf ic namespace get
-  ibm_containers_demo_eu
-  ```
-
   Tag your Mongo image in a Bluemix-compatible format:  
   ```
-  $ docker tag -f mongo registry.eu-gb.bluemix.net/[NAMESPACE]/mongo
+  $ docker tag -f mongo registry.ng.bluemix.net/[NAMESPACE]/mongo
   ```
 
   List your images again, now showing the newly tagged image:  
@@ -194,17 +50,17 @@ Now that you have pulled and run your images locally, it is time to tag them for
   $ docker images
   REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
   mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
-  registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo       latest              202e2c1fe066        7 days ago          261.6 MB
+  registry.ng.bluemix.net/ibm_containers_demo_eu/mongo       latest              202e2c1fe066        7 days ago          261.6 MB
   sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
   ```
 
   Note that the `IMAGE ID` column did not change for the Mongo image.  Since we are not modifying the image, but rather simply giving it another name, the `IMAGE ID` stays the same and allows us to reuse the existing container image as-is.
 
-2. Next, tag your Let's Chat image.  Remember to use your namespace from the first command below to replace `[NAMESPACE]` in the tag and push commands below.
+2. Next, tag your Let's Chat image.  Remember to use your namespace from the first step to replace `[NAMESPACE]` in the tag and push commands below.
 
   Tag your Let's Chat image in a Bluemix-compatible format:  
   ```
-  $ docker tag -f sdelements/lets-chat registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat
+  $ docker tag -f sdelements/lets-chat registry.ng.bluemix.net/[NAMESPACE]/lets-chat
   ```
 
   List your images again, now showing the newly tagged image:  
@@ -212,8 +68,8 @@ Now that you have pulled and run your images locally, it is time to tag them for
   $ docker images
   REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
   mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
-  registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo       latest              202e2c1fe066        7 days ago          261.6 MB
-  registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat   latest              2409eb7b9e8c        4 weeks ago         241.5 MB
+  registry.ng.bluemix.net/ibm_containers_demo_eu/mongo       latest              202e2c1fe066        7 days ago          261.6 MB
+  registry.ng.bluemix.net/ibm_containers_demo_eu/lets-chat   latest              2409eb7b9e8c        4 weeks ago         241.5 MB
   sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
   ```
 
@@ -232,7 +88,7 @@ Now that you have pulled and run your images locally, it is time to tag them for
 
   This will create a new Dockerfile that we can build a temporary image from.  
   ```
-  docker build -t registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat .
+  docker build -t registry.ng.bluemix.net/[NAMESPACE]/lets-chat .
   ```
 
   You will now use this image below to push to Bluemix instead of the base `lets-chat` image.  
@@ -241,41 +97,37 @@ Now that you have pulled and run your images locally, it is time to tag them for
 
   Push your Mongo image to your Bluemix registry:  
   ```
-  $ docker push registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo
-  The push refers to a repository [registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo] (len: 1)
+  $ docker push registry.ng.bluemix.net/[NAMESPACE]/mongo
+  The push refers to a repository [registry.ng.bluemix.net/ibm_containers_demo_eu/mongo] (len: 1)
   Sending image list
-  Pushing repository registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo (1 tags)
+  Pushing repository registry.ng.bluemix.net/ibm_containers_demo_eu/mongo (1 tags)
   Image 68e42ff590bd already pushed, skipping
   Image b4c4e8b590a7 already pushed, skipping
   f037c6d892c5: Image successfully pushed
   1a64ad3ccff1: Image successfully pushed
-  7f85ac94fbfc: Image successfully pushed
   ...
   a08422dd6a11: Image successfully pushed
-  99e2f2cde1c3: Image successfully pushed
   202e2c1fe066: Image successfully pushed
-  Pushing tag for rev [202e2c1fe066] on {https://registry.eu-gb.bluemix.net/v1/repositories/ibm_containers_demo_eu/mongo/tags/latest}
+  Pushing tag for rev [202e2c1fe066] on {https://registry.ng.bluemix.net/v1/repositories/ibm_containers_demo_eu/mongo/tags/latest}
   ```
 
   Push your Let's Chat image to your Bluemix registry:  
   ```
-  $ docker push registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat
-  The push refers to a repository [registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat] (len: 1)
+  $ docker push registry.ng.bluemix.net/[NAMESPACE]/lets-chat
+  The push refers to a repository [registry.ng.bluemix.net/ibm_containers_demo_eu/lets-chat] (len: 1)
   Sending image list
-  Pushing repository registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat (1 tags)
+  Pushing repository registry.ng.bluemix.net/ibm_containers_demo_eu/lets-chat (1 tags)
   Image adb3157c92fa already pushed, skipping
   Image ed1f86248ba8 already pushed, skipping
-  Image 60643f301b72 already pushed, skipping
   ...
   Image 48b1e23d7a1a already pushed, skipping
-  Image ca11de166bed already pushed, skipping
   Image 2409eb7b9e8c already pushed, skipping
-  Pushing tag for rev [2409eb7b9e8c] on {https://registry.eu-gb.bluemix.net/v1/repositories/ibm_containers_demo_eu/lets-chat/tags/latest}
+  Pushing tag for rev [2409eb7b9e8c] on {https://registry.ng.bluemix.net/v1/repositories/ibm_containers_demo_eu/lets-chat/tags/latest}
   ```
 
    Now your images are up in the cloud, in your hosted registry, and ready to run on Bluemix!  But first, take a moment to understand what is inside the images you just pushed!
 
-## Task 3: Verify security vulnerabilities
+## Task 2: Verify security vulnerabilities
 
 One of the fundamental aspects of Docker containers is reuse and the ability to base your containers on top of other containers.  Think of it as inheritance for infrastructure!  But with that comes some heavy responsibility to understand what code you are running on top of and what code you are bringing into your infrastructure through a `docker pull`.  
 
