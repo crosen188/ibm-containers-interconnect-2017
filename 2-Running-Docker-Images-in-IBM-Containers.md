@@ -9,7 +9,7 @@
 >- [Prerequisites](#prerequisites)
 - [Task 1: Tag the images and upload to IBM Containers Bluemix](#task-tag-the-images-and-upload-to-ibm-containers-bluemix)
 - [Task 2: Verify security vulnerabilities](#task-2-verify-security-vulnerabilities)
-- [Task 3: Run your web app on Bluemix](#task-4-run-your-web-app-on-bluemix)
+- [Task 3: Run your web app on Bluemix](#task-3-run-your-web-app-on-bluemix)
 
 ## Prerequisites
 
