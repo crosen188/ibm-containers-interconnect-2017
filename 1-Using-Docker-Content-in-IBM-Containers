@@ -1,0 +1,138 @@
+
+# Lab 1: Using Docker Content in IBM COntainers
+
+> **Difficulty**: Easy
+
+> **Time**: 25 minutes
+
+> **Tasks**:
+>- [Prerequisites](#prerequisites)
+- [Task 1: Verify your environment](#task-1-verify-your-environment)
+- [Task 2: Deploy your first container on Bluemix](#task-2-deploy-your-first-container-on-bluemix)
+- [Task 3: Deploy a container through the command line](#task-3-deploy-a-container-through-the-command-line)
+
+## Prerequisites
+
+Prior to running this lab, you must have a Bluemix account and access to a lab laptop.  Instructions are available in [prereqs](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/0-prereqs.md) to create your Bluemix account, log into the Bluemix UI, and create a unique namespace.
+
+## Task 1: Verify your environment
+
+Docker Engine should be installed and running in your machine. To verify that Docker is running, do the following:
+
+1. Verify that you are running a recent Docker version via the docker version command.  You should see something similar to the following:
+
+        $ docker version
+        Client:
+         Version:      1.8.3
+         API version:  1.20
+         Go version:   go1.4.2
+         Git commit:   f4bf5c7
+         Built:        Mon Oct 12 18:01:15 UTC 2015
+         OS/Arch:      darwin/amd64
+
+        Server:
+         Version:      1.8.3
+         API version:  1.20
+         Go version:   go1.4.2
+         Git commit:   f4bf5c7
+         Built:        Mon Oct 12 18:01:15 UTC 2015
+         OS/Arch:      linux/amd64
+
+2. Run a simple container locally, using the `hello-world` image
+
+        $ docker run hello-world
+
+        Hello from Docker.
+        This message shows that your installation appears to be working correctly.
+
+        To generate this message, Docker took the following steps:
+        1. The Docker client contacted the Docker daemon.
+        2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+        3. The Docker daemon created a new container from that image which runs the
+        executable that produces the output you are currently reading.
+        4. The Docker daemon streamed that output to the Docker client, which sent it
+        to your terminal.
+
+        To try something more ambitious, you can run an Ubuntu container with:
+        $ docker run -it ubuntu bash
+
+        Share images, automate workflows, and more with a free Docker Hub account:
+        https://hub.docker.com
+
+        For more examples and ideas, visit:
+        https://docs.docker.com/userguide/
+        
+## Task 1: Pull your public images
+
+In this lab, you will work with two public images, Let's Chat and MongoDB.  First, you will need to pull them down locally before you can tag and push them to your private Bluemix registry.
+
+1. Pull the MongoDB image from DockerHub
+
+        $ docker pull mongo
+        Using default tag: latest
+        latest: Pulling from library/mongo
+        68e42ff590bd: Pull complete
+        b4c4e8b590a7: Pull complete
+        f037c6d892c5: Pull complete
+        ...
+        a08422dd6a11: Pull complete
+        99e2f2cde1c3: Pull complete
+        202e2c1fe066: Pull complete
+        Digest: sha256:223d59692269be18696be5c4f48e3d4117c7f11e175fe760f6b575387abc1bba
+        Status: Downloaded newer image for mongo:latest
+
+2. Pull the Let's Chat image from DockerHub
+
+        $ docker pull sdelements/lets-chat
+        Using default tag: latest
+        latest: Pulling from sdelements/lets-chat
+        7a42f1433a16: Already exists
+        3d88cbf54477: Already exists
+        ed1f86248ba8: Already exists
+        ...
+        5086886076ea: Already exists
+        ca11de166bed: Already exists
+        2409eb7b9e8c: Already exists
+        Digest: sha256:98d1637b93a1fcc493bb00bb122602036b784e3cde25e8b3cae29abd15275206
+        Status: Image is up to date for sdelements/lets-chat:latest
+
+3. You can verify these images are correct and compatible by running the applications locally.
+
+  Start a Mongo instance:  
+  ```
+  $ docker run -d --name lc-mongo mongo  
+  6ef19c325f6fda8f5c0277337dd797d4e31113daa7da92fbe85fe70557bfcb49
+  ```
+
+  Start a Let's Chat instance:   
+  ```
+  $ docker run -d --name lets-chat --link lc-mongo:mongo -p 8080:8080 sdelements/lets-chat
+  4180a983e329947196e317563037bfd0da093ab89add16911de90534c69a7822
+  ```
+
+4. Access the application through your browser.  Depending on your local configuration, you may be able to use localhost as the hostname, but the most common configuration will be using `docker-machine` and will need to acquire the IP address as below.
+
+         $ docker-machine ip default
+         192.168.99.100
+
+  In your browser, access http://192.168.99.100:8080.  
+
+5. You can now optionally stop and remove your local running containers.
+
+  Stop the containers:  
+  ```
+  $ docker stop lets-chat lc-mongo
+  lets-chat
+  lc-mongo
+  ```
+
+  Delete the containers:  
+  ```
+  $ docker rm lets-chat lc-mongo
+  lets-chat
+  lc-mongo
+  ```
+
+  Congratulations, you've pulled and run your first Docker-based web app.  Now you will prepare the images to run them on the IBM Containers service in the cloud.
+  
+  
