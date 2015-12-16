@@ -17,7 +17,7 @@ Prior to running this lab, you must have a Bluemix account and access to a lab l
 
 ## Task 1: Verify your environment
 
-Docker Engine should be installed and running in your machine. To verify that Docker is running, do the following:
+Docker Engine should be installed and running in your machine. In this task we will verify that Docker is running and run our first container.
 
 1. Open a Terminal window.  Verify that you are running a recent Docker version via the docker version command.  You should see something similar to the following:
 
@@ -46,19 +46,18 @@ Docker Engine should be installed and running in your machine. To verify that Do
         This message shows that your installation appears to be working correctly.
 
         To generate this message, Docker took the following steps:
+
               1. The Docker client contacted the Docker daemon.
               2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
               3. The Docker daemon created a new container from that image which runs the
               executable that produces the output you are currently reading.
-              4. The Docker daemon streamed that output to the Docker client, which sent it
-        to your terminal.
+              4. The Docker daemon streamed that output to the Docker client, which sent it to your terminal.
 
-        For more examples and ideas, visit:
-        https://docs.docker.com/userguide/
+        For more examples and ideas, visit [here](https://docs.docker.com/userguide/).
 
 ## Task 2: Pull your public images
 
-In this lab, you will work with two public images, Let's Chat and MongoDB.  First, you will need to pull them down locally before you can tag and push them to your private Bluemix registry.
+In this task, you will work with two public Docker images, Let's Chat and MongoDB.  First, you will need to pull them down locally from the public DockerHub, which is a repository for Docker images. We'll run these images locally to learn how they function.
 
 1. Pull the MongoDB image from DockerHub
 
@@ -105,7 +104,7 @@ In this lab, you will work with two public images, Let's Chat and MongoDB.  Firs
            $ docker-machine ip default
            192.168.99.100
 
-          In your browser, access http://localhost:8080 or http://192.168.99.100:8080.  
+          In your browser, access [localhost](http://localhost:8080) or http://192.168.99.100:8080.  
 
 5. You can now stop and remove your local running containers.
 
@@ -125,7 +124,7 @@ In this lab, you will work with two public images, Let's Chat and MongoDB.  Firs
 
 ## Task 3: Log into IBM Containers using the CLI
 
-Docker Engine should be installed and running in your machine. To verify that Docker is running, do the following:
+In this task, we will log into the IBM Containers command line to connect to Bluemix running on the IBM Cloud.
 
 1. Configure the Cloud Foundry CLI to work with the nearest IBM Bluemix region.  This ensures you will be working with the US South region of Bluemix.
 
@@ -196,16 +195,16 @@ Docker Engine should be installed and running in your machine. To verify that Do
         	docker ps
         	docker images
 
-##Congratulations!  
+##Congratulations!!!  
 
-You have successfully accomplished lab 1!  Let's recap what you've accomplished thus far:
+###You have successfully accomplished lab 1.  Let's recap what you've accomplished thus far:
 
 - Verified your Docker version
 - Downloaded and ran your first Docker container
-- Downloaded two new Docker images that we'll run in Bluemix
+- Downloaded two new Docker images to run locally on your development VM
 - Logged into the IBM Containers command line
 
-
+###Let's move on to lab 2 - Running Docker Images in IBM Containers
 
 
 
