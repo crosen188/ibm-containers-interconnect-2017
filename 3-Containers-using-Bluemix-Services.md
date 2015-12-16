@@ -1,5 +1,5 @@
 
-# Lab 3: Docker Web Apps with IBM Bluemix services
+# Lab 3: Containers using Bluemix Services
 
 > **Difficulty**: Intermediate
 
@@ -12,29 +12,15 @@
 - [Task 3: Review deployment automation steps](#task-3-review-deployment-automation-steps)
 - [Task 4: Run your web app](#task-4-run-your-web-app)
 
-## What is IBM Containers?
-
-**In this lab**, you will learn how to bind Bluemix Services to Docker containers, deploy existing applications with one-click via the *Deploy to Bluemix Button*, and understand how the IBM Bluemix DevOps Pipeline can build & deploy your container images automatically.
-
-Use [IBM Containers](http://www.ibm.com/cloud-computing/bluemix/solutions/open-architecture/) to run Docker containers in a hosted cloud environment on IBM Bluemix™. IBM Containers helps you build and deploy containers where you can package your applications and services. Each container is based on an image format, includes a set of standard operations, and is an execution environment in itself.
-
-Containers are virtual software objects that include all the elements that an application needs to run. Each container includes just the app and its dependencies, running as an isolated process on the host operating system. Therefore, it has the benefits of resource isolation and allocation, but is more portable and efficient. Containers help you build high-quality apps, fast.
-
-IBM Bluemix™ provides the IBM Containers infrastructure as a feature that is available in selected regions. Containers enable you to build your app in any language, with any programming tools. On Bluemix, you start developing with containers by using a trusted container image. With your organization’s private registry, you can automate your build pipeline and share artifacts with collaborators through public or private registries, while quickly integrating your container-based applications with over 150 Bluemix services. Containers simplify system administration by providing standardized environments for development and production teams. They help remove the complexity of managing different operating system platforms and underlying infrastructure. Containers help you deploy and run any app on any infrastructure, quickly and reliably.
-
-For those needing an introduction on Docker, please consult https://docs.docker.com.
-
 ## Prerequisites
 
-Prior to running this lab, you must have a Bluemix account and setup the IBM Containers command line locally.  Instructions are available in [prereqs](https://github.com/osowski/ibm-containers-codemotion/blob/master/0-prereqs.md).
-
-If you are on a trial account, you will want to ensure that you have removed all non-essential containers, as these will impact your quota whether they are running or not.  These can be removed through the Bluemix UI or IBM Containers CLI.
+Prior to running this lab, you must have completed the pre-reqs, lab 1, lab 2, and cleaned up your previous deployments.
 
 ## Task 1: Create a bridge application
 
 IBM Containers have the advantage of running on IBM Bluemix and because of that, you can leverage any of the 150+ Bluemix services inside your running containers.  To do this, you will need to create a Bluemix application to expose your desired services to your containers.
 
-1. Go to the [Bluemix Dashboard](https://console.eu-gb.bluemix.net/?direct=classic/#/resources) and click on **CREATE APP**.
+1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net/?direct=classic/#/resources) and click on **CREATE APP**.
 2. Select any runtme and click **NEXT**.  Either NodeJS or Liberty is recommended, but any runtime is acceptable as we won't be interacting with the deployed application, just leveraging its bound services.
 3. Enter a unique name for your application and click **DEPLOY**.  This must be unique across all the entire Bluemix region your are working in.  For instance, "testapp" is a less than desirable name.  Something like "[YOUR_NAME]-bridge-app" is much better.  This will become the hostname for your app once deployed on Bluemix.
 4. Once you're application has been deployed and you are taken to the **Getting Started** page, click on the **Overview** tab on the left.
