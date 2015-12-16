@@ -8,8 +8,8 @@
 > **Tasks**:
 >- [Prerequisites](#prerequisites)
 - [Task 1: Verify your environment](#task-1-verify-your-environment)
-- [Task 2: Deploy your first container on Bluemix](#task-2-deploy-your-first-container-on-bluemix)
-- [Task 3: Deploy a container through the command line](#task-3-deploy-a-container-through-the-command-line)
+- [Task 2: Deploy your first container on Bluemix](#task-2-Pull-your-public-images)
+- [Task 3: Deploy a container through the command line](#task-3-Log-into-IBM-Containers-using-the-CLI)
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Prior to running this lab, you must have a Bluemix account and access to a lab l
 
 Docker Engine should be installed and running in your machine. To verify that Docker is running, do the following:
 
-1. Verify that you are running a recent Docker version via the docker version command.  You should see something similar to the following:
+1. Open a Terminal window.  Verify that you are running a recent Docker version via the docker version command.  You should see something similar to the following:
 
         $ docker version
         Client:
@@ -46,18 +46,12 @@ Docker Engine should be installed and running in your machine. To verify that Do
         This message shows that your installation appears to be working correctly.
 
         To generate this message, Docker took the following steps:
-        1. The Docker client contacted the Docker daemon.
-        2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-        3. The Docker daemon created a new container from that image which runs the
-        executable that produces the output you are currently reading.
-        4. The Docker daemon streamed that output to the Docker client, which sent it
+              1. The Docker client contacted the Docker daemon.
+              2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+              3. The Docker daemon created a new container from that image which runs the
+              executable that produces the output you are currently reading.
+              4. The Docker daemon streamed that output to the Docker client, which sent it
         to your terminal.
-
-        To try something more ambitious, you can run an Ubuntu container with:
-        $ docker run -it ubuntu bash
-
-        Share images, automate workflows, and more with a free Docker Hub account:
-        https://hub.docker.com
 
         For more examples and ideas, visit:
         https://docs.docker.com/userguide/
@@ -81,16 +75,16 @@ In this lab, you will work with two public images, Let's Chat and MongoDB.  Firs
 
 2. Pull the Let's Chat image from DockerHub
 
-       $ docker pull sdelements/lets-chat
-       Using default tag: latest
-       latest: Pulling from sdelements/lets-chat
-       7a42f1433a16: Already exists
-       3d88cbf54477: Already exists
-       ...
-       ca11de166bed: Already exists
-       2409eb7b9e8c: Already exists
-       Digest: sha256:98d1637b93a1fcc493bb00bb122602036b784e3cde25e8b3cae29abd15275206
-       Status: Image is up to date for sdelements/lets-chat:latest
+        $ docker pull sdelements/lets-chat
+        Using default tag: latest
+        latest: Pulling from sdelements/lets-chat
+        7a42f1433a16: Already exists
+        3d88cbf54477: Already exists
+        ...
+        ca11de166bed: Already exists
+        2409eb7b9e8c: Already exists
+        Digest: sha256:98d1637b93a1fcc493bb00bb122602036b784e3cde25e8b3cae29abd15275206
+        Status: Image is up to date for sdelements/lets-chat:latest
 
 3. You can verify these images are correct and compatible by running the applications locally.
 
@@ -113,7 +107,7 @@ In this lab, you will work with two public images, Let's Chat and MongoDB.  Firs
 
           In your browser, access http://localhost:8080 or http://192.168.99.100:8080.  
 
-5. You can now optionally stop and remove your local running containers.
+5. You can now stop and remove your local running containers.
 
         Stop the containers:  
         ```
@@ -129,21 +123,22 @@ In this lab, you will work with two public images, Let's Chat and MongoDB.  Firs
         lc-mongo
         ```
 
+## Task 3: Log into IBM Containers using the CLI
 
+Docker Engine should be installed and running in your machine. To verify that Docker is running, do the following:
 
+1. Configure the Cloud Foundry CLI to work with the nearest IBM Bluemix region.  This ensures you will be working with the US South region of Bluemix.
 
-3. Configure the Cloud Foundry CLI to work with the nearest IBM Bluemix region.  This ensures you will be working with the London region of Bluemix and not waiting for all your traffic to travel across the Atlantic Ocean.
-
-        $ cf api https://api.eu-gb.bluemix.net
-        Setting api endpoint to https://api.eu-gb.bluemix.net...
+        $ cf api https://api.ng.bluemix.net
+        Setting api endpoint to https://api.ng.bluemix.net...
         OK
 
-4. Log in to Bluemix through the Cloud Foundry CLI
+2. Log in to Bluemix through the Cloud Foundry CLI
 
         $ cf login
-        API endpoint: https://api.eu-gb.bluemix.net
+        API endpoint: https://api.ng.bluemix.net
 
-        Email> osowski@us.ibm.com
+        Email> <ENTER_EMAIL_USED_WHEN_CREATING_BLUEMIX_ACCOUNT> i.e., osowski@us.ibm.com
 
         Password>
         Authenticating...
@@ -156,30 +151,30 @@ In this lab, you will work with two public images, Let's Chat and MongoDB.  Firs
         Org> 2
         Targeted org IBM_Containers_Demo_Org
 
-        Targeted space IBM_Containers_Demo_Org_EU
+        Targeted space IBM_Containers_Demo_Org
 
 
 
-        API endpoint:   https://api.eu-gb.bluemix.net (API version: 2.40.0)   
+        API endpoint:   https://api.ng.bluemix.net (API version: 2.40.0)   
         User:           osowski@us.ibm.com   
         Org:            IBM_Containers_Demo_Org   
-        Space:          IBM_Containers_Demo_Org_EU
+        Space:          IBM_Containers_Demo_Org
 
-5. Log in to the IBM Container service on Bluemix
+3. Log in to the IBM Container service on Bluemix
 
         $ cf ic login
         Client certificates are being retrieved from IBM Containers...
-        Client certificates are being stored in /Users/osowski/.ice/certs/containers-api.eu-gb.bluemix.net...
+        Client certificates are being stored in /Users/osowski/.ice/certs/containers-api.ng.bluemix.net...
         OK
         Client certificates were retrieved.
 
         Checking local Docker configuration...
         OK
 
-        Authenticating with registry at host name registry.eu-gb.bluemix.net
+        Authenticating with registry at host name registry.ng.bluemix.net
         OK
         Your container was authenticated with the IBM Containers registry.
-        Your private Bluemix repository is URL: registry.eu-gb.bluemix.net/ibm_containers_demo_eu
+        Your private Bluemix repository is URL: registry.ng.bluemix.net/ibm_containers_demo
 
         You can choose from two ways to use the Docker CLI with IBM Containers:
 
@@ -193,15 +188,27 @@ In this lab, you will work with two public images, Let's Chat and MongoDB.  Firs
         Option 2: Use the Docker CLI directly. In this shell, override the local Docker environment to connect to IBM Containers by setting these variables. Copy and paste the following commands:
         	Note: Only Docker commands followed by (Docker) are supported with this option.
 
- 	        export DOCKER_HOST=tcp://containers-api.eu-gb.bluemix.net:8443
-         	export DOCKER_CERT_PATH=/Users/osowski/.ice/certs/containers-api.eu-gb.bluemix.net
+ 	        export DOCKER_HOST=tcp://containers-api.ng.bluemix.net:8443
+         	export DOCKER_CERT_PATH=/Users/osowski/.ice/certs/containers-api.ng.bluemix.net
          	export DOCKER_TLS_VERIFY=1
 
         	Example Usage:
         	docker ps
         	docker images
 
-Congratulations!  You are now configured and logged in to use IBM Containers.  The following labs will use a mix of the UI and CLI, based on your successful setup here.
+##Congratulations!  
+
+You have successfully accomplished lab 1!  Let's recap what you've accomplished thus far:
+
+- Verified your Docker version
+- Downloaded and ran your first Docker container
+- Downloaded two new Docker images that we'll run in Bluemix
+- Logged into the IBM Containers command line
+
+
+
+
+
 
 ## Task 2: Deploy your first container on Bluemix
 
@@ -326,15 +333,3 @@ Congratulations!  You are now configured and logged in to use IBM Containers.  T
 8. Since both the UI and the CLI are working with the same backend, you can view your newly CLI-created container instance in the UI as well.  This can be done by returning to the [Bluemix Dashboard](https://console.eu-gb.bluemix.net/?direct=classic/#/resources).  
 
 9. Click on **CONTAINERS** in the left-hand menu.  Your dashboard is now filtered to show your running container instances.  Clicking on the square with the `container-lab-1` title will take you to the container overview dashboard.  From here you have access to the same Monitoring & Logging covered in **Task 2, Step 12**, as well as the controls available to Stop, Pause, Restart, & Delete containers.
-
-## Conclusion
-
-Congratulations, you have successfully completed this IBM Containers lab!  You learned how to work with IBM Containers, and deploy Docker images onto Bluemix through the UI & CLI.
-
-## Cleanup
-
-If you plan to do another lab, you need to clean up your container instances.  This can be done through the UI and the **DELETE** button on each container, or you can do this through the CLI with the `cf ic rm -f [CONTAINER_NAME]` command.
-
-## Related information
-
-Related resources and additional tutorials are available via [additional-resources](https://github.com/osowski/ibm-containers-codemotion/blob/master/99-additional-resources.md).
