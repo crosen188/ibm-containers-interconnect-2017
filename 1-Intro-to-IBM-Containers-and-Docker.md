@@ -1,5 +1,5 @@
 
-# Lab 1: Using Docker in IBM Containers
+# Lab 1: Introduction to IBM Containers and Docker
 
 > **Difficulty**: Easy
 
@@ -8,8 +8,8 @@
 > **Tasks**:
 >- [Prerequisites](#prerequisites)
 - [Task 1: Verify your environment](#task-1-verify-your-environment)
-- [Task 2: Deploy your first container on Bluemix](#task-2-Pull-your-public-images)
-- [Task 3: Deploy a container through the command line](#task-3-Log-into-IBM-Containers-using-the-CLI)
+- [Task 2: Download your public images](#task-2-download-your-public-images)
+- [Task 3: Log into IBM Containers using the CLI](#task-3-log-into-ibm-containers-using-the-cli)
 
 ## Prerequisites
 
@@ -55,7 +55,7 @@ Docker Engine should be installed and running in your machine. In this task we w
 
         For more examples and ideas, visit [here](https://docs.docker.com/userguide/).
 
-## Task 2: Pull your public images
+## Task 2: Download your public images
 
 In this task, you will work with two public Docker images, Let's Chat and MongoDB.  First, you will need to pull them down locally from the public DockerHub, which is a repository for Docker images. We'll run these images locally to learn how they function.
 
@@ -104,7 +104,7 @@ In this task, you will work with two public Docker images, Let's Chat and MongoD
            $ docker-machine ip default
            192.168.99.100
 
-          In your browser, access [localhost](http://localhost:8080) or http://192.168.99.100:8080.  
+          In your browser, access http://localhost:8080 or http://192.168.99.100:8080.  
 
 5. You can now stop and remove your local running containers.
 
@@ -195,9 +195,9 @@ In this task, we will log into the IBM Containers command line to connect to Blu
         	docker ps
         	docker images
 
-##Congratulations!!!  
+##Congratulations!!!  You have successfully accomplished lab 1.
 
-###You have successfully accomplished lab 1.  Let's recap what you've accomplished thus far:
+####Let's recap what you've accomplished thus far:
 
 - Verified your Docker version
 - Downloaded and ran your first Docker container
