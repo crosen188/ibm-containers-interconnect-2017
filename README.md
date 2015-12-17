@@ -15,7 +15,7 @@ For those needing an introduction on Docker, please consult https://docs.docker.
 
 ## Available Labs
 
-## [Lab Prerequisites](0-prereqs.md)
+## Lab 0. [Prerequisites](0-prereqs.md)
 
 ## Lab 1. [IBM Containers Introduction](1-Intro-to-IBM-Containers-and-Docker.md)
 **Difficulty**: Easy
