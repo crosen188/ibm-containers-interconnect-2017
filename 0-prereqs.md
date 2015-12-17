@@ -7,7 +7,7 @@
     * Install the [Cloud Foundry CLI version 6.12.0 or later][cloud-foundry-cli] from the GitHub repository
     * Install the [IBM Containers plugin][ibm-containers-cli] for the Cloud Foundry CLI
 2. Log into the VM provided using these credentials: 
-    * Username: labuser
+    * Username: containers
     * Password: containers
 3. Sign up for an IBM Bluemix account at [https://bluemix.net][bluemix-signup-link]
    ![Bluemix](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/1-bluemix-signup.jpg)
