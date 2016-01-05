@@ -24,4 +24,4 @@ IBM Containers have the advantage of running on IBM Bluemix and because of that,
 
 IBM Containers have the advantage of running on IBM Bluemix and because of that, you can leverage any of the 150+ Bluemix services inside your running containers.  To do this, you will need to create a Bluemix application to expose your desired services to your containers.
 
-1. Go to the
+1. Go to the  
