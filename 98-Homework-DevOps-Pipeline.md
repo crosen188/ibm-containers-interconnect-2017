@@ -17,7 +17,7 @@ Prior to running this lab, you must have completed the pre-reqs, lab 1, lab 2, a
 
 ## Task 1: Deploy application from existing repository
 
-Previous labs walked you through manually deploying containers on Bluemix from scratch.  Some of the great reasons for using containers is speed and that doesn't come with doing everything by hand.  This task will walk you through using the IBM Bluemix Delivery Pipeline and the one-click *Deploy to Bluemix* button to speed that process up quite a bit!
+Previous labs walked you through manually deploying containers on Bluemix from scratch.  Some of the great reasons for using containers is speed and that doesn't come with doing everything by hand.  This task will walk you through using the IBM Bluemix Delivery Pipeline and the one-click *Deploy to Bluemix* button to speed that process up quite a bit!  
 
 1. Go to GitHub and this [demo repository](https://github.com/osowski/lets-chat-bluemix-simple) for the labs.
 
