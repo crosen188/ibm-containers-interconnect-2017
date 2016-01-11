@@ -6,9 +6,16 @@
     * Install Docker 1.8.1 or later.
     * Install the [Cloud Foundry CLI version 6.12.0 or later][cloud-foundry-cli] from the GitHub repository
     * Install the [IBM Containers plugin][ibm-containers-cli] for the Cloud Foundry CLI
-2. Log into the VM provided using these credentials: 
+2. Log into the virtual machine (VM) provided using these credentials: 
     * Username: containers
     * Password: containers
+    * Once the VM has booted, click on the 'containers' account. 
+    * ![Login1](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/login1.jpg)
+    * Enter the password and click the 'Sign In' button.
+    * ![Login2](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/login2.jpg)
+    * To access the Terminal window, select 'Activities' and then the 'Terminal' icon.
+    * ![Login3](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/login3.jpg)
+    * ![Login4](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/login4.jpg)
 3. Sign up for an IBM Bluemix account at [https://bluemix.net][bluemix-signup-link]
    ![Bluemix](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/1-bluemix-signup.jpg)
    ![Signup](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/4-bluemix-trial.jpg)
