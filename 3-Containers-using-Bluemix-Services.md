@@ -9,6 +9,8 @@
 >- [Prerequisites](#prerequisites)
 - [Task 1: Create a bridge application](#task-1-create-a-bridge-application)
 - [Task 2: Deploy a container bound to Bluemix services](#task-2-deploy-a-container-bound-to-bluemix-services)
+- [Task 3: Run your web app](#task-3-run-your-web-app)
+- [Task 4: Optional - Review deployment automation steps](#task-4-optional-review-deployment-automation-steps)
 
 ## Prerequisites
 
@@ -94,21 +96,27 @@ Previous labs walked you through manually deploying containers on Bluemix from s
 
 ![LetsChat3](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat-deploy3.jpg)
 
-  As the automation goes through forking the project into your own account, setting up a pipeline for your account, and building & deploying those images on Bluemix, you will be updated in the UI.  Once the status page returns complete after a few minutes, you can move on to the next Task.
+As the automation goes through forking the project into your own account, setting up a pipeline for your account, and building & deploying those images on Bluemix, you will be updated in the UI.  Once the status page returns complete after a few minutes, you can move on to the next Task.
 
-## Task 4: Run your web app
+## Task 3: Run your web app
 
-1. Get Public IP of your deployed container.  This can be found through the Bluemix Delivery Pipeline output of the **Deploy** stage via the **View logs and history** link.  
+1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net/?direct=classic/#/resources) and view your deployed containers.  Click on the container called 'lets-chat-a_1'.
 
-  The specific line will look something like `Public IP address of lets-chat-a_1 is 134.XXX.YYY.ZZZ and the TEST_URL is http://134.XXX.YYY.ZZZ:8080`.
+![LetsChat1](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat1.jpg)
 
-  Alternatively, you can see this from the Bluemix UI or the IBM Containers CLI via the `cf ic ps` command.
+ * Alternatively, you can see this from the Bluemix UI or the IBM Containers CLI via the `cf ic ps` command.  Go to http://[YOUR_PUBLIC_IP]:8080 in your browser and you've got your web app up & running!
 
-2. Go to http://[YOUR_PUBLIC_IP]:8080 in your browser and you've got your web app up & running!  No coding or command line needed!
+2. Right click on port 8080 and select 'Open in new tab'.
 
-3. Now every change that would come into your repository can kick off a new Docker image build and push that image into deployment through the dev/test/production cycle.  The delivery pipelines can be configured to automatically or manually build, deploy, and move images throughout multiple stages.  It's all up to you!
+![LetsChat2](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat2.jpg)
 
-## Task 3: Review deployment automation steps
+3. You can now create a new account that will remain persistent in the MongoDB Service.
+
+![LetsChat3](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat3.jpg)
+
+4. Now every change that would come into your repository can kick off a new Docker image build and push that image into deployment through the dev/test/production cycle.  The delivery pipelines can be configured to automatically or manually build, deploy, and move images throughout multiple stages.  It's all up to you!
+
+## Task 4: Optional - Review deployment automation steps
 
 Now that your project has been deployed to IBM Containers on Bluemix, let's review what really just happened.  Bluemix forked the GitHub project into a Jazz Hub project, IBM's hosted source code management platform.  Inside this project a build pipeline was imported from the `.bluemix/pipeline.yaml` file in the original repository.  This pipeline will automatically build the Docker image for Let's Chat, push it to your private registry in Bluemix, and then deploy a running container instance on IBM Containers.
 
@@ -140,37 +148,6 @@ Now that your project has been deployed to IBM Containers on Bluemix, let's revi
 
   You have now reviewed the automated deployment of a Docker-container project on IBM Containers, running on Bluemix.  For additional homework, you can create your own [IBM Bluemix DevOps Services](https://hub.jazz.net/) project pulling from a public GitHub repository and build your own pipeline to deploy Docker containers on Bluemix.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-###########################################################
-
-1. Click the **Back to Dashboard** link from the upper left.
-
-![dashboard](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/28-back-to-dashboard.jpg)
-
-2. Click **Start Containers**.
-
-![dashboard](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/29-start-containers.jpg)
-
-3. We will deploy a single container with the name "lets-chat", size "pico", assign a publicly routed IP address, and bind the Bluemix application to the container.  Click **CREATE**.
-
-![create](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/30-create-container.jpg)
-
-4. After the deployment, the public IP address will be reachable on port 8080.
-
-![letschat](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/14-lets-chat.jpg)
 
 ## Cleanup
 
