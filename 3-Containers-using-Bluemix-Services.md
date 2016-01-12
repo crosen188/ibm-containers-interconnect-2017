@@ -54,7 +54,7 @@ IBM Containers have the advantage of running on IBM Bluemix and because of that,
 - **Username:** ibmcontainers
 - **Password:** containers
 
-- Alternatively, you can sign up for a *Free 30-Day Trial* at [Compose](https://compose.io) and use all of the features beyond just today.  If you are interested in cloud application development, I'd highly recommend signing up for your own Compose account, as they provide a number of offerings that are critical for efficient application development - MongoDB, PostgreSQL, Redis, etcd, and many more!
+- Alternatively, you can sign up for a *Free 30-Day Trial* at [Compose](https://compose.io) and use all of the features beyond just today.  If you are interested in cloud application development, I'd highly recommend signing up for your own Compose account, as they provide a number of offerings that are critical for efficient application development - MongoDB, PostgreSQL, Redis, etcd, and many more! 
   
 8. Once you are prompted to restage your application, click **RESTAGE** and wait a few moments for your application to be running again.
 
