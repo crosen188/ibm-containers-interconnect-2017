@@ -20,32 +20,34 @@ Prior to running this lab, you must have completed the pre-reqs, lab 1, lab 2, a
 
 IBM Containers have the advantage of running on IBM Bluemix and because of that, you can leverage any of the 150+ Bluemix services inside your running containers.  To do this, you will need to create a Bluemix application to expose your desired services to your containers.
 
-1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net/?direct=classic/#/resources) and click on **CREATE APP**.
+ 1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net/?direct=classic/#/resources) and click on **CREATE APP**.
 
 ![create](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/17-create-app.jpg) 
 
-2. Click on **WEB** app.  Select **SDK for Node.js** and **CONTINUE**.
+ 2. Click on **WEB** app.  Select **SDK for Node.js** and **CONTINUE**.
 
 ![web](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/18-web.jpg)
 ![node](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/19-sdk-node.jpg)
 
-3. Enter a unique name for your application and click **DEPLOY**.  This must be unique across all the entire Bluemix region your are working in.  For instance, "testapp" is a less than desirable name.  Something like "[YOUR_NAME]-bridge-app" is much better.  This will become the hostname for your app once deployed on Bluemix.
+ 3. Enter a unique name for your application and click **FINISH**.  This must be unique across all the entire Bluemix region your are working in.  For instance, "testapp" is a less than desirable name.  Something like "[YOUR_NAME]-bridge-app" is much better.  This will become the hostname for your app once deployed on Bluemix.
+ 
+**NOTE:** You will not have a drop down box for domain name unless you have multiple domains defined inside Bluemix.
  
 ![name](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/20-app-name.jpg)
 
-4. Once you're application has been deployed and you are taken to the **Getting Started** page, click on the **Overview** tab on the left.
+ 4. Once you're application has been deployed and you are taken to the **Getting Started** page, click on the **Overview** tab on the left.
  
 ![overview](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/21-app-created.jpg)
 
-5. Now you will need to bind a MongoDB service instance to your application.  This will then expose the credentials to your container at runtime.  Click on **ADD A SERVICE OR API**.
+ 5. Now you will need to bind a MongoDB service instance to your application.  This will then expose the credentials to your container at runtime.  Click on **ADD A SERVICE OR API**.
  
 ![servuce](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/22-add-service.jpg)
 
-6. Search for or scroll to **MongoDB by Compose** and click on it.
+ 6. Search for or scroll to **MongoDB by Compose** and click on it.
 
 ![mongodb](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/23-mongo.jpg)
 
-7. The credentials that you will need to enter on this page will be shared with you during the lab.  These credentials are Host, Port, Username, and Password.  Enter the provided credentials and click **CREATE**.  All other defaults on the page are acceptable.
+ 7. The credentials that you will need to enter on this page will be shared with you during the lab.  These credentials are Host, Port, Username, and Password.  Enter the provided credentials and click **CREATE**.  All other defaults on the page are acceptable.
 
 ![mongoinfo](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/24-mongo-connection.jpg)
 
@@ -56,11 +58,11 @@ IBM Containers have the advantage of running on IBM Bluemix and because of that,
 
 - Alternatively, you can sign up for a *Free 30-Day Trial* at [Compose](https://compose.io) and use all of the features beyond just today.  If you are interested in cloud application development, I'd highly recommend signing up for your own Compose account, as they provide a number of offerings that are critical for efficient application development - MongoDB, PostgreSQL, Redis, etcd, and many more! 
   
-8. Once you are prompted to restage your application, click **RESTAGE** and wait a few moments for your application to be running again.
+ 8. Once you are prompted to restage your application, click **RESTAGE** and wait a few moments for your application to be running again.
 
 ![restage](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/25-restage.jpg) 
 
-9. Since you will be using some pre-built automation to deploy your application, you will need to rename your bridge application to a more standard name.  This will only change the application name inside your space and not the hostname (which is the property that must be unique across all of the Bluemix region).
+ 9. Since you will be using some pre-built automation to deploy your application, you will need to rename your bridge application to a more standard name.  This will only change the application name inside your space and not the hostname (which is the property that must be unique across all of the Bluemix region).
 
   From the **Overview** tab of your application, click on the cog icon in the upper-right corner and select **RENAME APPLICATION**.  Enter a new name of **lets-chat-bridge** and click **OK**.  
 
