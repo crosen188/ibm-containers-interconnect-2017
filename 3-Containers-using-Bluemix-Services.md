@@ -20,6 +20,8 @@ Prior to running this lab, you must have completed the pre-reqs, lab 1, lab 2, a
 
 IBM Containers have the advantage of running on IBM Bluemix and because of that, you can leverage any of the 150+ Bluemix services inside your running containers.  To do this, you will need to create a Bluemix application to expose your desired services to your containers.
 
+In lab 2, we used a MongoDB that was running inside a container.  This was fast and easy to deploy, but the architecture we created was not stateless.  Therefore if the MongoDB container crashed for any reason, we would lose all of our chat room data.  In lab 3, we will use a service from the Bluemix catalog that will give us the persistant storage required for this missin critical chat room application.  
+
  1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net/?direct=classic/#/resources) and click on **CREATE APP**.
 
 ![create](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/17-create-app.jpg) 
