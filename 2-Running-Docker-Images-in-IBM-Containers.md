@@ -231,7 +231,7 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
   Successfully requested ip 134.XXX.YYY.ZZZ
   ```
 
-  Bind an available IP address for your account:  
+  If you have an available IP address, you can bind that IP to your container:  
   ```
   $ cf ic ip bind 134.XXX.YYY.ZZ0 lets-chat
   OK
