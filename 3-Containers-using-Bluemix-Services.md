@@ -35,7 +35,7 @@ In lab 2, we used a MongoDB that was running inside a container.  This was fast 
  
 **NOTE:** You will not have a drop down box for domain name unless you have multiple domains defined inside Bluemix.
  
-![name](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/20-app-name.jpg)
+![name](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/20-app-name-new.jpg)
 
  4. Once you're application has been deployed and you are taken to the **Getting Started** page, click on the **Overview** tab on the left.
  
