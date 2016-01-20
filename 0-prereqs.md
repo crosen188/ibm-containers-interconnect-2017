@@ -25,7 +25,7 @@
     * From the Bluemix main page, select DASHBOARD, click **Start Containers**  
      ![Start Containers](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/6-start-containers.jpg)
     * Select an image from the list and you will be prompted to **Set registry namespace**.  
-     ![Set Namespace](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/5-set-namespace.jpg)
+     ![Set Namespace](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/5-set-namespace-new.jpg)
     * NOTE: Enter in a memorable, but usable registry name.  You can only set this value **once** and it cannot be changed afterwards.  This registry name is used across your account when using the IBM Containers service.
     * Choose wisely, make it identifiable, but something you will not mind typing while using the CLI nor something that is embarassing.
     * Rules to live by for namespace creation:
