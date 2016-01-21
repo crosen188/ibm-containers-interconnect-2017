@@ -17,7 +17,7 @@
  1. Prior to running this lab, you must have completed the pre-reqs, lab 1, lab 2, lab 3, and cleaned up your previous deployments.
  2. Add the Active Deploy service to your dashboard space - link => https://console.ng.bluemix.net/catalog/active-deploy/ then select `create`
  3. Ensure that the Container you will update is running - **HOW DO WE DO THIS**
-
+ 4. Optional: Reference the full documentation reference [here](https://www.ng.bluemix.net/docs/services/ActiveDeploy/index.html) for some good additional information.
 
 **CARL: Insert screen shots and snippets directly**
 
@@ -35,6 +35,7 @@ If you want to deploy a new version of your application, and prevent it from bei
  	
 	If your application in the previous Lab was called "[YOUR_NAME]-bridge-app" we will call that APPNAME. Your new one will be called APPNAME2. So "Lisa-bridge-app" would become "Lisa-bridge-app2"
 
+**CARL: CHECK THIS NEXT LINE**	
 	`cf ic build -t APPNAME:v2 APPNAME_container`  
 **CARL: CHECK THIS NEXT LINE**	
 	`cf ic group create -\\\\-name APPNAME_v2 registry.ng.bluemix.net/swansoca/APPNAME:v2`
@@ -44,14 +45,14 @@ If you want to deploy a new version of your application, and prevent it from bei
 **CARL CHECK THIS:**  
 	`cf ic group list`
  
-  Now you are ready to deploy this using Active Deploy
+  Now you are ready to deploy the application using Active Deploy
  
 
 ## Task 2: Deploy your Application
 
-Now that the updated application is compiled and uploaded to Bluemix, you are ready to deploy it using Active Deploy. You can do this using the Active Deploy **CLI** commands, or you can do this using the Active Deploy **Dashboard GUI**.
+Now that the updated application is compiled and uploaded to Bluemix, you are ready to deploy it using Active Deploy. You can do this using the Active Deploy **CLI** commands, or you can do this using the Active Deploy **Dashboard GUI** (same exact operation).
 
-Basic operation - Active Deploy will:
+During the deploy, Active Deploy will:
  * Route traffic to `APPNAME2` and start ramping up instances of `APPNAME2` (the Ramp-up Phase).
  * Turn off the route to `APPNAME` once the number of instances of `APPNAME2` is the same as for `APPNAME` (the Test Phase).
  * Finally, reduce the number of instances of `APPNAME` to 1 (the Ramp-down Phase).
@@ -130,7 +131,6 @@ Now that the deployment is created, it will take the total time of your specific
  
  You can also hit `Back to Dashboard` => `Containers` to see your applications and see the status and routing of the containers.
  
-
 
 ## Cleanup
 
