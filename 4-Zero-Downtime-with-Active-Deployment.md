@@ -15,11 +15,11 @@
 ## Prerequisites
 
  1. Prior to running this lab, you must have completed the pre-reqs, lab 1, lab 2, lab 3, and cleaned up your previous deployments.
- 2. Add the Active Deploy service to your dashboard space - link => https://console.ng.bluemix.net/catalog/active-deploy/
- 3. Ensure that "the" Container you will update is running - command: 
+ 2. Add the Active Deploy service to your dashboard space - link => https://console.ng.bluemix.net/catalog/active-deploy/ then select 'create'
+ 3. Ensure that the Container you will update is running - **HOW DO WE DO THIS**
 
 
-CARL: Insert screen shots and snippets directly
+**CARL: Insert screen shots and snippets directly**
 
 ## Task 1: Prepare to deploy your updated application
 
@@ -27,40 +27,42 @@ If you want to deploy a new version of your application, and prevent it from bei
 
  1. Make a change to your application
 
- * Load a file from your Container - (CHRIS: What file in what location on that machine do you recommend?)
- * make a change - something visual you can see change when you hit F5 - for example: CHRIS EXAMPLE
- * save it 
+  * Load a file from your Container - **CHRIS: What file in what location on that machine do you recommend?)**
+  * Make a change - something visual you can see change when you hit F5 in your browser - for example: **CHRIS EXAMPLE**
+  * Save it 
 
  2. Upload your change to the Bluemix server
  	
-	If your application in the previous Lab was called "[YOUR_NAME]-bridge-app" we will call that APPNAME. Your new one will be called APPNAME2.
+	If your application in the previous Lab was called "[YOUR_NAME]-bridge-app" we will call that APPNAME. Your new one will be called APPNAME2. So "Lisa-bridge-app" would become "Lisa-bridge-app2"
 
 	`cf ic build -t APPNAME:v2 APPNAME_container`
-	`cf ic group create --name APPNAME_v2 registry.ng.bluemix.net/swansoca/APPNAME:v2`
+**CARL: CHECK THIS NEXT LINE**	
+	`cf ic group create -\\\\-name APPNAME_v2 registry.ng.bluemix.net/swansoca/APPNAME:v2`
 	
  3. Verify that the application was uploaded properly
  
-	CHECK THIS: `cf ic group list`
+**CARL CHECK THIS: **
+	`cf ic group list`
  
   Now you are ready to deploy this using Active Deploy
  
 
 ## Task 2: Deploy your Application
 
-Now that the updated application is compiled and uploaded to Bluemix, you are ready to deploy it using Active Deploy. You can do this using the Active Deploy _CLI_ commands, or you can do this using the Active Deploy _Dashboard_.
+Now that the updated application is compiled and uploaded to Bluemix, you are ready to deploy it using Active Deploy. You can do this using the Active Deploy **CLI* commands, or you can do this using the Active Deploy **Dashboard GUI**.
 
 Basic operation - Active Deploy will:
  * Route traffic to `APPNAME2` and start ramping up instances of `APPNAME2` (the Ramp-up Phase).
  * Turn off the route to `APPNAME` once the number of instances of `APPNAME2` is the same as for `APPNAME` (the Test Phase).
  * Finally, reduce the number of instances of `APPNAME` to 1 (the Ramp-down Phase).
 
-Note: Before you execute **Task 2**, look at _Task 3_ and prepare the browser page with your application url so you can watch it change during deployment
+Note: Before you execute **Task 2**, look at **Task 3** and prepare the browser page with your application url so you can watch it change during deployment
  
 **CLI**
 
 1. Use the `cf active-deploy-create` command to create a new deployment.
 
-1. At the command line 
+2. At the command line 
 	* `cf active-deploy-create APPNAME APPNAME2 --label "Appname Update" --rampup 10m --test 10m --rampdown 2`
 
 **Dashboard**
@@ -73,7 +75,7 @@ Note: Before you execute **Task 2**, look at _Task 3_ and prepare the browser pa
   * Fill in a lab - "Appname Update" would work
   * Fill in description if you like
   * Keep `Transition type` as default
-  * Fill in for the phase times - Use any values you like, these cause the deployment to happen in a reasonable lab time-frame - Ramp up: 4 min, Test 2 min, Rampe Down: 2 min
+  * Fill in for the phase times - Use any values you like, these cause the deployment to happen in a reasonable lab time-frame - Ramp up: 10 min, Test 10 min, Rampe Down: 2 min
  3. Execute the Deployment
   * Click the `Create` button to create the new deployment. Upon successful creation, the page will display the details of the new deployment.
 
@@ -81,16 +83,16 @@ Note: Before you execute **Task 2**, look at _Task 3_ and prepare the browser pa
 
 Now that the deployment is created, it will take the total time of your specificed phase times to execute. The really interesting part is the first part, where you get traffic from both versions of your application as the service adjusts instances on the same URL route - this allows users to never lose functionality of the application as it is updated.
 
-Here is what you will see
-	When the phase is _rampup_:
+Here is what you will see  
+	When the phase is _rampup_:  
       * `cf apps` should show both that `APPNAME` and `APPNAME2` are assigned the same route.
       * Reloading your browser should show both versions if your application
 
-    When the phase is _test_ or _rampdown_
+    When the phase is _test_ or _rampdown_  
       * `cf apps` should show that only `APPNAME2` has a route assigned to it.
       * Reloading your browser should show only the new version of your application
 
-    When the Active Deploy is complete:
+    When the Active Deploy is complete:  
       * `cf apps` should show that `APPNAME` has only a single instance and is ready to be deleted
 
 Note: You specified 10 minutes for each phase - if you are done looking at that phase, you can issue the command `cf active-deploy-advance "Appname Update"` or click the `Force Advance` Button and it will move to the next phase
@@ -111,22 +113,20 @@ Note: You specified 10 minutes for each phase - if you are done looking at that 
 	
 	`cf active-deploy-info "Appname Update"`
 
-	Execute over time to watch the change in values.
+	Execute the last command repeatedly every 15-30 seconds or so over time to watch the change in values.
     
 **Dashboard**
 
-  1. List all deployments and look at details
+ 1. List all deployments and look at details
  
- After you hit `create deployment` button you are taken to a screen with all the information about your deployment, such as the phase completion times and estimated traffic to each version of the application. You can also get here from the main dashboard screen to look at information if you exit this screen. Use the Refresh button in the top-right to keep the page up-to-date.
-  
- It also provides the ability to take actions on the deployment, such as pause, rollback, and advance. You can click the Refresh icon in the top right of the deployment details page to refresh the contents of the page.
+ After you hit `create deployment` button you are taken to a screen with all the information about your deployment, such as the phase completion times and estimated traffic to each version of the application. You can also get here from the main dashboard screen to look at information if you exit this screen. It also provides the ability to take actions on the deployment, such as pause, rollback, and advance. You can click the `Refresh` icon in the top right of the deployment details page to refresh the contents of the page.
  
- 1. Verify that Bluemix starts routing traffic to both versions
+ 2. Verify that Bluemix starts routing traffic to both versions
  
  The traffic balance in the bottom right part of the deployment info screen shows the routed traffic balance between versions.
  You can also examine the URL of your application to see which version it is show and relate what you see to the phase.
  
- You can also hit `Back to Dashboard` and see your applications => Containers and see the status and routing of the containers.
+ You can also hit `Back to Dashboard` => `Containers` to see your applications and see the status and routing of the containers.
  
   
  
@@ -135,7 +135,7 @@ Note: You specified 10 minutes for each phase - if you are done looking at that 
 
 To clean up your environment or to try his again, you can delete the deployment (or leave it, it will just sit there in history). You can also delete your applications and start again if you like.
 
-This can be done through the UI and the **DELETE** button on each container, or you can do this through the CLI with the `cf ic rm -f [CONTAINER_NAME]` command.
+This can be done through the UI and the `DELETE` button on each container, or you can do this through the CLI with the `cf ic rm -f [CONTAINER_NAME]` command.
 
 ##Congratulations!!!  You have successfully accomplished lab 4.
 
@@ -145,14 +145,3 @@ This can be done through the UI and the **DELETE** button on each container, or 
 - Deployed the new version without taking the original version offline
 - Verified that the deployment was running and how it was running
 
-
-
-
-
-
-KILL
-Set up step: Please run this command in the terminal shell:
-CHRIS: OPTION 1: 
-  cf uninstall-plugin active-deploy
-  cf install-plugin active-deploy -r bluemix 
-CHRIS: OPTION 2: chmod 755 ~/.cf/plugins/active-deploy*
