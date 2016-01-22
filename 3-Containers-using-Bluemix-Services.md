@@ -83,6 +83,8 @@ Previous labs walked you through manually deploying containers on Bluemix from s
 
 1. Go to GitHub and this [demo repository](https://github.com/osowski/lets-chat-bluemix-simple) for the labs.
 
+  Path to repo: https://github.com/osowski/lets-chat-bluemix-simple
+
 2. There is a lot more detail on containers, Let's Chat, and deploying on Bluemix.  But you've already done the pre-requisites so just click on the **Deploy to Bluemix** button for an even easier deployment.
 
 ![LetsChat1](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat-deploy1.jpg)
