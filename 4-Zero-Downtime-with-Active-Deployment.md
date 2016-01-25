@@ -7,9 +7,9 @@
 
 > **Tasks**:
 >- [Prerequisites](#prerequisites)
-- [Task 1: Prepare to deploy your updated application](#task-1-xxx)
-- [Task 2: Deploy your application](#task-2-yyy)
-- [Task 3: Watch and validate the Deployment](#task-3-zzz)
+- [Task 1: Prepare to deploy your updated application](#task-1-prepare-to-deploy-your-updated-application)
+- [Task 2: Deploy your application](#task-2-deploy-your-Application)
+- [Task 3: Watch and validate the deployment](#task-3-watch-and-validate-the-deployment)
 
 
 ## Prerequisites
@@ -28,6 +28,7 @@ If you want to deploy a new version of your application, and prevent it from bei
  0. Set the "name" of your application
  
 	If your app is "Lisa-bridge-app" set this
+	
 	`export APPNAME="Lisa-bridge-app"`
 
  1. Make a change to your application
@@ -42,10 +43,12 @@ If you want to deploy a new version of your application, and prevent it from bei
 	- the last arg is wherever your local directory
 
 	`NAMESPACE=$(cf ic namespace get)`
+	
 	`cf ic group create --name ${APPNAME}2 registry.ng.bluemix.net/$NAMESPACE/${APPNAME}:v2`
 	
 	
  3. Verify that the application was uploaded properly
+ 
  	`cf ic group list`
  
   Now you are ready to deploy the application using Active Deploy
@@ -65,7 +68,8 @@ Note: Before continuing, in preperation for **Task 3**, prepare the browser page
 **CLI**
 
 1. Use the create command to create a new deployment.
-	* `cf active-deploy-create ${APPNAME} ${APPNAME}2 --label "Appname Update" --rampup 10m --test 10m --rampdown 2m`
+
+	`cf active-deploy-create ${APPNAME} ${APPNAME}2 --label "Appname Update" --rampup 10m --test 10m --rampdown 2m`
 	
 **Dashboard**
 
@@ -83,20 +87,20 @@ Note: Before continuing, in preperation for **Task 3**, prepare the browser page
  3. Execute the Deployment
   * Click the `Create` button to create the new deployment. Upon successful creation, the page will display the details of the new deployment.
 
-## Task 3: Watch and Validate the Deployment
+## Task 3: Watch and calidate the deployment
 
 Now that the deployment is created, it will take the total time of your specificed phase times to execute. The really interesting part is the first part, where you get traffic from both versions of your application as the service adjusts instances on the same URL route - this allows users to never lose functionality of the application as it is updated. Here is what you will see:
 
-	When the phase is _rampup_:  
-      * `cf apps` should show both that `APPNAME` and `APPNAME2` are assigned the same route.
-      * Reloading your browser should show both versions if your application
+When the phase is _rampup_:  
+  * `cf apps` should show both that `APPNAME` and `APPNAME2` are assigned the same route.
+  * Reloading your browser should show both versions if your application
 
-    When the phase is _test_ or _rampdown_  
-      * `cf apps` should show that only `APPNAME2` has a route assigned to it.
-      * Reloading your browser should show only the new version of your application
+When the phase is _test_ or _rampdown_  
+  * `cf apps` should show that only `APPNAME2` has a route assigned to it.
+  * Reloading your browser should show only the new version of your application
 
-    When the Active Deploy is complete:  
-      * `cf apps` should show that `APPNAME` has only a single instance and is ready to be deleted
+When the Active Deploy is complete:  
+  * `cf apps` should show that `APPNAME` has only a single instance and is ready to be deleted
 
  Note: You specified 10 minutes for each phase - if you are done looking at that phase, you can issue the command `cf active-deploy-advance "Appname Update"` or click the `Force Advance` Button and it will move to the next phase
  
@@ -123,7 +127,7 @@ Now that the deployment is created, it will take the total time of your specific
 
  1. List all deployments and look at details
  
- After you hit `create deployment` button you are taken to a screen with all the information about your deployment, such as the phase completion times and estimated traffic to each version of the application. You can also get here from the main dashboard screen to look at information if you exit this screen. It also provides the ability to take actions on the deployment, such as pause, rollback, and advance. You can click the `Refresh` icon in the top right of the deployment details page to refresh the contents of the page.
+ After you hit `Create Deployment` button you are taken to a screen with all the information about your deployment, such as the phase completion times and estimated traffic to each version of the application. You can also get here from the main dashboard screen to look at information if you exit this screen. It also provides the ability to take actions on the deployment, such as pause, rollback, and advance. You can click the `Refresh` icon in the top right of the deployment details page to refresh the contents of the page.
  
  2. Verify that Bluemix starts routing traffic to both versions
  
