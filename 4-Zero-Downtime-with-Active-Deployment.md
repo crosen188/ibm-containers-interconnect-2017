@@ -25,6 +25,11 @@
 
 If you want to deploy a new version of your application, and prevent it from being taken offline while that happens, you need to update your code and get that staged to the Bluemix server.
 
+ 0. Set the "name" of your application
+ 
+	If your app is "Lisa-bridge-app" set this
+	`export APPNAME="Lisa-bridge-app"`
+
  1. Make a change to your application
 
   * Load a file from your Container - **CHRIS: What file in what location on that machine do you recommend?)**
@@ -33,17 +38,15 @@ If you want to deploy a new version of your application, and prevent it from bei
 
  2. Upload your change to the Bluemix server
  	
-	If your application in the previous Lab was called "[YOUR_NAME]-bridge-app" we will call that APPNAME. Your new one will be called APPNAME2. So "Lisa-bridge-app" would become "Lisa-bridge-app2"
+	`cf ic build -t ${APPNAME}:v2 ${APPNAME}_container`
+	- the last arg is wherever your local directory
 
-**CARL: CHECK THIS NEXT LINE**	
-	`cf ic build -t APPNAME:v2 APPNAME_container`  
-**CARL: CHECK THIS NEXT LINE**	
-	`cf ic group create -\\\\-name APPNAME_v2 registry.ng.bluemix.net/swansoca/APPNAME:v2`
+	`NAMESPACE=$(cf ic namespace get)`
+	`cf ic group create --name ${APPNAME}2 registry.ng.bluemix.net/$NAMESPACE/${APPNAME}:v2`
+	
 	
  3. Verify that the application was uploaded properly
- 
-**CARL CHECK THIS:**  
-	`cf ic group list`
+ 	`cf ic group list`
  
   Now you are ready to deploy the application using Active Deploy
  
@@ -62,7 +65,7 @@ Note: Before continuing, in preperation for **Task 3**, prepare the browser page
 **CLI**
 
 1. Use the create command to create a new deployment.
-	* `cf active-deploy-create APPNAME APPNAME2 --label "Appname Update" --rampup 10m --test 10m --rampdown 2`
+	* `cf active-deploy-create ${APPNAME} ${APPNAME}2 --label "Appname Update" --rampup 10m --test 10m --rampdown 2m`
 	
 **Dashboard**
 
