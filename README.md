@@ -11,7 +11,7 @@ Containers are virtual software objects that include all the elements that an ap
 
 IBM Bluemix™ provides the IBM Containers infrastructure as a feature that is available in selected regions. Containers enable you to build your app in any language, with any programming tools. On Bluemix, you start developing with containers by using a trusted container image. With your organization’s private registry, you can automate your build pipeline and share artifacts with collaborators through public or private registries, while quickly integrating your container-based applications with over 150 Bluemix services. Containers simplify system administration by providing standardized environments for development and production teams. They help remove the complexity of managing different operating system platforms and underlying infrastructure. Containers help you deploy and run any app on any infrastructure, quickly and reliably.
 
-For those needing an introduction on Docker, please consult https://docs.docker.com.  
+For those needing an introduction on Docker, please consult [https://docs.docker.com](https://docs.docker.com).
 
 ## Available Labs
 
@@ -39,7 +39,7 @@ In this lab, you will learn how to bind Bluemix Services to Docker containers, d
 **Difficulty**: Intermediate  
 **Time Required**: TBD
 
-In this lab, you will leverage the Active Deploy service to perform app maintenance without requiring any downtime to your production app.
+In this lab, you will leverage the Active Deploy service to perform app maintenance without requiring any downtime to your production app. Active Deploy uses standard technique(s). For example, Red/Black deployment.
 
 # Legal Disclaimer:
 IBM’s statements regarding its plans, directions, and intent are subject to change or withdrawal without notice at IBM’s sole discretion.
