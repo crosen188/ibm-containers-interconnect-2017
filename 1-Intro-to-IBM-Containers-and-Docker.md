@@ -204,4 +204,4 @@ In this task, we will log into the IBM Containers command line to connect to Blu
 - Downloaded two new Docker images to run locally on your development VM
 - Logged into the IBM Containers command line
 
-### Time to continue with [Lab 2 - Docker Web Apps, running on IBM Containers](2-Running-Docker-Images-in-IBM-Containers.md)
+### Time to continue with [Lab 2 - Running Docker Images in IBM Containers](2-Running-Docker-Images-in-IBM-Containers.md)

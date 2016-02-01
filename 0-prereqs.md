@@ -30,7 +30,7 @@
     * Choose wisely, make it identifiable, but something you will not mind typing while using the CLI nor something that is embarassing.
 
 
-You can now close this window to cancel the container deployment process.  You are now ready to being [Lab 1](1-Intro-to-IBM-Containers-and-Docker.md)lab 1.
+You can now close this window to cancel the container deployment process.  You are now ready to being [Lab 1 - Introduction to IBM Containers and Docker](1-Intro-to-IBM-Containers-and-Docker.md).
 
 
 

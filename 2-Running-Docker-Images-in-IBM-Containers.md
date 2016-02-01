@@ -274,4 +274,4 @@ To ensure you have enough free quota to continue with the lab, let's clean up yo
 - Learned about the security posture of our image using Vulnerability Advisor
 - Ran our first containers in the cloud
 
-### Time to continue with [Lab 3 - Docker Web Apps with IBM Bluemix services](3-Containers-using-Bluemix-Services.md)
+### Time to continue with [Lab 3 - Containers using Bluemix Services](3-Containers-using-Bluemix-Services.md)

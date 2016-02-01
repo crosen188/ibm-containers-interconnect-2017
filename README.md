@@ -17,19 +17,19 @@ For those needing an introduction on Docker, please consult https://docs.docker.
 
 ## Lab 0. [Prerequisites](0-prereqs.md)
 
-## Lab 1. [IBM Containers Introduction](1-Intro-to-IBM-Containers-and-Docker.md)
+## Lab 1. [Introduction to IBM Containers and Docker](1-Intro-to-IBM-Containers-and-Docker.md)
 **Difficulty**: Easy  
 **Time Required**: 20 minutes  
 
 In this lab, you will learn how to get started using IBM Containers, a hosted offering for managing Docker containers on IBM Bluemix™.
 
-## Lab 2. [Docker Web Apps, running on IBM Containers](2-Running-Docker-Images-in-IBM-Containers.md)
+## Lab 2. [Running Docker Images in IBM Containers](2-Running-Docker-Images-in-IBM-Containers.md)
 **Difficulty**: Intermediate  
 **Time Required**: 30 minutes
 
 In this lab, you will learn how to push images to your hosted private registry on Bluemix, evaluate security vulnerabilities for your pushed images, and run an application with two linked container images.  
 
-## Lab 3. [Docker Web Apps with IBM Bluemix services](3-Containers-using-Bluemix-Services.md)  
+## Lab 3. [Containers using Bluemix Services](3-Containers-using-Bluemix-Services.md)  
 **Difficulty**: Intermediate  
 **Time Required**: 30 minutes
 
