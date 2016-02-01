@@ -38,7 +38,7 @@ Docker Engine should be installed and running in your machine. In this task we w
          Built:        Mon Oct 12 18:01:15 UTC 2015
          OS/Arch:      linux/amd64
 
-2. To get started with Docker, run a simple container locally, using the `hello-world` image with the command """docker run hello-world"**.
+2. To get started with Docker, run a simple container locally, using the `hello-world` image with the command """docker run hello-world".
 
         $ docker run hello-world
 
@@ -87,7 +87,7 @@ First, you will need to pull them down locally from the public [DockerHub](https
         Digest: sha256:98d1637b93a1fcc493bb00bb122602036b784e3cde25e8b3cae29abd15275206
         Status: Image is up to date for sdelements/lets-chat:latest
 
-3. You can verify that containers can be deployed from these images and are compatible by running the applications locally.  Use the following "docker run" commands to start the two container instances.  The output is the unique container identifier and verifies completion of the executed command. 
+3. You can verify that containers can be deployed from these images and are compatible by running the applications locally.  Use the following "docker run" commands to start the two container instances.  The output is the unique container identifier and verifies completion of the executed command.
 
         Start a Mongo instance.  This will deploy a container that is running with the MongoDB inside.  
         ```
@@ -102,7 +102,7 @@ First, you will need to pull them down locally from the public [DockerHub](https
         4180a983e329947196e317563037bfd0da093ab89add16911de90534c69a7822
         ```
 
-4. Access the Let's Chat application through your browser using the loopback IP address (127.0.0.1). 
+4. Access the Let's Chat application through your browser using the loopback IP address (127.0.0.1).
 
            In your browser, access http://127.0.0.1:8080 or http://localhost:8080 or http://system_ip_here:8080.  
 
@@ -195,13 +195,13 @@ In this task, we will log into the IBM Containers command line to connect to Blu
         	docker ps
         	docker images
 
-##Congratulations!!!  You have successfully accomplished lab 1.
+## Congratulations!!!  You have successfully accomplished Lab 1.
 
-####Let's recap what you've accomplished thus far:
+#### Let's recap what you've accomplished thus far:
 
 - Verified your Docker version
 - Downloaded and ran your first Docker container
 - Downloaded two new Docker images to run locally on your development VM
 - Logged into the IBM Containers command line
 
-###Time to continue with lab 2 - Running Docker Images in IBM Containers
+### Time to continue with [Lab 2 - Docker Web Apps, running on IBM Containers](2-Running-Docker-Images-in-IBM-Containers.md)

@@ -22,11 +22,11 @@ If you are on a trial account, you will want to ensure that you have removed all
 You will tag the previously downloaded images with your unique namespace so you can upload those images to your public registry hosted on Bluemix.
 
 1.   Make note of your namespace:  
-  
+
   $ cf ic namespace get
 
   ibm_containers_demo_eu
-  
+
 
 2. First tag your MongoDB image.  Remember to use your namespace from the first step to replace `[NAMESPACE]` in the tag and push commands below.  The namespace tag ensures that the image is uploaded to your private registry in the Bluemix cloud.
 
@@ -57,7 +57,7 @@ You will tag the previously downloaded images with your unique namespace so you 
 2. We'll skip tagging the Let's Chat image because we are going to create a new image via Dockerfile.
 
 3. To ensure the networking has enough time for configuration in this Let's Chat image, you will need to wrap your base Let's Chat image with a simple Dockerfile to ensure network connectivity.  You can use a Dockerfile to run any commands or installation scripts while creating a new Docker image.
-  
+
 To do so, create a new directory called `wrapper` at your Terminal window.  
   ```
   mkdir wrapper
@@ -71,13 +71,13 @@ To do so, create a new directory called `wrapper` at your Terminal window.
   ```
 
   This will create a new Dockerfile that we can build a temporary image from.  
-  
+
   **NOTE:** There is a period "." at the end of this docker build command that is required for the command to run.
-    
+
   ```
   docker build -t registry.ng.bluemix.net/[NAMESPACE]/lets-chat .
   ```
-  
+
    Understanding this command's components:
       The "docker build -t" is standard from the Docker CLI.
       The "registry.ng.bluemix.net" is the fully qualified domain name path to the Registry server running for the IBM Bluemix US South region.
@@ -152,14 +152,14 @@ To solve this issue, IBM Containers provides **Vulnerability Advisor** (VA), a p
   The *Deployment Settings for Containers* allows users with the appropriate level of authority to control which images can be deployed based on the vulnerability status.  You can see the multiple options that allows users to *Warn* or *Block* image deployment.
 
   The *Image Deployment Impact* shows a summary view of the state of all images in your registry.  Images can have statuses of *Deployment Blocked*, *Deploy with Caution*, and *Safe to Deploy*.  This gives you a quick look into which images are troublesome and which images are secure across your entire registry.
-  
+
 ![vapolicymgr](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/11-va-policy-mgr-defaults.jpg)
 
   You will note that the default action is to **Block** deployments that have vulnerabilities.  For our demonstration, select **Warn" for all three situations and click the **SAVE** button.  You will see the **Image Deployment Impact** window recalculate in real time the security posture of the images in your private registry based on the changes to the policy manager in Vulnerability Advisor.  Click the **Back to image creation** link.
-  
+
 ![recalcva](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/12-va-policy-mgr-recalc.jpg)
 
-5. You will now see that you can **Deploy with Caution**. 
+5. You will now see that you can **Deploy with Caution**.
 
 ![caution](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/13-deploy-caution.jpg)
 
@@ -265,18 +265,13 @@ To ensure you have enough free quota to continue with the lab, let's clean up yo
   $ cf if rm -f lets-chat
   ```
 
-##Congratulations!!!  You have successfully accomplished lab 2.
+## Congratulations!!!  You have successfully accomplished Lab 2.
 
-####Let's recap what you've accomplished thus far:
+#### Let's recap what you've accomplished thus far:
 
 - Tagged our images with our Bluemix namespace
 - Pushed (uploaded) our images to our private registry in Bluemix on the public IBM Cloud
 - Learned about the security posture of our image using Vulnerability Advisor
 - Ran our first containers in the cloud
 
-###Time to continue with lab 3 - Leveraging Bluemix Services with your Containers
-
-
-
-
-
+### Time to continue with [Lab 3 - Docker Web Apps with IBM Bluemix services](3-Containers-using-Bluemix-Services.md)

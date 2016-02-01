@@ -24,7 +24,7 @@ In lab 2, we used a MongoDB that was running inside a container.  This was fast 
 
  1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net/?direct=classic/#/resources) and click on **CREATE APP**.
 
-![create](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/17-create-app.jpg) 
+![create](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/17-create-app.jpg)
 
  2. Click on **WEB** app.  Select **SDK for Node.js** and **CONTINUE**.
 
@@ -32,17 +32,17 @@ In lab 2, we used a MongoDB that was running inside a container.  This was fast 
 ![node](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/19-sdk-node.jpg)
 
  3. Enter a unique name for your application and click **FINISH**.  This must be unique across all the entire Bluemix region your are working in.  For instance, "testapp" is a less than desirable name.  Something like "[YOUR_NAME]-bridge-app" is much better.  This will become the hostname for your app once deployed on Bluemix.
- 
+
 **NOTE:** You will not have a drop down box for domain name unless you have multiple domains defined inside Bluemix.
- 
+
 ![name](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/20-app-name-new.jpg)
 
  4. Once you're application has been deployed and you are taken to the **Getting Started** page, click on the **Overview** tab on the left.
- 
+
 ![overview](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/21-app-created.jpg)
 
  5. Now you will need to bind a MongoDB service instance to your application.  This will then expose the credentials to your container at runtime.  Click on **ADD A SERVICE OR API**.
- 
+
 ![servuce](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/22-add-service.jpg)
 
  6. Search for or scroll to **MongoDB by Compose** and click on it.
@@ -58,11 +58,11 @@ In lab 2, we used a MongoDB that was running inside a container.  This was fast 
 - **Username:** ibmcontainers
 - **Password:** containers
 
-- Alternatively, you can sign up for a *Free 30-Day Trial* at [Compose](https://compose.io) and use all of the features beyond just today.  If you are interested in cloud application development, I'd highly recommend signing up for your own Compose account, as they provide a number of offerings that are critical for efficient application development - MongoDB, PostgreSQL, Redis, etcd, and many more! 
-  
+- Alternatively, you can sign up for a *Free 30-Day Trial* at [Compose](https://compose.io) and use all of the features beyond just today.  If you are interested in cloud application development, I'd highly recommend signing up for your own Compose account, as they provide a number of offerings that are critical for efficient application development - MongoDB, PostgreSQL, Redis, etcd, and many more!
+
  8. Once you are prompted to restage your application, click **RESTAGE** and wait a few moments for your application to be running again.
 
-![restage](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/25-restage.jpg) 
+![restage](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/25-restage.jpg)
 
  9. Since you will be using some pre-built automation to deploy your application, you will need to rename your bridge application to a more standard name.  This will only change the application name inside your space and not the hostname (which is the property that must be unique across all of the Bluemix region).
 
@@ -159,11 +159,11 @@ Now that your project has been deployed to IBM Containers on Bluemix, let's revi
 
 To continue with another lab, you need to clean up your container instances.  This can be done through the UI and the **DELETE** button on each container, or you can do this through the CLI with the `cf ic rm -f [CONTAINER_NAME]` command.
 
-##Congratulations!!!  You have successfully accomplished lab 3.
+##Congratulations!!!  You have successfully accomplished Lab 3.
 
 ####Let's recap what you've accomplished thus far:
 
 - Created a Bluemix application with the MongoDB service by Compose
 - Deployed the Let's Chat container bound to that Bluemix app for persistent storage
 
-###Time to continue with lab 4 - Zero Downtime with the Active Deployment Service
+###Time to continue with [Lab 4 - Zero Downtime with the Active Deployment Service](4-Zero-Downtime-with-Active-Deployment.md)
