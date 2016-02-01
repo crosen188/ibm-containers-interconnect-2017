@@ -78,12 +78,12 @@ To do so, create a new directory called `wrapper` at your Terminal window.
   docker build -t registry.ng.bluemix.net/[NAMESPACE]/lets-chat .
   ```
 
-   Understanding this command's components:
-      The "docker build -t" is standard from the Docker CLI.
-      The "registry.ng.bluemix.net" is the fully qualified domain name path to the Registry server running for the IBM Bluemix US South region.
-      The "NAMESPACE" is each user's unique namespace and identifies your private registry.
-      The "lets-chat" is the name given to this newly created image.
-      The "." specifies that the build command is running using the Dockerfile in this directory.
+   Understanding this command's components:  
+      - The "docker build -t" is standard from the Docker CLI.  
+      - The "registry.ng.bluemix.net" is the fully qualified domain name path to the Registry server running for the IBM Bluemix US South region.  
+      - The "NAMESPACE" is each user's unique namespace and identifies your private registry.  
+      - The "lets-chat" is the name given to this newly created image.  
+      - The "." specifies that the build command is running using the Dockerfile in this directory.  
 
   You will now use this image below to push to Bluemix instead of the base `lets-chat` image.  
 
@@ -139,7 +139,7 @@ To solve this issue, IBM Containers provides **Vulnerability Advisor** (VA), a p
 
 3. Click on the **View the vulnerability report for this image** to see the vulnerability assessment in full detail. The details page has two tabs: **Vulnerable Packages** and **Policy Violations**.  
 
-  The *Vulnerable Packages* tab shows you the number of packages scanned, the number of vulnerable packages present in your image, and the number of relevant security notices attached to any of those vulnerable packages.  Your image should now around 107 packages scanned with 0 vulnerable packages and 0 security notices.
+  The *Vulnerable Packages* tab shows you the number of packages scanned, the number of vulnerable packages present in your image, and the number of relevant security notices attached to any of those vulnerable packages.  Your image should show around 107 packages scanned with 0 vulnerable packages and 0 security notices.
 
   The *Policy Violations* tab shows you how the image compares against your organization's security policies.  This will show the number of rules the image was validated against and any possible policy violations.  Your Mongo image should show around 27 policy rules with 2 associated policy violations (being Password Age and Password Length).  
 
@@ -155,7 +155,7 @@ To solve this issue, IBM Containers provides **Vulnerability Advisor** (VA), a p
 
 ![vapolicymgr](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/11-va-policy-mgr-defaults.jpg)
 
-  You will note that the default action is to **Block** deployments that have vulnerabilities.  For our demonstration, select **Warn" for all three situations and click the **SAVE** button.  You will see the **Image Deployment Impact** window recalculate in real time the security posture of the images in your private registry based on the changes to the policy manager in Vulnerability Advisor.  Click the **Back to image creation** link.
+  You will note that the default action is to **Block** deployments that have vulnerabilities.  For our demonstration, select **Warn** for all three situations and click the **SAVE** button.  You will see the **Image Deployment Impact** window recalculate in real time the security posture of the images in your private registry, based on the changes to the policy manager in Vulnerability Advisor.  Click the **Back to image creation** link.
 
 ![recalcva](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/12-va-policy-mgr-recalc.jpg)
 
@@ -246,7 +246,8 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
   7ebf51a3-35a        registry.ng.bluemix.net/[NAMESPACE]/mongo:latest       ""                  3 minutes ago        Running 3 minutes ago   27017/tcp                      lc-mongo
   ```
 
-5. Check out your running app in your browser, at the IP you just bound.  Remember to use port `8080`!
+5. Check out your running app in your browser, at the IP you just bound.  Remember to use port `8080`!  
+  **Note**: Based on the `sleep` statement you built into the Let's Chat container, you will need to wait at least 60 seconds before the Let's Chat application will be available.
 
 ![letschat1](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/14-lets-chat.jpg)
 ![letschat2](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/15-lets-chat.jpg)
@@ -259,10 +260,10 @@ To ensure you have enough free quota to continue with the lab, let's clean up yo
 1. To use the command line:
 
   ```
-  $ cf ic stop mongodb
   $ cf ic stop lets-chat
-  $ cf if rm -f mongodb
+  $ cf ic stop lc-mongo
   $ cf if rm -f lets-chat
+  $ cf if rm -f lc-mongo
   ```
 
 ## Congratulations!!!  You have successfully accomplished Lab 2.
