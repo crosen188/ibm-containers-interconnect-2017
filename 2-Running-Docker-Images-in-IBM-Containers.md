@@ -78,12 +78,12 @@ To do so, create a new directory called `wrapper` at your Terminal window.
   docker build -t registry.ng.bluemix.net/[NAMESPACE]/lets-chat .
   ```
 
-   Understanding this command's components:  
-      - The "docker build -t" is standard from the Docker CLI.  
-      - The "registry.ng.bluemix.net" is the fully qualified domain name path to the Registry server running for the IBM Bluemix US South region.  
-      - The "NAMESPACE" is each user's unique namespace and identifies your private registry.  
-      - The "lets-chat" is the name given to this newly created image.  
-      - The "." specifies that the build command is running using the Dockerfile in this directory.  
+  Understanding this command's components:  
+    - The `docker build -t` is standard from the Docker CLI.  
+    - The `registry.ng.bluemix.net` is the fully qualified domain name path to the Registry server running for the IBM Bluemix US South region.  
+    - The `NAMESPACE` is each user's unique namespace and identifies your private registry.  
+    - The `lets-chat` is the name given to this newly created image.  
+    - The `.` specifies that the build command is running using the Dockerfile in this directory.  
 
   You will now use this image below to push to Bluemix instead of the base `lets-chat` image.  
 
