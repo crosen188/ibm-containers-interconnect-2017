@@ -87,7 +87,7 @@ Note: Before continuing, in preperation for **Task 3**, prepare the browser page
  3. Execute the Deployment
   * Click the `Create` button to create the new deployment. Upon successful creation, the page will display the details of the new deployment.
 
-## Task 3: Watch and calidate the deployment
+## Task 3: Watch and validate the deployment
 
 Now that the deployment is created, it will take the total time of your specificed phase times to execute. The really interesting part is the first part, where you get traffic from both versions of your application as the service adjusts instances on the same URL route - this allows users to never lose functionality of the application as it is updated. Here is what you will see:
 
@@ -152,3 +152,5 @@ This can be done through the UI and the `DELETE` button on each container, or yo
 - Made a change to your Bluemix container application
 - Deployed the new version without taking the original version offline
 - Verified that the deployment was running and how it was running
+
+###Time to continue with [Lab 5-Container-Group-Scaling-and-Recoverability.md](-Container-Group-Scaling-and-Recoverability.md)
