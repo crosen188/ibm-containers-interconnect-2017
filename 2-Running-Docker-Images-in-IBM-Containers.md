@@ -30,7 +30,8 @@ You will tag the previously downloaded images with your unique namespace so you 
 
 2. First tag your MongoDB image.  Remember to use your namespace from the first step to replace `[NAMESPACE]` in the tag and push commands below.  The namespace tag ensures that the image is uploaded to your private registry in the Bluemix cloud.
 
-  List your images:  
+  List your images:
+   
   ```
   $ docker images
   REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
@@ -188,9 +189,10 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
   71eb28dc-4d95-4a6d-bcaa-93f2382e48b5
   ```
 
-  Show the running container instances.  Wait for a state of `RUNNING` before you proceed:  
+  Show the running container instances.  Wait for a state of `RUNNING` before you proceed:
+
   ```
-  $ cf ic ps
+$ cf ic ps
   CONTAINER ID        IMAGE                                                            COMMAND             CREATED             STATUS                   PORTS               NAMES
   7ebf51a3-35a        registry.ng.bluemix.net/[NAMESPACE]/mongo:latest   ""                  45 seconds ago      Running 27 seconds ago   27017/tcp           lc-mongo
   ```
@@ -203,7 +205,8 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
   a5dc5e0d-8eae-44a2-9f8d-548112bec250
   ```
 
-  Show the running container instances.  Wait for a state of `RUNNING` before you proceed:  
+  Show the running container instances.  Wait for a state of `RUNNING` before you proceed:
+   
   ```
   $ cf ic ps
   CONTAINER ID        IMAGE                                                                COMMAND             CREATED             STATUS                   PORTS               NAMES
@@ -215,7 +218,8 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
 
   If not, you'll run the `ip list` command to see which IPs are available and then bind one to your running container.
 
-  List available IP addresses for your account:  
+  List available IP addresses for your account:
+   
   ```
   $ cf ic ip list
   Number of allocated public IP addresses:  2
@@ -225,20 +229,23 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
   134.XXX.YYY.ZZ1
   ```      
 
-  If you have no available IP addresses in the response, you can request one:  
+  If you have no available IP addresses in the response, you can request one:
+   
   ```
   $ cf ic ip request
   Successfully requested ip 134.XXX.YYY.ZZZ
   ```
 
-  If you have an available IP address, you can bind that IP to your container:  
+  If you have an available IP address, you can bind that IP to your container:
+   
   ```
-  $ cf ic ip bind 134.XXX.YYY.ZZ0 lets-chat
+  $ cf ic ip bind 134.XXX.YYY.ZZZ lets-chat
   OK
   The IP address was bound successfully
   ```
 
-  Show running containers with bound IP information now visible:  
+  Show running containers with bound IP information now visible:
+  
   ```
   $ cf ic ps
   CONTAINER ID        IMAGE                                                                COMMAND             CREATED              STATUS                  PORTS                          NAMES
