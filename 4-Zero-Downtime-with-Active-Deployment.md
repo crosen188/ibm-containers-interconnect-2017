@@ -15,37 +15,36 @@
 ## Prerequisites
 
  1. Prior to running this lab, you must have completed the pre-reqs, lab 1, lab 2, lab 3, and cleaned up your previous deployments.
-TODO - DO WE NEED THIS? 2. Add the Active Deploy service to your dashboard space - link => https://console.ng.bluemix.net/catalog/active-deploy/ then select `create`
-REMOVE 3. Ensure that the Container you will update is running - **HOW DO WE DO THIS**
- 4. Optional: Reference the full documentation reference [here](https://www.ng.bluemix.net/docs/services/ActiveDeploy/index.html) for some good additional information.
+ 2. Optional: Reference the full documentation reference [here](https://www.ng.bluemix.net/docs/services/ActiveDeploy/index.html) for some good additional information.
 
 ## Task 1: Prepare to deploy your updated application
 
  1. Get application code to use for this lab
 
-	`git clone https://github.com/crosen188/ibm-containers-interconnect-2016.git`
-	`cd ibm-containers-interconnect-2016/lab_assets/lab4`
+	* `git clone https://github.com/crosen188/ibm-containers-interconnect-2016.git`
+	* `cd ibm-containers-interconnect-2016/lab_assets/lab4`
 	
  2. Set some convenience variables to make the lab easier & make sure you are logged in
 	
-	`. prep-lab4.sh`
-	`cf login -u EMAIL_ADDRESS -a api.ng.bluemix.net`
-	`cf ic login`
+	* `. prep-lab4.sh`
+	* `cf login -u EMAIL_ADDRESS -a api.ng.bluemix.net`
+	* `cf ic login`
 
  3. Build and upload the sample application	
 
-	`docker build -t registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1 .` - build the code
-	`docker push registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - upload the code to Bluemix
+	* `docker build -t registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1 .` - build the code
+	* `docker push registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - upload the code to Bluemix
 
 TODO: TEST MORE INSTANCES IN THE FIRST GROUP
 	
-	`cf ic group create --name $APPNAME-GRP -p 80 --desired 1 registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - create a group for the initial version
-	`cf ic route map --hostname $UNIQNAME-$APPNAME --domain mybluemix.net $APPNAME-GRP` - create a route to see your application
+	* `cf ic group create --name $APPNAME-GRP -p 80 --desired 1 registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - create a group for the initial version
+	* `cf ic route map --hostname $UNIQNAME-$APPNAME --domain mybluemix.net $APPNAME-GRP` - create a route to see your application
 
   4. Verify what was created and that your application is running
-	`cf ic images`
-	`cf ic group list`
-	Go check the web site it tells you it just mapped = like $UNIQNAME-$APPNAME.mybluemix.net
+	
+	* `cf ic images`
+	* `cf ic group list`
+	* Go check the web site it tells you it just mapped = like $UNIQNAME-$APPNAME.mybluemix.net
 	
 	You have now deployed your initial application
 
