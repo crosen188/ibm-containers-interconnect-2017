@@ -26,31 +26,38 @@
 	
  2. Set some convenience variables to make the lab easier & make sure you are logged in
 	
-	* `. prep-lab4.sh`
+	* `. prep-lab4.sh` - you can override any variables here as you like
 	* `cf login -u EMAIL_ADDRESS -a api.ng.bluemix.net`
-	* `cf ic login`
+	* `cf ic login` - no arguements needed, it reads your Bluemix login env
+
+TODO: TEST MORE INSTANCES IN THE FIRST GROUP
+
+TODO: TEST MORE INSTANCES IN THE FIRST GROUP
+
+TODO: TEST MORE INSTANCES IN THE FIRST GROUP
+
+TODO: TEST MORE INSTANCES IN THE FIRST GROUP
 
  3. Build and upload the sample application	
 
 	* `docker build -t registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1 .` - build the code
 	* `docker push registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - upload the code to Bluemix
-
-TODO: TEST MORE INSTANCES IN THE FIRST GROUP
-	
 	* `cf ic group create --name $APPNAME-GRP -p 80 --desired 1 registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - create a group for the initial version
 	* `cf ic route map --hostname $UNIQNAME-$APPNAME --domain mybluemix.net $APPNAME-GRP` - create a route to see your application
 
-  4. Verify what was created and that your application is running
+ 4. Verify what was created and that your application is running
 	
-	* `cf ic images`
-	* `cf ic group list`
-	* Go check the web site it tells you it just mapped = like $UNIQNAME-$APPNAME.mybluemix.net
+	* `cf ic images` - look for your $APPNAME:1
+	* `cf ic group list` - look for your groups $APPNAME-GRP
+	* Go check the web site it tells you it just mapped - like $UNIQNAME-$APPNAME.mybluemix.net
 	
 	You have now deployed your initial application
 
 ## Task 2: Modify your application and push a new version to be deployed
 
- 1. Modify index.html somehow - add some characters or your name a few times
+ 1. Modify index.html 
+   * Find the line that starts with "InterConnect 2016" - Add something at the end like "Version 2" and your Name - Save
+   * or `cp index.v2 to index.html` - this is "making a change" for you
  
  2. Build and upload the changed application	
 
@@ -58,26 +65,26 @@ TODO: TEST MORE INSTANCES IN THE FIRST GROUP
 	`docker push registry.ng.bluemix.net/$NAMESPACE/$APPNAME:2` - push the new version 2
 	`cf ic group create --name $APPNAME-GRP2 -p 80 --desired 1 registry.ng.bluemix.net/$NAMESPACE/$APPNAME:2` - create a new group for your version2
 
+
 ## Task 3: Deploy your Application
 
-Now that the updated application is compiled and uploaded to Bluemix, you are ready to deploy it using Active Deploy. You can do this using the Active Deploy **CLI** commands, or you can do this using the Active Deploy **Dashboard GUI** (same exact operation).
+Now that the updated application is compiled and uploaded to Bluemix, you are ready to deploy it using Active Deploy. We will show you the Active Deploy **CLI** commands, but you can also do this with the Active Deploy **Dashboard GUI**.
 
 During the deploy, Active Deploy will:
  * Route traffic to `APPNAME2` and start ramping up instances of `APPNAME2` (the Ramp-up Phase).
  * Turn off the route to `APPNAME` once the number of instances of `APPNAME2` is the same as for `APPNAME` (the Test Phase).
  * Finally, reduce the number of instances of `APPNAME` to 1 (the Ramp-down Phase).
 
-
  1. Use the create command to create a new deployment
 
-	`cf active-deploy-create $APPNAME-GRP $APPNAME-GRP2 --label "$UNIQNAME Update" --rampup 5m --test 5m --rampdown 2m`
-	`cf active-deploy-list`
-	`cf active-deploy-show -l "$UNIQNAME Update"`
+	`cf active-deploy-create $APPNAME-GRP $APPNAME-GRP2 --label "$UNIQNAME Update" --rampup 5m --test 5m --rampdown 2m` - will do the deploy - you can modify the 3 phase times as you like
+	`cf active-deploy-list` - will list the curretn deployments
+	`cf active-deploy-show -l "$UNIQNAME Update"` - will show you information about your deployment
 
 
 ## Task 4: Watch and validate the deployment
 
-Now that the deployment is created, it will take the total time of your specificed phase times to execute. The really interesting part is the first part, where you get traffic from both versions of your application as the service adjusts instances on the same URL route - this allows users to never lose functionality of the application as it is updated. Here is what you will see:
+Now that the deployment is created, it will take the total time of your specificed phase times to execute. The really interesting part is the first part, where you get traffic from both versions of your application as the service adjusts traffic on the same URL route - this allows users to never lose functionality of the application as it is updated. Here is what you will see:
 
 When the phase is _rampup_:  
   * `cf apps` should show both that `APPNAME` and `APPNAME2` are assigned the same route.
