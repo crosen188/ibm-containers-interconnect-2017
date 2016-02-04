@@ -53,17 +53,18 @@ TODO: TEST MORE INSTANCES IN THE FIRST GROUP
 	
 	You have now deployed your initial application
 
-## Task 2: Modify your application and push a new version to be deployed
+	
+## Task 2: Modify your app and push a new version
 
  1. Modify index.html 
-   * Find the line that starts with "InterConnect 2016" - Add something at the end like "Version 2" and your Name - Save
-   * or `cp index.v2 to index.html` - this is "making a change" for you
+   * `cp index.v2 to index.html` - this is "making a change" for you
+   * Make any other changes you like
  
  2. Build and upload the changed application	
 
-	`docker build -t registry.ng.bluemix.net/$NAMESPACE/$APPNAME:2 .` - build the new version2
-	`docker push registry.ng.bluemix.net/$NAMESPACE/$APPNAME:2` - push the new version 2
-	`cf ic group create --name $APPNAME-GRP2 -p 80 --desired 1 registry.ng.bluemix.net/$NAMESPACE/$APPNAME:2` - create a new group for your version2
+   * `docker build -t registry.ng.bluemix.net/$NAMESPACE/$APPNAME:2 .` - build the new version2
+   * `docker push registry.ng.bluemix.net/$NAMESPACE/$APPNAME:2` - push the new version 2
+   * `cf ic group create --name $APPNAME-GRP2 -p 80 --desired 1 registry.ng.bluemix.net/$NAMESPACE/$APPNAME:2` - create a new group for your version2
 
 
 ## Task 3: Deploy your Application
@@ -77,9 +78,9 @@ During the deploy, Active Deploy will:
 
  1. Use the create command to create a new deployment
 
-	`cf active-deploy-create $APPNAME-GRP $APPNAME-GRP2 --label "$UNIQNAME Update" --rampup 5m --test 5m --rampdown 2m` - will do the deploy - you can modify the 3 phase times as you like
-	`cf active-deploy-list` - will list the curretn deployments
-	`cf active-deploy-show -l "$UNIQNAME Update"` - will show you information about your deployment
+   * `cf active-deploy-create $APPNAME-GRP $APPNAME-GRP2 --label "$UNIQNAME Update" --rampup 5m --test 5m --rampdown 2m` - will do the deploy - you can modify the 3 phase times as you like
+   * `cf active-deploy-list` - will list the curretn deployments
+   * `cf active-deploy-show "$UNIQNAME Update"` - will show you information about your deployment
 
 
 ## Task 4: Watch and validate the deployment
@@ -101,17 +102,17 @@ When the Active Deploy is complete:
 
 	* In your browser, you can go to URL of your application to see the change that you made
 	* Continue to hit F5 every few seconds, and you should see the change appear and disappear as you reload the browser (During the _Ramp-up_ phase).
+	* When the test phase begins you will only see the APPNAME2 version
 
  2. List the deployments using the list command
 
-    `cf active-deploy-list`
+    * `cf active-deploy-list` - You will see your new deployment. Now view information about that deployment
+	* `cf active-deploy-show "$UNIQNAME Update"` - will show you information about your deployment
+	
+	Execute the last command repeatedly every 20 seconds or so over time to watch the change in values.
 
-	You will see your new deployment. Now view information about that deployment
-
-	`cf active-deploy-info "$UNIQNAME Update"`
-
-	Execute the last command repeatedly every 4-5 seconds or so over time to watch the change in values.
-
+When the deployment exists the ramp down phase your deployment is completed.
+	
 ##Congratulations!!!  You have successfully accomplished Lab 4.
 
 ####Let's recap what you've accomplished thus far:
