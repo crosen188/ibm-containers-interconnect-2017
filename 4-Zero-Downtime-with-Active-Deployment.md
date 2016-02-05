@@ -30,19 +30,11 @@
 	* `cf login -u EMAIL_ADDRESS -a api.ng.bluemix.net`
 	* `cf ic login` - no arguements needed, it reads your Bluemix login env
 
-TODO: TEST MORE INSTANCES IN THE FIRST GROUP
-
-TODO: TEST MORE INSTANCES IN THE FIRST GROUP
-
-TODO: TEST MORE INSTANCES IN THE FIRST GROUP
-
-TODO: TEST MORE INSTANCES IN THE FIRST GROUP
-
  3. Build and upload the sample application	
 
 	* `docker build -t registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1 .` - build the code
 	* `docker push registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - upload the code to Bluemix
-	* `cf ic group create --name $APPNAME-GRP -p 80 --desired 1 registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - create a group for the initial version
+	* `cf ic group create --name $APPNAME-GRP -p 80 --desired 4 registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - create a group for the initial version with 4 initial instances
 	* `cf ic route map --hostname $UNIQNAME-$APPNAME --domain mybluemix.net $APPNAME-GRP` - create a route to see your application
 
  4. Verify what was created and that your application is running
