@@ -118,3 +118,5 @@ When the deployment exists the ramp down phase your deployment is completed.
 To clean up your environment or to try his again, you can delete the deployment (or leave it, it will just sit there in history). You can also delete your applications and start again if you like.
 
 This can be done through the UI and the `DELETE` button on each container, or you can do this through the CLI with the `cf ic rm -f [CONTAINER_NAME]` command.
+
+###Time to continue with [Lab 5-Container-Group-Scaling-and-Recoverability.md](5-Container-Group-Scaling-and-Recoverability.md)
