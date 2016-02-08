@@ -8,8 +8,9 @@
 > **Tasks**:
 >- [Prerequisites](#prerequisites)
 - [Task 1: Prepare to deploy your updated application](#task-1-prepare-to-deploy-your-updated-application)
-- [Task 2: Deploy your application](#task-2-deploy-your-Application)
-- [Task 3: Watch and validate the deployment](#task-3-watch-and-validate-the-deployment)
+- [Task 2: DModify your app and push a new version](#task-2-modify-your-app-and-push-a-new-version)
+- [Task 3: Deploy your application](#task-3-deploy-your-application)
+- [Task 4: Watch and validate the deployment](#task-4-watch-and-validate-the-deployment)
 
 ## Overview
 
