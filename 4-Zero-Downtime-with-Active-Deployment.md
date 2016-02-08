@@ -25,7 +25,7 @@ At the end, you will be able to use Active Deploy with your container applicatio
  
 ## Task 1: Prepare to deploy your updated application
 
-This will walk you through setting up a sample application. If you already have a Container application *that is in a container group*, you can use that intead.
+This will walk you through setting up a sample application. If you already have a Container application *that is in a container group*, you can use that instead.
 
  1. Get application code to use for this lab
 
