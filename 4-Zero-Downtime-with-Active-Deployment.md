@@ -11,13 +11,20 @@
 - [Task 2: Deploy your application](#task-2-deploy-your-Application)
 - [Task 3: Watch and validate the deployment](#task-3-watch-and-validate-the-deployment)
 
+## Overview
+
+This lab will walk you through the full Active Deploy getting started function. It will create a sample app if you need to, show you how to modify it and upload it, and then how to run the Active Deploy with various options.
+At the end, you will be able to use Active Deploy with your container applications.
+
 
 ## Prerequisites
 
- 1. Prior to running this lab, you must have completed the pre-reqs, lab 1, lab 2, lab 3, and cleaned up your previous deployments.
- 2. Optional: Reference the full documentation reference [here](https://www.ng.bluemix.net/docs/services/ActiveDeploy/index.html) for some good additional information.
-
+ 1. Prior to running this lab, you must have completed the pre-reqs, lab 1, lab 2, lab 3, and cleaned up your previous deployments
+ 2. Optional: Reference the full Active Deploy documentation [here](https://www.ng.bluemix.net/docs/services/ActiveDeploy/index.html) for some good additional information
+ 
 ## Task 1: Prepare to deploy your updated application
+
+This will walk you through setting up a sample application. If you already have a Container application *that is in a container group*, you can use that intead.
 
  1. Get application code to use for this lab
 
@@ -26,13 +33,16 @@
 	
  2. Set some convenience variables to make the lab easier & make sure you are logged in
 	
-	* `. prep-lab4.sh` - you can override any variables here as you like
+	The helper script will set some variables that the lab commands will later use. Your application name (APPNAME), your Bluemix namespace (NAMEPSACE), and a unique value so that you don't conflict with any other Bluemix user (UNIQNAME).
+	You may use the default values, over-ride them and set them yourself, or use different lab commands with direct values as you see fit.
+	
+	* `. prep-lab4.sh` - this will set those default values
 	* `cf login -u EMAIL_ADDRESS -a api.ng.bluemix.net`
 	* `cf ic login` - no arguements needed, it reads your Bluemix login env
 
  3. Build and upload the sample application	
 
-	* `docker build -t registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1 .` - build the code
+	* `docker build -t registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1 .` - build the code on this machine
 	* `docker push registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - upload the code to Bluemix
 	* `cf ic group create --name $APPNAME-GRP -p 80 --desired 4 registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - create a group for the initial version with 4 initial instances
 	* `cf ic route map --hostname $UNIQNAME-$APPNAME --domain mybluemix.net $APPNAME-GRP` - create a route to see your application
