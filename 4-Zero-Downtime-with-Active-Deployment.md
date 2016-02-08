@@ -38,10 +38,13 @@ This will walk you through setting up a sample application. If you already have 
 	You may use the default values, over-ride them and set them yourself, or use different lab commands with direct values as you see fit.
 	
 	* `. prep-lab4.sh` - this will set those default values
-	* `cf login -u EMAIL_ADDRESS -a api.ng.bluemix.net`
-	* `cf ic login` - no arguements needed, it reads your Bluemix login env
+	* `cf login -u EMAIL_ADDRESS -a api.ng.bluemix.net` - log you into the production Bluemix server
+	* `cf ic login` - no arguements needed, it reads your Bluemix login env and initializes the container Docker login
 
  3. Build and upload the sample application	
+ 
+    This will build your application, upload it to the server, create a container group with your container image and 4 instances of your application, and map a route.
+	After you do this step, you can look at your application running.
 
 	* `docker build -t registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1 .` - build the code on this machine
 	* `docker push registry.ng.bluemix.net/$NAMESPACE/$APPNAME:1` - upload the code to Bluemix
@@ -51,7 +54,7 @@ This will walk you through setting up a sample application. If you already have 
  4. Verify what was created and that your application is running
 	
 	* `cf ic images` - look for your $APPNAME:1
-	* `cf ic group list` - look for your groups $APPNAME-GRP
+	* `cf ic group list` - look for your group $APPNAME-GRP
 	* Go check the web site it tells you it just mapped - like $UNIQNAME-$APPNAME.mybluemix.net
 	
 	You have now deployed your initial application
@@ -60,10 +63,12 @@ This will walk you through setting up a sample application. If you already have 
 ## Task 2: Modify your app and push a new version
 
  1. Modify index.html 
-   * `cp index.v2 to index.html` - this is "making a change" for you
+   * `cp index.v2 to index.html` - this is "making a change" for you - you can also just load an editor and edit index.html yourself
    * Make any other changes you like
  
  2. Build and upload the changed application	
+ 
+   This builds and uploads and created a group for your new version. This time we only use 1 instance, and we don't map the route - the Active Deploy step will do that for you.
 
    * `docker build -t registry.ng.bluemix.net/$NAMESPACE/$APPNAME:2 .` - build the new version2
    * `docker push registry.ng.bluemix.net/$NAMESPACE/$APPNAME:2` - push the new version 2
@@ -75,14 +80,16 @@ This will walk you through setting up a sample application. If you already have 
 Now that the updated application is compiled and uploaded to Bluemix, you are ready to deploy it using Active Deploy. We will show you the Active Deploy **CLI** commands, but you can also do this with the Active Deploy **Dashboard GUI**.
 
 During the deploy, Active Deploy will:
- * Route traffic to `APPNAME2` and start ramping up instances of `APPNAME2` (the Ramp-up Phase).
- * Turn off the route to `APPNAME` once the number of instances of `APPNAME2` is the same as for `APPNAME` (the Test Phase).
- * Finally, reduce the number of instances of `APPNAME` to 1 (the Ramp-down Phase).
+ * Route traffic to `APPNAME2` and start ramping up instances of `APPNAME2` (the Ramp-up Phase)
+ * Turn off the route to `APPNAME` once the number of instances of `APPNAME2` is the same as for `APPNAME` (the Test Phase)
+ * Finally, reduce the number of instances of `APPNAME` to 1 (the Ramp-down Phase)
 
  1. Use the create command to create a new deployment
 
+   This will launch the active deploy with phase times that allow you to see it fairly quickly. It also allows you to see the status
+ 
    * `cf active-deploy-create $APPNAME-GRP $APPNAME-GRP2 --label "$UNIQNAME Update" --rampup 5m --test 5m --rampdown 2m` - will do the deploy - you can modify the 3 phase times as you like
-   * `cf active-deploy-list` - will list the curretn deployments
+   * `cf active-deploy-list` - will list the current deployments
    * `cf active-deploy-show "$UNIQNAME Update"` - will show you information about your deployment
 
 
@@ -92,7 +99,7 @@ Now that the deployment is created, it will take the total time of your specific
 
 When the phase is _rampup_:  
   * `cf apps` should show both that `APPNAME` and `APPNAME2` are assigned the same route.
-  * Reloading your browser should show both versions if your application
+  * Reloading your browser repeatedly should show both versions if your application
 
 When the phase is _test_ or _rampdown_  
   * `cf apps` should show that only `APPNAME2` has a route assigned to it.
@@ -100,8 +107,10 @@ When the phase is _test_ or _rampdown_
 
 When the Active Deploy is complete:  
   * `cf apps` should show that `APPNAME` has only a single instance and is ready to be deleted
- 
- 1. Verify that Bluemix starts routing traffic to both versions:
+
+Steps
+
+ 1. Verify that Bluemix starts routing traffic to both versions
 
 	* In your browser, you can go to URL of your application to see the change that you made
 	* Continue to hit F5 every few seconds, and you should see the change appear and disappear as you reload the browser (During the _Ramp-up_ phase).
