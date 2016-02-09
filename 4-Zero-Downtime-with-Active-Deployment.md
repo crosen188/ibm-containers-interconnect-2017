@@ -79,7 +79,7 @@ This task walks you through setting up a sample application. If you already have
 			cf ic group list
 	* Check the site that was mapped, like `$UNIQNAME-$APPNAME.mybluemix.net`. If you need to double check the route, use this command and look for the "Routes" at the end of the output
 	
-			cf ic group inspect
+			cf ic group inspect $APPNAME-GRP
 
 
 You have now deployed your initial sample application.
