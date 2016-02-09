@@ -13,14 +13,17 @@
 - [Task 4: Watch and validate the deployment](#task-4-watch-and-validate-the-deployment)
 
 
+Important Note: Container support for Active Deploy on Bluemix is not in beta release yet. This is a preview of the functionality. It does not guarantee or promise availability or function release in any way.
+
 ## Overview
 
-This lab helps you get started using the Active Deploy service with IBM Containers. You can create a sample app, modify it, upload it, and then run the Active Deploy with various options.
-At the end of this lab, you will be able to use Active Deploy with your container applications.
-<!--KKB: From working through the steps, I think that this tutorial is meant to help you understand how to update an app without customers ever noticing any downtime. That kind of basic goal that you are using Active Deploy to complete would be helpful in the overview here. -->
+This lab helps show you the capability using the Active Deploy service with IBM Containers.
+
+The Active Deploy service provides fully controlled and customized application update deployments, with zero downtime, with your own Bluemix cloud delivery applications. This allows users to update container or cloud foundry applications on IBM Bluemix with zero downtime, by using intelligent update deployment capabilities. It allows full control over the deployment configuration and allows mid-stream acceptance testing.
+
+This lab will show you how to create a sample app, modify it, upload it, and then run the Active Deploy with various options. At the end of this lab, you will know how to use Active Deploy with your container applications.
 
 ## Prerequisites
-<!--KKB: Maybe add links to the other labs in step 2? -->
  1. Prior to running this lab, you must have completed the Pre-reqs, Lab 1, Lab 2, Lab 3, and cleaned up your previous deployments.
  2. Optional: For more information, reference the [Active Deploy documentation](https://www.ng.bluemix.net/docs/services/ActiveDeploy/index.html).
  
@@ -77,7 +80,7 @@ This task walks you through setting up a sample application. If you already have
 	* Check the site that was mapped, like `$UNIQNAME-$APPNAME.mybluemix.net`.
 
 <!--KKB: I think a command is missing here. Do you have to run something like cf ic group inspect to see the mapped information. It does not show with group list-->
-You deployed your initial application.
+You have not deployed your initial sample application.
 
 	
 ## Task 2: Modify your app and push a new version
@@ -140,8 +143,6 @@ When the phase is _test_ or _rampdown_
 When the Active Deploy is complete:  
   * `cf apps` shows that `APPNAME` has only a single instance and is ready to be deleted.
 
-Steps
-<!--KKB: Steps for what? Maybe revise this heading -->
  1. Verify that Bluemix starts routing traffic to both versions.
 
 	a. In your browser, open the URL for your application to see the change that you made.
