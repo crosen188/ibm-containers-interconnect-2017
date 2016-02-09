@@ -1,5 +1,5 @@
 
-# Lab 4: Zero-Downtime with the Active Deploy Service
+# Lab 4: Zero-Downtime with the Active Deploy Service (Preview Status)
 
 > **Difficulty**: Intermediate
 
@@ -12,12 +12,12 @@
 - [Task 3: Deploy your application](#task-3-deploy-your-application)
 - [Task 4: Watch and validate the deployment](#task-4-watch-and-validate-the-deployment)
 
-
-Important Note: Container support for Active Deploy on Bluemix is not in beta release yet. This is a preview of the functionality. It does not guarantee or promise availability or function release in any way.
+<br>
+**Important Note**: Active Deploy support for Containers on Bluemix is not yet released. This is a preview of the functionality. There is no promised commitment of release of function or of availability date.
 
 ## Overview
 
-This lab helps show you the capability using the Active Deploy service with IBM Containers.
+This lab helps show you the capability of using the Active Deploy service with IBM Containers.
 
 The Active Deploy service provides fully controlled and customized application update deployments, with zero downtime, with your own Bluemix cloud delivery applications. This allows users to update container or cloud foundry applications on IBM Bluemix with zero downtime, by using intelligent update deployment capabilities. It allows full control over the deployment configuration and allows mid-stream acceptance testing.
 
@@ -77,10 +77,13 @@ This task walks you through setting up a sample application. If you already have
 	* Look for your container group $APPNAME-GRP in the list of containers in your Bluemix space.
 
 			cf ic group list
-	* Check the site that was mapped, like `$UNIQNAME-$APPNAME.mybluemix.net`.
+	* Check the site that was mapped, like `$UNIQNAME-$APPNAME.mybluemix.net`. If you need to double check the route, use this command and look for the "Routes" at the end of the output
+	
+			`cf ic group inspect`
 
-<!--KKB: I think a command is missing here. Do you have to run something like cf ic group inspect to see the mapped information. It does not show with group list-->
-You have not deployed your initial sample application.
+
+You have now deployed your initial sample application.
+
 
 	
 ## Task 2: Modify your app and push a new version

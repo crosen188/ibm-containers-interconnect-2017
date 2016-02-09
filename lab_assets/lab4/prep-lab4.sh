@@ -3,7 +3,15 @@
 # Container Lab4 helper script
 # ------------------------------------------------------------------
 
+# This command allows production Bluemix to use the pre-released Active Deploy functionality in pre-production.
+# Important Note: Active Deploy support for Containers on Bluemix is not yet released. This is a preview of
+# the functionality. There is no promised commitment of release of function or of availability date.
 export CF_ACTIVE_DEPLOY_ENDPOINT=https://activedeployapi-preprod.mybluemix.net
+
+echo ""
+echo "Important Note: Active Deploy support for Containers on Bluemix is not yet released. This is a preview of the functionality. There is no promised commitment of release of function or of availability date."
+echo ""
+
 
 # define usage function
 usage(){
