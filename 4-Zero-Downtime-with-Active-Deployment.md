@@ -13,7 +13,7 @@
 - [Task 4: Watch and validate the deployment](#task-4-watch-and-validate-the-deployment)
 
 <br>
-**Important Note**: Active Deploy support for Containers on Bluemix is not yet released. This is a preview of the functionality. There is no promised commitment of release of function or of availability date.
+**Important Note**: Active Deploy support for Containers on Bluemix is not yet released.  At this time, there is no committed availability date.
 
 ## Overview
 
