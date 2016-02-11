@@ -20,49 +20,50 @@ Prior to running this lab, you must have completed the pre-reqs, lab 1, lab 2, a
 
 IBM Containers have the advantage of running on IBM Bluemix and because of that, you can leverage any of the 150+ Bluemix services inside your running containers.  To do this, you will need to create a Bluemix application to expose your desired services to your containers.
 
-In lab 2, we used a MongoDB that was running inside a container.  This was fast and easy to deploy, but the architecture we created was not stateless.  Therefore if the MongoDB container crashed for any reason, we would lose all of our chat room data.  In lab 3, we will use a service from the Bluemix catalog that will give us the persistant storage required for this missin critical chat room application.  
+In Lab 2, we used a MongoDB that was running inside a container.  This was fast and easy to deploy, but the architecture we created was not stateless.  Therefore if the MongoDB container crashed for any reason, we would lose all of our chat room data.  In lab 3, we will use a service from the Bluemix catalog that will give us the persistant storage required for this missin critical chat room application.  
 
- 1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net/?direct=classic/#/resources) and click on **CREATE APP**.
+<div class="page-break"></div>
 
-![create](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/17-create-app.jpg)
+ 1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net) and click on **CREATE APP**.
+
+![create](./screenshots/17-create-app.jpg)
 
  2. Click on **WEB** app.  Select **SDK for Node.js** and **CONTINUE**.
 
-![web](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/18-web.jpg)
-![node](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/19-sdk-node.jpg)
+![web](./screenshots/18-web.jpg)
+![node](./screenshots/19-sdk-node.jpg)
+
+<div class="page-break"></div>
 
  3. Enter a unique name for your application and click **FINISH**.  This must be unique across all the entire Bluemix region your are working in.  For instance, "testapp" is a less than desirable name.  Something like "[YOUR_NAME]-bridge-app" is much better.  This will become the hostname for your app once deployed on Bluemix.
 
 **NOTE:** You will not have a drop down box for domain name unless you have multiple domains defined inside Bluemix.
 
-![name](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/20-app-name-new.jpg)
+![name](./screenshots/20-app-name-new.jpg)
 
  4. Once you're application has been deployed and you are taken to the **Getting Started** page, click on the **Overview** tab on the left.
 
-![overview](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/21-app-created.jpg)
+![overview](./screenshots/21-app-created.jpg)
 
  5. Now you will need to bind a MongoDB service instance to your application.  This will then expose the credentials to your container at runtime.  Click on **ADD A SERVICE OR API**.
 
-![servuce](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/22-add-service.jpg)
+![servuce](./screenshots/22-add-service.jpg)
 
  6. Search for or scroll to **MongoDB by Compose** and click on it.
 
-![mongodb](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/23-mongo.jpg)
+![mongodb](./screenshots/23-mongo.jpg)
 
  7. The credentials that you will need to enter on this page will be shared with you during the lab.  These credentials are Host, Port, Username, and Password.  Enter the provided credentials and click **CREATE**.  All other defaults on the page are acceptable.
 
-![mongoinfo](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/24-mongo-connection.jpg)
-
-- **Host:** c795.candidate.53.mongolayer.com
-- **Port:** 10795
-- **Username:** ibmcontainers
-- **Password:** containers
+![mongoinfo](./screenshots/24-mongo-connection.jpg)
 
 - Alternatively, you can sign up for a *Free 30-Day Trial* at [Compose](https://compose.io) and use all of the features beyond just today.  If you are interested in cloud application development, I'd highly recommend signing up for your own Compose account, as they provide a number of offerings that are critical for efficient application development - MongoDB, PostgreSQL, Redis, etcd, and many more!
 
  8. Once you are prompted to restage your application, click **RESTAGE** and wait a few moments for your application to be running again.
 
-![restage](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/25-restage.jpg)
+![restage](./screenshots/25-restage.jpg)
+
+<div class="page-break"></div>
 
  9. Since you will be using some pre-built automation to deploy your application, you will need to rename your bridge application to a more standard name.  This will only change the application name inside your space and not the hostname (which is the property that must be unique across all of the Bluemix region).
 
@@ -70,10 +71,12 @@ In lab 2, we used a MongoDB that was running inside a container.  This was fast 
 
   Your application data in the UI should reflect this naming change.  Note that your bound hostname did not change at all.
 
-![rename](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/26-app-rename.jpg)
-![name](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/27-app-rename.jpg)
+![rename](./screenshots/26-app-rename.jpg)
+![name](./screenshots/27-app-rename.jpg)
 
 Now you've created the necessary services for your container to leverage Mongo as a Service!
+
+<div class="page-break"></div>
 
 ## Task 2: Deploy a container bound to Bluemix services
 
@@ -81,17 +84,17 @@ By leveraging the MongoDB by Compose service in Bluemix, you can now have persis
 
 Previous labs walked you through manually deploying containers on Bluemix from scratch.  Some of the great reasons for using containers is speed and that doesn't come with doing everything by hand.  This task will walk you through using the IBM Bluemix Delivery Pipeline and the one-click *Deploy to Bluemix* button to speed that process up quite a bit!
 
-1. Go to GitHub and this [demo repository](https://github.com/osowski/lets-chat-bluemix-simple) for the labs.
+1. Go to GitHub and this **demo repository** for the labs.
 
   Path to repo: https://github.com/osowski/lets-chat-bluemix-simple
 
 2. There is a lot more detail on containers, Let's Chat, and deploying on Bluemix.  But you've already done the pre-requisites so just click on the **Deploy to Bluemix** button for an even easier deployment.
 
-![LetsChat1](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat-deploy1.jpg)
+![LetsChat1](./screenshots/lets-chat-deploy1.jpg)
 
 3. You are taken to a new page which will require you to login using your Bluemix credentials.  You may need to setup your Jazz account if this is your first time.  If so, simply click **Log in** and you will be taken through the appropriate steps to create your shortname.
 
-![LetsChat2](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat-deploy2.jpg)
+![LetsChat2](./screenshots/lets-chat-deploy2.jpg)
 
 4. Once you are provided with the option to deploy, select an appropriate and unique app name, along with the following from the dropdowns:
   - Region: IBM Bluemix US South
@@ -100,27 +103,31 @@ Previous labs walked you through manually deploying containers on Bluemix from s
 
 5. Click **DEPLOY** and you will be taken to another page where you can watch the live deployment of your container-based application, all from a pre-built repository without ever needing to touch the code.
 
-![LetsChat3](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat-deploy3.jpg)
+![LetsChat3](./screenshots/lets-chat-deploy3.jpg)
 
 As the automation goes through forking the project into your own account, setting up a pipeline for your account, and building & deploying those images on Bluemix, you will be updated in the UI.  Once the status page returns complete after a few minutes, you can move on to the next Task.
 
+<div class="page-break"></div>
+
 ## Task 3: Run your web app
 
-1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net/?direct=classic/#/resources) and view your deployed containers.  Click on the container called 'lets-chat-a_1'.
+1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net) and view your deployed containers.  Click on the container called 'lets-chat-a_1'.
 
-![LetsChat1](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat1.jpg)
+![LetsChat1](./screenshots/lets-chat1.jpg)
 
  * Alternatively, you can see this from the Bluemix UI or the IBM Containers CLI via the `cf ic ps` command.  Go to http://[YOUR_PUBLIC_IP]:8080 in your browser and you've got your web app up & running!
 
 2. Right click on port 8080 and select 'Open in new tab'.
 
-![LetsChat2](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat2.jpg)
+![LetsChat2](./screenshots/lets-chat2.jpg)
 
 3. You can now create a new account that will remain persistent in the MongoDB Service.
 
-![LetsChat3](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/lets-chat3.jpg)
+![LetsChat3](./screenshots/lets-chat3.jpg)
 
 4. Now every change that would come into your repository can kick off a new Docker image build and push that image into deployment through the dev/test/production cycle.  The delivery pipelines can be configured to automatically or manually build, deploy, and move images throughout multiple stages.  It's all up to you!
+
+<div class="page-break"></div>
 
 ## Task 4: Optional - Review deployment automation steps
 
@@ -154,16 +161,15 @@ Now that your project has been deployed to IBM Containers on Bluemix, let's revi
 
   You have now reviewed the automated deployment of a Docker-container project on IBM Containers, running on Bluemix.  For additional homework, you can create your own [IBM Bluemix DevOps Services](https://hub.jazz.net/) project pulling from a public GitHub repository and build your own pipeline to deploy Docker containers on Bluemix.
 
-
 ## Cleanup
 
 To continue with another lab, you need to clean up your container instances.  This can be done through the UI and the **DELETE** button on each container, or you can do this through the CLI with the `cf ic rm -f [CONTAINER_NAME]` command.
 
-##Congratulations!!!  You have successfully accomplished Lab 3.
+## Congratulations!!!  You have successfully accomplished Lab 3.
 
-####Let's recap what you've accomplished thus far:
+#### Let's recap what you've accomplished thus far:
 
 - Created a Bluemix application with the MongoDB service by Compose
 - Deployed the Let's Chat container bound to that Bluemix app for persistent storage
 
-###Time to continue with [Lab 4 - Zero-Downtime with the Active Deploy Service](4-Zero-Downtime-with-Active-Deployment.md)
+### Time to continue with **Lab 4 - Zero-Downtime with the Active Deploy Service**
