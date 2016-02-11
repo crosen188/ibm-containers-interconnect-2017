@@ -43,8 +43,8 @@ In this lab, you will learn how to bind Bluemix Services to Docker containers, d
 
 In this lab, you will leverage the Active Deploy service to perform app maintenance without requiring any downtime to your production app. Active Deploy uses standard technique(s). For example, Red/Black deployment.
 
-## Lab 5: [Container Group Scaling and Recoverability]()
-**Difficulty**: Intermediate
+## Lab 5: [Container Group Scaling and Recoverability](5-Container-Group-Scaling-and-Recoverability.md)
+**Difficulty**: Intermediate  
 **Time Required**: 20 minutes
 
 In this lab, you will create a container recovery group, and understand how scalability is achieved via a load balancer that is automatically inserted front ending the container instances. We will then look at how instances are automatically recovered.
