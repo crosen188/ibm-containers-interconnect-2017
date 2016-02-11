@@ -56,7 +56,7 @@ The information mentioned regarding potential future products is not a commitmen
 
 Performance is based on measurements and projections using standard IBM benchmarks in a controlled environment.  The actual throughput or performance that any user will experience will vary depending upon many factors, including considerations such as the amount of multiprogramming in the user’s job stream, the I/O configuration, the storage configuration, and the workload processed.  Therefore, no assurance can be given that an individual user will achieve results similar to those stated here.
 
-####Acknowledgments and Disclaimers
+#### Acknowledgments and Disclaimers
 
 Availability.  References in this presentation to IBM products, programs, or services do not imply that they will be available in all countries in which IBM operates.
 
