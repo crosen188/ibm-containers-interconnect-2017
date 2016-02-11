@@ -1,51 +1,55 @@
 # IBM Containers Hands-on Lab
-[InterConnect 2016] (https://www.ibm.com/cloud-computing/us/en/interconnect/) - Labs and tutorials used for IBM Containers, a hosted Docker-based container service on IBM Bluemix.
+**InterConnect 2016** - Labs and tutorials used for IBM Containers, a hosted Docker-based container service on IBM Bluemix.
 
-![InterConnect 2016](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/interconnect2016.jpg "InterConnect 2016")
+![InterConnect 2016](./screenshots/interconnect2016.jpg "InterConnect 2016")
 
 ## What is IBM Containers?
 
-Use [IBM Containers](http://www.ibm.com/cloud-computing/bluemix/solutions/open-architecture/) to run Docker containers in a hosted cloud environment on IBM Bluemix™. IBM Containers helps you build and deploy containers where you can package your applications and services. Each container is based on an image format, includes a set of standard operations, and is an execution environment in itself.
+Use **IBM Containers** to run Docker containers in a hosted cloud environment on IBM Bluemix™, available at https://bluemix.net. IBM Containers helps you build and deploy containers where you can package your applications and services. Each container is based on an image format, includes a set of standard operations, and is an execution environment in itself.
 
 Containers are virtual software objects that include all the elements that an application needs to run. Each container includes just the app and its dependencies, running as an isolated process on the host operating system. Therefore, it has the benefits of resource isolation and allocation, but is more portable and efficient. Containers help you build high-quality apps, fast.
 
 IBM Bluemix™ provides the IBM Containers infrastructure as a feature that is available in selected regions. Containers enable you to build your app in any language, with any programming tools. On Bluemix, you start developing with containers by using a trusted container image. With your organization’s private registry, you can automate your build pipeline and share artifacts with collaborators through public or private registries, while quickly integrating your container-based applications with over 150 Bluemix services. Containers simplify system administration by providing standardized environments for development and production teams. They help remove the complexity of managing different operating system platforms and underlying infrastructure. Containers help you deploy and run any app on any infrastructure, quickly and reliably.
 
-For those needing an introduction on Docker, please consult [https://docs.docker.com](https://docs.docker.com).
+For those needing an introduction on Docker, please consult https://docs.docker.com.
+
+<div class="page-break"></div>
 
 ## Available Labs
 
-## Lab 0. [Prerequisites](0-prereqs.md)
-
-## Lab 1. [Introduction to IBM Containers and Docker](1-Intro-to-IBM-Containers-and-Docker.md)
+## Lab 1. [Introduction to IBM Containers and Docker]()
 **Difficulty**: Easy  
 **Time Required**: 20 minutes  
 
 In this lab, you will learn how to get started using IBM Containers, a hosted offering for managing Docker containers on IBM Bluemix™.
 
-## Lab 2. [Running Docker Images in IBM Containers](2-Running-Docker-Images-in-IBM-Containers.md)
+## Lab 2. [Running Docker Images in IBM Containers]()
 **Difficulty**: Intermediate  
 **Time Required**: 30 minutes
 
 In this lab, you will learn how to push images to your hosted private registry on Bluemix, evaluate security vulnerabilities for your pushed images, and run an application with two linked container images.  
 
-## Lab 3. [Containers using Bluemix Services](3-Containers-using-Bluemix-Services.md)  
+## Lab 3. [Containers using Bluemix Services]()  
 **Difficulty**: Intermediate  
 **Time Required**: 30 minutes
 
 In this lab, you will learn how to bind Bluemix Services to Docker containers, deploy existing applications with one-click via the *Deploy to Bluemix Button*, and understand how the IBM Bluemix DevOps Pipeline can build & deploy your container images automatically.
 
-## Lab 4: [Zero Downtime with the Active Deployment Service](4-Zero-Downtime-with-Active-Deployment.md)
+<div class="page-break"></div>
+
+## Lab 4: [Zero Downtime with the Active Deployment Service]()
 **Difficulty**: Intermediate  
 **Time Required**: TBD
 
 In this lab, you will leverage the Active Deploy service to perform app maintenance without requiring any downtime to your production app. Active Deploy uses standard technique(s). For example, Red/Black deployment.
 
-## Lab 5: [Container Group Scaling and Recoverability](5-Container-Group-Scaling-and-Recoverability.md)
+## Lab 5: [Container Group Scaling and Recoverability]()
 **Difficulty**: Intermediate
 **Time Required**: 20 minutes
 
 In this lab, you will create a container recovery group, and understand how scalability is achieved via a load balancer that is automatically inserted front ending the container instances. We will then look at how instances are automatically recovered.
+
+<div class="page-break"></div>
 
 # Legal Disclaimer:
 IBM’s statements regarding its plans, directions, and intent are subject to change or withdrawal without notice at IBM’s sole discretion.
