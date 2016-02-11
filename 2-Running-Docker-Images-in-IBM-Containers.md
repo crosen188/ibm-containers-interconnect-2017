@@ -13,9 +13,11 @@
 
 ## Prerequisites
 
-Prior to running this lab, you must have a Bluemix account and setup the IBM Containers command line locally.  Instructions are available in [prereqs](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/0-prereqs.md).  You must have also completed [lab 1](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/1-Intro-to-IBM-Containers-and-Docker.md).
+Prior to running this lab, you must have a Bluemix account and setup the IBM Containers command line locally.  Instructions are available in the prerequisites section.  You must have also completed the previous **Lab 1**.
 
 If you are on a trial account, you will want to ensure that you have removed all non-essential containers, as these will impact your quota whether they are running or not.  These can be removed through the Bluemix UI or IBM Containers CLI.
+
+<div class="page-break"></div>
 
 ## Task 1: Tag the images and upload to IBM Containers Bluemix
 
@@ -23,61 +25,60 @@ You will tag the previously downloaded images with your unique namespace so you 
 
 1.   Make note of your namespace:  
 
-  $ cf ic namespace get
+    $ cf ic namespace get
 
-  ibm_containers_demo_eu
+    ibm_containers_demo_eu
 
 
 2. First tag your MongoDB image.  Remember to use your namespace from the first step to replace `[NAMESPACE]` in the tag and push commands below.  The namespace tag ensures that the image is uploaded to your private registry in the Bluemix cloud.
 
-  List your images:
-   
-  ```
-  $ docker images
-  REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-  mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
-  sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
-  ```
+    List your images:  
+    ```
+    $ docker images
+    REPOSITORY                                                    TAG
+    mongo                                                         ...
+    sdelements/lets-chat                                          ...
+    ```
 
-  Tag your Mongo image in a Bluemix-compatible format:  
-  ```
-  $ docker tag -f mongo registry.ng.bluemix.net/[NAMESPACE]/mongo
-  ```
+    Tag your Mongo image in a Bluemix-compatible format:  
+    ```
+    $ docker tag -f mongo registry.ng.bluemix.net/[NAMESPACE]/mongo
+    ```
 
-  List your images again, now showing the newly tagged image:  
-  ```
-  $ docker images
-  REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-  mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
-  registry.ng.bluemix.net/ibm_containers_demo_eu/mongo       latest              202e2c1fe066        7 days ago          261.6 MB
-  sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
-  ```
+    List your images again, now showing the newly tagged image:  
+    ```
+    $ docker images
+    REPOSITORY                                                    TAG
+    mongo                                                         ...
+    registry.ng.bluemix.net/ibm_containers_demo_eu/mongo          ...
+    sdelements/lets-chat                                          ...
+    ```
 
-  Note that the `IMAGE ID` column did not change for the Mongo image.  Since we are not modifying the image, but rather simply giving it another name, the `IMAGE ID` stays the same and allows us to reuse the existing container image as-is.
+    Note that the `IMAGE ID` column did not change for the Mongo image.  Since we are not modifying the image, but rather simply giving it another name, the `IMAGE ID` stays the same and allows us to reuse the existing container image as-is.
 
 2. We'll skip tagging the Let's Chat image because we are going to create a new image via Dockerfile.
 
 3. To ensure the networking has enough time for configuration in this Let's Chat image, you will need to wrap your base Let's Chat image with a simple Dockerfile to ensure network connectivity.  You can use a Dockerfile to run any commands or installation scripts while creating a new Docker image.
 
-To do so, create a new directory called `wrapper` at your Terminal window.  
-  ```
-  mkdir wrapper
-  ```
+    To do so, create a new directory called `wrapper` at your Terminal window.  
+    ```
+    mkdir wrapper
+    ```
 
-  Switch to that directory and run the following command to create a Dockerfile  
-  ```
-  cd wrapper
-  echo "FROM sdelements/lets-chat:latest" > Dockerfile
-  echo "CMD (sleep 60; npm start)" >> Dockerfile
-  ```
+    Switch to that directory and run the following command to create a Dockerfile  
+    ```
+    cd wrapper
+    echo "FROM sdelements/lets-chat:latest" > Dockerfile
+    echo "CMD (sleep 60; npm start)" >> Dockerfile
+    ```
 
-  This will create a new Dockerfile that we can build a temporary image from.  
+    This will create a new Dockerfile that we can build a temporary image from.  
 
-  **NOTE:** There is a period "." at the end of this docker build command that is required for the command to run.
+    **NOTE:** There is a period "." at the end of this docker build command that is required for the command to run.
 
-  ```
-  docker build -t registry.ng.bluemix.net/[NAMESPACE]/lets-chat .
-  ```
+    ```
+    docker build -t registry.ng.bluemix.net/[NAMESPACE]/lets-chat .
+    ```
 
   Understanding this command's components:  
     - The `docker build -t` is standard from the Docker CLI.  
@@ -88,6 +89,8 @@ To do so, create a new directory called `wrapper` at your Terminal window.
 
   You will now use this image below to push to Bluemix instead of the base `lets-chat` image.  
 
+<div class="page-break"></div>
+
 4. Now that your images are tagged in the correct format, you can push them to your private registry on Bluemix.  This allows the IBM Container service to run your container images on the cloud.
 
   Push your Mongo image to your Bluemix registry:  
@@ -97,11 +100,8 @@ To do so, create a new directory called `wrapper` at your Terminal window.
   Sending image list
   Pushing repository registry.ng.bluemix.net/[NAMESPACE]/mongo (1 tags)
   Image 68e42ff590bd already pushed, skipping
-  Image b4c4e8b590a7 already pushed, skipping
   f037c6d892c5: Image successfully pushed
-  1a64ad3ccff1: Image successfully pushed
   ...
-  a08422dd6a11: Image successfully pushed
   202e2c1fe066: Image successfully pushed
   Pushing tag for rev [202e2c1fe066] on {https://registry.ng.bluemix.net/v1/repositories/[NAMESPACE]/mongo/tags/latest}
   ```
@@ -113,14 +113,14 @@ To do so, create a new directory called `wrapper` at your Terminal window.
   Sending image list
   Pushing repository registry.ng.bluemix.net/[NAMESPACE]/lets-chat (1 tags)
   Image adb3157c92fa already pushed, skipping
-  Image ed1f86248ba8 already pushed, skipping
   ...
-  Image 48b1e23d7a1a already pushed, skipping
   Image 2409eb7b9e8c already pushed, skipping
   Pushing tag for rev [2409eb7b9e8c] on {https://registry.ng.bluemix.net/v1/repositories/ibm_containers_demo_eu/lets-chat/tags/latest}
   ```
 
    Now your images are up in the cloud, in your hosted registry, and ready to run on Bluemix!  But first, take a moment to understand what is inside the images you just pushed!
+
+<div class="page-break"></div>
 
 ## Task 2: Verify security vulnerabilities
 
@@ -128,15 +128,15 @@ One of the fundamental aspects of Docker containers is reuse and the ability to 
 
 To solve this issue, IBM Containers provides **Vulnerability Advisor** (VA), a pre-integrated security scanning tool that will alert you of vulnerable images and can even be configured to prevent deployment of those images.  VA can scan any image, regardless of the source, before you deploy a live container from that image  For now, you will look over the vulnerability assessment of the images you just pushed.
 
-1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net/?direct=classic/#/resources) and click on **CATALOG**.
+1. Go to the [Bluemix Dashboard](https://console.ng.bluemix.net) and click on **CATALOG**.
 
-![catalog](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/7-catalog.jpg)
+![catalog](./screenshots/7-catalog.jpg)
 
 2. You can filter the list by clicking on the "Containers" check box on the left hand navigation.  Click on the purple icon for **Let's Chat**.  This is the Let's Chat image that you pulled from the public DockerHub registry, tagged with your namespace, and pushed into your private registry.
 
   You will see a pop-up with the vulnerability assessment shown inline.  This is a red/yellow/green scale.  Your Let's Chat image has a red status of **Deployment Blocked**.  
 
-![letschat](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/8-va-lets-chat.jpg)
+![letschat](./screenshots/8-va-lets-chat.jpg)
 
 3. Click on the **View the vulnerability report for this image** to see the vulnerability assessment in full detail. The details page has two tabs: **Vulnerable Packages** and **Policy Violations**.  
 
@@ -144,9 +144,9 @@ To solve this issue, IBM Containers provides **Vulnerability Advisor** (VA), a p
 
   The *Policy Violations* tab shows you how the image compares against your organization's security policies.  This will show the number of rules the image was validated against and any possible policy violations.  Your Mongo image should show around 27 policy rules with 2 associated policy violations (being Password Age and Password Length).  
 
-![imagedetail](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/9-va-lets-chat-details.jpg)
+![imagedetail](./screenshots/9-va-lets-chat-details.jpg)
 
-![imagedetail2](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/10-va-lets-chat-details.jpg)
+![imagedetail2](./screenshots/10-va-lets-chat-details.jpg)
 
 4. From the vulnerability report page, click the **Back to image creation** link. As a Bluemix Organization Manager, you can click on **Manage your org's policies**.  Here you are presented with two boxes - **Deployment Settings for Containers** and **Image Deployment Impact**.  
 
@@ -154,17 +154,19 @@ To solve this issue, IBM Containers provides **Vulnerability Advisor** (VA), a p
 
   The *Image Deployment Impact* shows a summary view of the state of all images in your registry.  Images can have statuses of *Deployment Blocked*, *Deploy with Caution*, and *Safe to Deploy*.  This gives you a quick look into which images are troublesome and which images are secure across your entire registry.
 
-![vapolicymgr](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/11-va-policy-mgr-defaults.jpg)
+![vapolicymgr](./screenshots/11-va-policy-mgr-defaults.jpg)
 
   You will note that the default action is to **Block** deployments that have vulnerabilities.  For our demonstration, select **Warn** for all three situations and click the **SAVE** button.  You will see the **Image Deployment Impact** window recalculate in real time the security posture of the images in your private registry, based on the changes to the policy manager in Vulnerability Advisor.  Click the **Back to image creation** link.
 
-![recalcva](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/12-va-policy-mgr-recalc.jpg)
+![recalcva](./screenshots/12-va-policy-mgr-recalc.jpg)
 
 5. You will now see that you can **Deploy with Caution**.
 
-![caution](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/13-deploy-caution.jpg)
+![caution](./screenshots/13-deploy-caution.jpg)
 
 You have reviewed your pushed images, which were sourced from a public repository, and can now deploy them on your hosted Bluemix account.  This is a key step in making sure you are running the code which you expect to be running and you are not opening your organization up to security issues, at the expense of agility.  You still want to stay secure, even when moving at light-speed!
+
+<div class="page-break"></div>
 
 ## Task 3: Run your web app on Bluemix
 
@@ -173,13 +175,13 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
 1. Back at the terminal command line, look and see what images are in your Bluemix hosted registry
 
          $ cf ic images
-         REPOSITORY                                                            TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-         registry.ng.bluemix.net/[NAMESPACE]/lets-chat           latest              3aeb3c224c6b        5 minutes ago       241.5 MB
-         registry.ng.bluemix.net/[NAMESPACE]/mongo               latest              ae293c6896a1        6 minutes ago       0 B
-         registry.ng.bluemix.net/ibm-node-strong-pm                         latest              ef21e9d1656c        13 days ago         528.7 MB
-         registry.ng.bluemix.net/ibmliberty                                 latest              2209a9732f35        13 days ago         492.8 MB
-         registry.ng.bluemix.net/ibmnode                                    latest              8f962f6afc9a        13 days ago         429 MB
-         registry.ng.bluemix.net/ibm-mobilefirst-starter                    latest              5996bb6e51a1        13 days ago         770.4 MB
+         REPOSITORY                                                            TAG
+         registry.ng.bluemix.net/[NAMESPACE]/lets-chat           ...
+         registry.ng.bluemix.net/[NAMESPACE]/mongo               ...
+         registry.ng.bluemix.net/ibm-node-strong-pm                         ...
+         registry.ng.bluemix.net/ibmliberty                                 ...
+         registry.ng.bluemix.net/ibmnode                                    ...
+         registry.ng.bluemix.net/ibm-mobilefirst-starter                    ...
 
 2. Now run your Mongo container just like you did locally, except this time use `cf ic` instead of `docker` to point to Bluemix.      
 
@@ -197,6 +199,8 @@ $ cf ic ps
   7ebf51a3-35a        registry.ng.bluemix.net/[NAMESPACE]/mongo:latest   ""                  45 seconds ago      Running 27 seconds ago   27017/tcp           lc-mongo
   ```
 
+<div class="page-break"></div>
+
 3. Next run your Let's Chat container just like you did locally, again using `cf ic` instead of `docker` to point to Bluemix.
 
   Run your Let's Chat instance:  
@@ -206,7 +210,7 @@ $ cf ic ps
   ```
 
   Show the running container instances.  Wait for a state of `RUNNING` before you proceed:
-   
+
   ```
   $ cf ic ps
   CONTAINER ID        IMAGE                                                                COMMAND             CREATED             STATUS                   PORTS               NAMES
@@ -219,7 +223,7 @@ $ cf ic ps
   If not, you'll run the `ip list` command to see which IPs are available and then bind one to your running container.
 
   List available IP addresses for your account:
-   
+
   ```
   $ cf ic ip list
   Number of allocated public IP addresses:  2
@@ -230,14 +234,14 @@ $ cf ic ps
   ```      
 
   If you have no available IP addresses in the response, you can request one:
-   
+
   ```
   $ cf ic ip request
   Successfully requested ip 134.XXX.YYY.ZZZ
   ```
 
   If you have an available IP address, you can bind that IP to your container:
-   
+
   ```
   $ cf ic ip bind 134.XXX.YYY.ZZZ lets-chat
   OK
@@ -245,7 +249,7 @@ $ cf ic ps
   ```
 
   Show running containers with bound IP information now visible:
-  
+
   ```
   $ cf ic ps
   CONTAINER ID        IMAGE                                                                COMMAND             CREATED              STATUS                  PORTS                          NAMES
@@ -256,9 +260,9 @@ $ cf ic ps
 5. Check out your running app in your browser, at the IP you just bound.  Remember to use port `8080`!  
   **Note**: Based on the `sleep` statement you built into the Let's Chat container, you will need to wait at least 60 seconds before the Let's Chat application will be available.
 
-![letschat1](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/14-lets-chat.jpg)
-![letschat2](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/15-lets-chat.jpg)
-![letschat3](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/16-lets-chat.jpg)
+![letschat1](./screenshots/14-lets-chat.jpg)
+![letschat2](./screenshots/15-lets-chat.jpg)
+![letschat3](./screenshots/16-lets-chat.jpg)
 
 ## Task 4: Cleanup
 
@@ -282,4 +286,4 @@ To ensure you have enough free quota to continue with the lab, let's clean up yo
 - Learned about the security posture of our image using Vulnerability Advisor
 - Ran our first containers in the cloud
 
-### Time to continue with [Lab 3 - Containers using Bluemix Services](3-Containers-using-Bluemix-Services.md)
+### Time to continue with **Lab 3 - Containers using Bluemix Services**
