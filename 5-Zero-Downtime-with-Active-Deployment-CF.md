@@ -52,9 +52,9 @@ This task walks you through setting up a sample application. If you already have
 		
 	Go to the **URL** `hello-app-1-[silly unique name].mybluemix.net` you noted above. You should see a "broken" application.
 		
-	d. (Optional) You can open a new terminal and `curl` the application repeatedly, to watch it change as you deploy. You should see curl return the text ""Hello, here is your application - BROKEN".
+	d. (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application repeatedly, to watch it change as you deploy. You should see curl return the text "Hello, here is your application - BROKEN".
 		
-    `curl URL/index.txt`
+    `./loop-curl-app.sh URL`
 		
 You have now deployed your initial sample application.
 
@@ -110,9 +110,9 @@ The execution of the deployment takes the total time of your specificed phase ti
 	
     b. In your browser, you can go to **URL** for your application. During the _Ramp-up_ phase, you should see the text alternate between "BROKEN" and "FIXED"
 	
-	c. (Optional) You can open a new terminal and `curl` the application, to watch it change as you deploy. You should see the text alternate between "BROKEN" and "FIXED" and the color changes.
+	c. (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application repeatedly, to watch it change as you deploy. You should see the text alternate between "BROKEN" and "FIXED" and the color changes.
 		
-    `curl URL/index.txt`
+    `./loop-curl-app.sh URL`	
 
  2. List the deployments of the Active Deploys service using the `cf active-deploy-list` command
 
@@ -127,17 +127,17 @@ The execution of the deployment takes the total time of your specificed phase ti
     When the phase is _rampup_:
       * `cf apps` should show both that `hello_app_1` and `hello_app_2` are assigned the same route
       * Reloading your browser should show both responses "Hello, here is your application - BROKEN" and "Hello, here is your application - FIXED"
-      * Queries using `curl` should alternate between "BROKEN" and "FIXED" and the color changes
+      * Queries using `'./loop-curl-app.sh URL` should alternate between "BROKEN" and "FIXED" and the color changes
 
     When the phase is _test_:
       * `cf apps` should show that only `hello_app_2` has a route assigned to it
       * Reloading your browser should show only the response "Hello, here is your application - FIXED"
-      * Queries using `curl` should return only "Hello, here is your application - FIXED"
+      * Queries using `'./loop-curl-app.sh URL` should return only "Hello, here is your application - FIXED"
 
     When the phase is _rampdown_:
       * `cf apps` should show that only `hello_app_2` has a route assigned to it
       * Reloading your browser should show only the response "Hello, here is your application - FIXED"
-      * Queries using `curl` should return only "Hello, here is your application - FIXED"
+      * Queries using `'./loop-curl-app.sh URL` should return only "Hello, here is your application - FIXED"
 
     When the Active Deploy is complete:
       * `cf apps` should show that the original group `hello_app_1` has only a single instance and the new group `hello_app_2` has 4 instances
