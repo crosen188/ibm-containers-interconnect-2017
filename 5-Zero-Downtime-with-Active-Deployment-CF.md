@@ -40,7 +40,7 @@ This task walks you through setting up a sample application. If you already have
 
     `cf push hello_app_1 -i 4`
 
-	This pushes 4 instances of the application to your Bluemix space and assigns it the name `hello_app_1`.
+	This pushes your application to the Bluemix space, runs 4 instances, and assigns it the name `hello_app_1`.
 	Look for a line near the end such as: `urls: hello-app-1-[silly unique name].mybluemix.net`
 
 	b. Verify the application is started and routing traffic
@@ -51,7 +51,7 @@ This task walks you through setting up a sample application. If you already have
 	
 	Go to the **URL** `hello-app-1-[silly unique name].mybluemix.net` you noted above. You should see a "broken" application.
 		
-	d. (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application repeatedly, to watch it change as you deploy. You should see curl return the text "Hello, here is your application - BROKEN".
+	d. (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application repeatedly, to watch it change as you deploy. Right now you should see the text "Hello, here is your application - BROKEN".
 		
     `./loop-curl-app.sh URL`
 		
@@ -69,7 +69,7 @@ You have now deployed your initial sample application.
 	You can also make manual changes as you see fit in an editor.
   
  
- 2. Publish the updated version of your application to Bluemix. Use this command:
+ 2. Publish the updated version of your application to Bluemix
 
     `cf push hello_app_2 --no-route`
 
@@ -85,7 +85,7 @@ During the deploy, Active Deploy will:
  * Turn off the route to `APPNAME` after the number of instances of `APPNAME2` is the same as for `APPNAME` (the Test Phase)
  * Finally, reduce the number of instances of `APPNAME` to 1 (the Ramp-down Phase)
 
-   Launch the Active Deploy with phase times that allow you to see progress fairly quickly. You can also see the status of the deployment.
+Launch the Active Deploy with phase times that allow you to see progress fairly quickly. You can also see the status of the deployment.
 
  1. Use the **cf active-deploy-create** command to create a new deployment
 	
