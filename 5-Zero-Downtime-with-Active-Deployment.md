@@ -1,5 +1,5 @@
 
-# Lab 4: Zero-Downtime with the Active Deploy Service (Preview Status)
+# Lab 5: Zero-Downtime with the Active Deploy Service (Preview Status)
 
 > **Difficulty**: Intermediate
 
@@ -179,4 +179,4 @@ To clean up your environment or to try this again, you can delete the deployment
 
 This cleanup can be done through the user interface by clicking the `DELETE` button for each container, or you can use the CLI by running the `cf ic rm -f [CONTAINER_NAME]` command.
 
-###Next: [Lab 5 Container Group Scaling and Recoverability](5-Container-Group-Scaling-and-Recoverability.md)
+
