@@ -1,5 +1,5 @@
 
-# Lab 4: Zero-Downtime with the Active Deploy Service (Preview Status)
+# Lab 5: Zero-Downtime with the Active Deploy Service (Preview Status)
 
 > **Difficulty**: Intermediate
 
@@ -34,16 +34,16 @@ This task walks you through setting up a sample application. If you already have
  1. Get the application code to use for this lab.
 
 	* `git clone https://github.com/crosen188/ibm-containers-interconnect-2016.git`
-	* `cd ibm-containers-interconnect-2016/lab_assets/lab4`
+	* `cd ibm-containers-interconnect-2016/lab_assets/activedeploy/containers`
 	
  2. Set some variables to make the lab easier and to make sure that you are logged in.
 	
-	The `. prep-lab4.sh` helper script sets some variables that are used later in the lab. These variables include your application name (APPNAME), your Bluemix namespace (NAMESPACE), and a unique user name so that you do not conflict with any other Bluemix user (UNIQNAME).
+	The `. prep-lab.sh` helper script sets some variables that are used later in the lab. These variables include your application name (APPNAME), your Bluemix namespace (NAMESPACE), and a unique user name so that you do not conflict with any other Bluemix user (UNIQNAME).
 	You can use the default values, override the defaults and set your own values, or use different lab commands with direct values as you see fit.
 	
 	a. Run this script to set the default values.
 
-			. prep-lab4.sh
+			. prep-lab.sh
 	b. Run the command to log into Bluemix.
 
 			cf login -u EMAIL_ADDRESS -a api.ng.bluemix.net
@@ -165,7 +165,7 @@ When the Active Deploy is complete:
 
 When the deployment is displayed, the ramp down phase your deployment is completed.
 	
-##Congratulations!!!  You have successfully accomplished Lab 4.
+##Congratulations!!!  You have successfully accomplished a zero-downtime deployment on Bluemix using Active Deploy.
 
 ####Let's recap what you've accomplished thus far:
 
@@ -179,4 +179,3 @@ To clean up your environment or to try this again, you can delete the deployment
 
 This cleanup can be done through the user interface by clicking the `DELETE` button for each container, or you can use the CLI by running the `cf ic rm -f [CONTAINER_NAME]` command.
 
-###Next: [Lab 5 Container Group Scaling and Recoverability](5-Container-Group-Scaling-and-Recoverability.md)
