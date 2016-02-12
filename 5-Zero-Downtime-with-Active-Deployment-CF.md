@@ -38,25 +38,24 @@ This task walks you through setting up a sample application. If you already have
  
 	a. Use the CloudFoundry command line to publish the sample application to Bluemix
 
-		`cf push hello_app_1 -i 4`
+    `cf push hello_app_1 -i 4`
 
 	This pushes 4 instances of the application to your Bluemix space and assigns it the name `hello_app_1`.
 
-	b. Note the route (URL) that is assigned to the application.
+	b. Note the route **URL** that is assigned to the application.
 	
 	Look for a line near the end such as: `urls: hello-app-1-[silly unique name].mybluemix.net`
 
 	c. Verify the application is started and working and routing traffic
 	
-        `cf app hello_app_1`
+    `cf app hello_app_1`
 		
-	Go to the url `hello-app-1-[silly unique name].mybluemix.net` you noted above.
-	You should see a "broken" application.
+	Go to the **URL** `hello-app-1-[silly unique name].mybluemix.net` you noted above. You should see a "broken" application.
 		
-	d. (Optional) You can open a new terminal and `curl` the application, to watch it change as you deploy. You should see curl return the text "Hello, Bluemix World - STATUS".
+	d. (Optional) You can open a new terminal and `curl` the application repeatedly, to watch it change as you deploy. You should see curl return the text ""Hello, here is your application - BROKEN".
 		
-        `curl URL/index.txt`
-				
+    `curl URL/index.txt`
+		
 You have now deployed your initial sample application.
 
 	
@@ -65,6 +64,7 @@ You have now deployed your initial sample application.
  1. Make a visual change to the application that we can see change
 
 	`cp index.html-v2 index.html`
+	
 	`cp index.txt-v2 index.txt`
 	
 	You can also make manual changes as you see fit in an editor.
@@ -74,7 +74,7 @@ You have now deployed your initial sample application.
 
     `cf push hello_app_2 --no-route`
 
-    Notice the new name `hello_app_2`, and the option --no-route, which tells Bluemix not to assign a route to the application
+    Notice the new name `hello_app_2`, and the option `--no-route`, which tells Bluemix not to assign a route to the application
 
 	
 ## Task 3: Deploy your application
@@ -92,7 +92,7 @@ During the deploy, Active Deploy will:
 	
 	It requires the names of the current (routed) version of the application and the new (unrouted) version. Label and phases are optional but convenient.
 
-    `cf active-deploy-create hello_app_1 hello_app_1 --label activedeploy_lab --rampup 5m --test 5m --rampdown 2m`
+    `cf active-deploy-create hello_app_1 hello_app_2 --label activedeploy_lab --rampup 5m --test 5m --rampdown 2m`
 	
     Active Deploy will:
     * Route traffic to `hello_app_2` and start ramping up instances of `hello_app_2` (the Ramp-up Phase).
@@ -105,13 +105,14 @@ During the deploy, Active Deploy will:
 The execution of the deployment takes the total time of your specificed phase times. The interesting part is the first part, where you get traffic from both versions of your application as the service adjusts traffic on the same URL route. Users never lose the functionality of the application as it is updated. You will see the following process:
 
  1. Verify that Bluemix starts routing traffic to both versions:
-    a. Use the `cf apps` command to list all the applications in your Bluemix space. During the _Ramp-up_ phase, you should see both versions of the application have an assigned route (the URL from Step 5 in "Creating an Application in Bluemix").
+ 
+    a. Use the `cf apps` command to list all the applications in your Bluemix space. During the _Ramp-up_ phase, you should see both versions of the application have an assigned route at the **URL**
 	
     b. In your browser, you can go to **URL** for your application. During the _Ramp-up_ phase, you should see the text alternate between "BROKEN" and "FIXED"
 	
-	c. (Optional) You can open a new terminal and `curl` the application, to watch it change as you deploy. You should see curl return the text "Hello, Bluemix World - STATUS".
+	c. (Optional) You can open a new terminal and `curl` the application, to watch it change as you deploy. You should see the text alternate between "BROKEN" and "FIXED" and the color changes.
 		
-        `curl URL/index.txt`
+    `curl URL/index.txt`
 
  2. List the deployments of the Active Deploys service using the `cf active-deploy-list` command
 
@@ -124,22 +125,22 @@ The execution of the deployment takes the total time of your specificed phase ti
 	`cf active-deploy-show activedeploy_lab`
 
     When the phase is _rampup_:
-      * `cf apps` should show both that `hello_app_1` and `hello_app_2` are assigned the same route.
-      * Reloading your browser should show both responses "Hello, Bluemix World 1" and "Hello, Bluemix World 2"
-      * Queries using `curl` should return both "Hello, Bluemix World 1" and "Hello, Bluemix World 2".
+      * `cf apps` should show both that `hello_app_1` and `hello_app_2` are assigned the same route
+      * Reloading your browser should show both responses "Hello, here is your application - BROKEN" and "Hello, here is your application - FIXED"
+      * Queries using `curl` should alternate between "BROKEN" and "FIXED" and the color changes
 
     When the phase is _test_:
-      * `cf apps` should show that only `hello_app_2` has a route assigned to it.
-      * Reloading your browser should show only the response "Hello, Bluemix World 2".
-      * Queries using `curl` should return only "Hello, Bluemix World 2".
+      * `cf apps` should show that only `hello_app_2` has a route assigned to it
+      * Reloading your browser should show only the response "Hello, here is your application - FIXED"
+      * Queries using `curl` should return only "Hello, here is your application - FIXED"
 
     When the phase is _rampdown_:
-      * `cf apps` should show that only `hello_app_2` has a route assigned to it.
-      * Reloading your browser should show only the response "Hello, Bluemix World 2".
-      * Queries using `curl` should return only "Hello, Bluemix World 2".
+      * `cf apps` should show that only `hello_app_2` has a route assigned to it
+      * Reloading your browser should show only the response "Hello, here is your application - FIXED"
+      * Queries using `curl` should return only "Hello, here is your application - FIXED"
 
     When the Active Deploy is complete:
-      * `cf apps` should show that `hello_app_1` has only a single instance.
+      * `cf apps` should show that the original group `hello_app_1` has only a single instance and the new group `hello_app_2` has 4 instances
 
  3. Since the deploy has completed, you can now delete the first version of `hello_app_1` using the `cf delete` command:
 
@@ -150,7 +151,7 @@ The execution of the deployment takes the total time of your specificed phase ti
 
 ####Let's recap what you've accomplished thus far:
 
-- Made a change to your Bluemix container application
+- Made a change to your Bluemix cloud application
 - Deployed the new version without taking the original version offline
 - Verified that the deployment was running and how it was running
 
@@ -158,6 +159,6 @@ The execution of the deployment takes the total time of your specificed phase ti
 
 To clean up your environment or to try this again, you can delete the deployment. You can also delete your applications and start again if you like.
 
-This cleanup can be done through the user interface by clicking the `DELETE` button for each container, or you can use the CLI by running the `cf ic rm -f [CONTAINER_NAME]` command.
+This cleanup can be done through the user interface by clicking the `DELETE` button for each application, or you can use the CLI by running the `cf delete [APPNAME]` command.
 
-###Next: [Lab 5 Container Group Scaling and Recoverability](5-Container-Group-Scaling-and-Recoverability.md)
+
