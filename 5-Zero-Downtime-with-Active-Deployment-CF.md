@@ -105,7 +105,7 @@ The execution of the deployment takes the total time of your specificed phase ti
 	* Use a browser to go to your **URL** for your application to see its status
 	* (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application values repeatedly: `./loop-curl-app.sh URL`	
 
- 2. List the deployments of the Active Deploys service using the `cf active-deploy-list` command
+ 2. List the deployments of the Active Deploys service and the specific details
 
     a. See the Active Deploy List - you should see your new deployment "activedeploy_lab"
 	
