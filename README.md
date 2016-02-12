@@ -35,17 +35,17 @@ In this lab, you will learn how to push images to your hosted private registry o
 
 In this lab, you will learn how to bind Bluemix Services to Docker containers, deploy existing applications with one-click via the *Deploy to Bluemix Button*, and understand how the IBM Bluemix DevOps Pipeline can build & deploy your container images automatically.
 
-## Lab 4: [Zero Downtime with the Active Deployment Service](4-Zero-Downtime-with-Active-Deployment.md)
-**Difficulty**: Intermediate  
-**Time Required**: TBD
-
-In this lab, you will leverage the Active Deploy service to perform app maintenance without requiring any downtime to your production app. Active Deploy uses standard technique(s). For example, Red/Black deployment.
-
-## Lab 5: [Container Group Scaling and Recoverability](5-Container-Group-Scaling-and-Recoverability.md)
+## Lab 4: [Container Group Scaling and Recoverability](5-Container-Group-Scaling-and-Recoverability.md)
 **Difficulty**: Intermediate  
 **Time Required**: 20 minutes
 
 In this lab, you will create a container recovery group, and understand how scalability is achieved via a load balancer that is automatically inserted front ending the container instances. We will then look at how instances are automatically recovered.
+
+## Lab 5 (stretch assignment): [Zero Downtime with the Active Deployment Service](4-Zero-Downtime-with-Active-Deployment.md)
+**Difficulty**: Intermediate  
+**Time Required**: 25 minutes
+
+In this lab, you will leverage the Active Deploy service to perform maintenance on a Cloud Foundry app without requiring any downtime to your production app. Active Deploy uses standard technique(s). For example, Red/Black deployment.
 
 # Legal Disclaimer:
 IBM’s statements regarding its plans, directions, and intent are subject to change or withdrawal without notice at IBM’s sole discretion.
