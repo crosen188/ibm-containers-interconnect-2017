@@ -28,28 +28,13 @@ This lab will show you how to create a sample app, modify it, upload it, and the
 
 This task walks you through setting up a sample application. If you already have an application, you can use that application instead of using this sample application.
 
- 1. Get the application code to use for this lab.
+ 1. Get the application code to use for this lab and log in to Bluemix
 
 	* `git clone https://github.com/crosen188/ibm-containers-interconnect-2016.git`
 	* `cd ibm-containers-interconnect-2016/lab_assets/activedeploy/cfapps`
+	* `cf login -u [EMAIL_ADDRESS] -a api.ng.bluemix.net`
 	
- 2. Set some variables to make the lab easier and to make sure that you are logged in.
-
- CHECK
- CHECK
- CHECK
- 
-	The `. prep-lab.sh` helper script sets some variables that are used later in the lab. These variables include your application name (APPNAME), your Bluemix namespace (NAMESPACE), and a unique user name so that you do not conflict with any other Bluemix user (UNIQNAME).
-	You can use the default values, override the defaults and set your own values, or use different lab commands with direct values as you see fit.
-	
-	a. Run this script to set the default values.
-
-			. prep-lab.sh
-	b. Run the command to log into Bluemix.
-
-			cf login -u EMAIL_ADDRESS -a api.ng.bluemix.net
-
- 3. Build and upload the sample application and see it running live.
+ 2. Build and upload the sample application and see it running live.
  
 	a. Use the CloudFoundry command line to publish the sample application to Bluemix
 
@@ -61,13 +46,11 @@ This task walks you through setting up a sample application. If you already have
 	
 	Look for a line near the end such as: `urls: hello-app-1-[silly unique name].mybluemix.net`
 
-	c. Verify the application is started and working
+	c. Verify the application is started and working and routing traffic
 	
-		* To view information about the deployed application:
-
         `cf app hello_app_1`
 		
-	Go to the url hello-app-1-[silly unique name].mybluemix.net you noted above.
+	Go to the url `hello-app-1-[silly unique name].mybluemix.net` you noted above.
 	You should see a "broken" application.
 		
 	d. (Optional) You can open a new terminal and `curl` the application, to watch it change as you deploy. You should see curl return the text "Hello, Bluemix World - STATUS".
@@ -75,7 +58,6 @@ This task walks you through setting up a sample application. If you already have
         `curl URL/index.txt`
 				
 You have now deployed your initial sample application.
-
 
 	
 ## Task 2: Modify your app and push a new version
@@ -106,9 +88,9 @@ During the deploy, Active Deploy will:
 
    Launch the Active Deploy with phase times that allow you to see progress fairly quickly. You can also see the status of the deployment.
 
- 1. Use the `cf active-deploy-create` command to create a new deployment.
+ 1. Use the **cf active-deploy-create** command to create a new deployment
 	
-	It requires the names of the current (routed) version of the application and the new (unrouted) version.
+	It requires the names of the current (routed) version of the application and the new (unrouted) version. Label and phases are optional but convenient.
 
     `cf active-deploy-create hello_app_1 hello_app_1 --label activedeploy_lab --rampup 5m --test 5m --rampdown 2m`
 	
