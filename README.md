@@ -41,11 +41,11 @@ In this lab, you will learn how to bind Bluemix Services to Docker containers, d
 
 In this lab, you will create a container recovery group, and understand how scalability is achieved via a load balancer that is automatically inserted front ending the container instances. We will then look at how instances are automatically recovered.
 
-## Lab 5 (stretch assignment): [Zero Downtime with the Active Deployment Service](4-Zero-Downtime-with-Active-Deployment.md)
+## Lab 5 (stretch assignment): [Zero-Downtime with the Active Deployment Service](5-Zero-Downtime-with-Active-Deployment-CF.md)
 **Difficulty**: Intermediate  
-**Time Required**: 25 minutes
+**Time Required**: 15 minutes
 
-In this lab, you will leverage the Active Deploy service to perform maintenance on a Cloud Foundry app without requiring any downtime to your production app. Active Deploy uses standard technique(s). For example, Red/Black deployment.
+In this lab, you will leverage the Active Deploy service to perform maintenance on a Cloud Foundry app without requiring any downtime to your production app. Active Deploy uses standard Bluemix technology and techniques (and is also called Red/Black deployment).
 
 # Legal Disclaimer:
 IBM’s statements regarding its plans, directions, and intent are subject to change or withdrawal without notice at IBM’s sole discretion.
