@@ -253,5 +253,5 @@ $ cf ic group rm -f spring-boot
 - Verified scalability and load balancing of the container instances in the group
 - Verified recoverability by forcibly deleting an instance and noticing that another instance gets recreated.
 
-##If you are still feeling ambitious, you can test zero downtime upgrades to a Cloud Foundry app.
-https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/5-Zero-Downtime-with-Active-Deployment.md
+##If you are still feeling ambitious, you can test [zero downtime upgrades to a Cloud Foundry app.](5-Zero-Downtime-with-Active-Deployment.md)
+
