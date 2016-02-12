@@ -115,7 +115,7 @@ The execution of the deployment takes the total time of your specificed phase ti
 		
 	`cf active-deploy-show activedeploy_lab`
 
- 3. Examine the deployment phases - You can see your application and how it changes during the different deployment phases.
+ 3. Examine the deployment phases and how your application changes
 	  
 	Execute the 3 examine methods mentioned above:
 		
@@ -134,7 +134,7 @@ The execution of the deployment takes the total time of your specificed phase ti
       * Browser & F5 => Should show only the response "Hello, here is your application - FIXED"
       * `'./loop-curl-app.sh URL` => should return only "Hello, here is your application - FIXED"
 
-    When the Active Deploy is complete:
+    **When the Active Deploy is complete**
       * `cf apps` => Show that the original group `hello_app_1` has only a single instance and the new group `hello_app_2` has 4 instances
 
  4. Since the deploy has completed, you can now delete the first version of your application
