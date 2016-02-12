@@ -8,8 +8,8 @@
 		  <tr>
 			<!-- GREEN <td bgcolor="#4E9258" height=100 align=center> -->
 			<!-- RED <td bgcolor="#C11B17" height=100 align=center> -->
-			<td bgcolor="#C11B17" height=100 align=center>
-			<font color=white><b> Hello, here is your application - BROKEN</b></font>
+			<td bgcolor="#4E9258" height=100 align=center>
+			<font color=white><b> Hello, here is your application - FIXED</b></font>
 			</td>
 		  </tr>
 		  <tr><td><br></td></tr>

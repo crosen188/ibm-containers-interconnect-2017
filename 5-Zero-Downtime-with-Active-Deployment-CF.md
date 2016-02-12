@@ -55,23 +55,23 @@ This task walks you through setting up a sample application. If you already have
 
 		`cf push hello_app_1 -i 4`
 
-		This pushes 4 instances (cf. `-i 4`) of the application to your Bluemix space and assigns it the name `hello_app_1`.
-		Application specific defaults may be specified in a `manifest.yml` file and can be overridden by command line arguments.
-		For example, the `manifest.yml` file for this application specifies that the route for the application should be assigned randomly.
+	This pushes 4 instances of the application to your Bluemix space and assigns it the name `hello_app_1`.
 
 	b. Note the route (URL) that is assigned to the application.
 	
-	Look for a line near the end such as: `urls: hello-app-test-silly-unique-name.mybluemix.net...`
+	Look for a line near the end such as: `urls: hello-app-1-[silly unique name].mybluemix.net`
 
 	c. Verify the application is started and working
-		* To view information about the deployed application, use the `cf app` command:
+	
+		* To view information about the deployed application:
 
         `cf app hello_app_1`
 		
-		* To see summary information about all deployed applications, use the command: `cf apps`
-		* In your browser, go to **URL**/index.txt, where **URL** is the route assigned to your application from Step 5. Using the example from Step 5, this would be `hello-app-test-commutual-seiche.mybluemix.net/index.txt`.
-		* (Optional) If you have `curl` installed, you can run curl against the URL. You should see curl return the text "Hello, Bluemix World 1".
-
+	Go to the url hello-app-1-[silly unique name].mybluemix.net you noted above.
+	You should see a "broken" application.
+		
+	d. (Optional) You can open a new terminal and `curl` the application, to watch it change as you deploy. You should see curl return the text "Hello, Bluemix World - STATUS".
+		
         `curl URL/index.txt`
 				
 You have now deployed your initial sample application.
@@ -80,18 +80,21 @@ You have now deployed your initial sample application.
 	
 ## Task 2: Modify your app and push a new version
 
- 1. Make a change to the `index.txt` file in the sample application.
-  
-  * Change the text "Hello, Bluemix World **1**" to "Hello, Bluemix World **2**".
+ 1. Make a visual change to the application that we can see change
+
+	`cp index.html-v2 index.html`
+	`cp index.txt-v2 index.txt`
+	
+	You can also make manual changes as you see fit in an editor.
   
  
- 2. Publish the second version of the sample application to Bluemix. This time, use this command:
+ 2. Publish the updated version of your application to Bluemix. Use this command:
 
     `cf push hello_app_2 --no-route`
 
-    Notice the new name (`hello_app_2`), and the option `--no-route`, which tells Bluemix not to assign a route to the application (this overrides the request for a random route in the file `manifest.yml`).
+    Notice the new name `hello_app_2`, and the option --no-route, which tells Bluemix not to assign a route to the application
 
-
+	
 ## Task 3: Deploy your application
 
 Now that the updated application is compiled and uploaded to Bluemix, you are ready to deploy it by using Active Deploy. We will show you the Active Deploy **CLI** commands, but you can also do this with the Active Deploy **Dashboard GUI**.
@@ -107,8 +110,8 @@ During the deploy, Active Deploy will:
 	
 	It requires the names of the current (routed) version of the application and the new (unrouted) version.
 
-    `cf active-deploy-create hello_app_1 hello_app_2`
-
+    `cf active-deploy-create hello_app_1 hello_app_1 --label activedeploy_lab --rampup 5m --test 5m --rampdown 2m`
+	
     Active Deploy will:
     * Route traffic to `hello_app_2` and start ramping up instances of `hello_app_2` (the Ramp-up Phase).
     * Turn off the route to `hello_app_1` once the number of instances of `hello_app_2` is the same as for `hello_app_1` (the Test Phase).
@@ -120,13 +123,23 @@ During the deploy, Active Deploy will:
 The execution of the deployment takes the total time of your specificed phase times. The interesting part is the first part, where you get traffic from both versions of your application as the service adjusts traffic on the same URL route. Users never lose the functionality of the application as it is updated. You will see the following process:
 
  1. Verify that Bluemix starts routing traffic to both versions:
-    * Use the `cf apps` command to list all the applications in your Bluemix space. During the _Ramp-up_ phase, you should see both versions of the application have an assigned route (the URL from Step 5 in "Creating an Application in Bluemix").
-    * In your browser, you can go to **URL**/index.txt, where **URL** is from Step 5 in "Creating an Application in Bluemix". During the _Ramp-up_ phase, you should see the text alternate between "Hello, Bluemix World 1" and "Hello, Bluemix World 2" as you reload the browser.
-    * (Optional) If you have `curl` installed, you can run curl against the URL. During the _Ramp-up_ phase, you should see the text alternate between "Hello, Bluemix World 1" and "Hello, Bluemix World 2".
+    a. Use the `cf apps` command to list all the applications in your Bluemix space. During the _Ramp-up_ phase, you should see both versions of the application have an assigned route (the URL from Step 5 in "Creating an Application in Bluemix").
+	
+    b. In your browser, you can go to **URL** for your application. During the _Ramp-up_ phase, you should see the text alternate between "BROKEN" and "FIXED"
+	
+	c. (Optional) You can open a new terminal and `curl` the application, to watch it change as you deploy. You should see curl return the text "Hello, Bluemix World - STATUS".
+		
+        `curl URL/index.txt`
 
  2. List the deployments of the Active Deploys service using the `cf active-deploy-list` command
 
-    `cf active-deploy-list`
+    a. See the Active Deploy List
+	
+	`cf active-deploy-list`
+	
+	b. See information on your deployment
+	
+	`cf active-deploy-show activedeploy_lab`
 
     When the phase is _rampup_:
       * `cf apps` should show both that `hello_app_1` and `hello_app_2` are assigned the same route.
