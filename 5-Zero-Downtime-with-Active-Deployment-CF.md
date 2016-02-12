@@ -102,25 +102,22 @@ The execution of the deployment takes the total time of your specificed phase ti
  
     In this next step you will examine 3 things:
 	* Use the `cf apps` command to list all the applications in your Bluemix space
-	* A browser to go to your **URL** for your application
+	* Use a browser to go to your **URL** for your application to see its status
 	* (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application values repeatedly: `./loop-curl-app.sh URL`	
 
  2. List the deployments of the Active Deploys service using the `cf active-deploy-list` command
 
-    a. See the Active Deploy List
+    a. See the Active Deploy List - you should see your new deployment "activedeploy_lab"
 	
 	`cf active-deploy-list`
 	
-	b. See information on your deployment
-	
+	b. See information on your deployment - you should see all the details for your deployment
+		
 	`cf active-deploy-show activedeploy_lab`
 
- 3. Examine the deployment phases
- 
-    You can examine the deployment three ways and see how it affects your application during the different phases.
-	  * `cf apps` will show app routing
-      * Browser & F5 => Show what is currently being routed
-      * `'./loop-curl-app.sh URL` => will show the cummulative application routing
+ 3. Examine the deployment phases - You can see your application and how it changes during the different deployment phases.
+	  
+	Execute the 3 examine methods mentioned above:
 		
     **Ramp-up Phase**
       * `cf apps` => Show that both `hello_app_1` and `hello_app_2` are assigned the same route - `hello_app_2` instances are increasing
