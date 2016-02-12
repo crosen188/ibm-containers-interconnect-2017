@@ -92,56 +92,57 @@ This will launch the Active Deploy with phase times that allow you to see progre
     `cf active-deploy-create hello_app_1 hello_app_2 --label activedeploy_lab --rampup 5m --test 5m --rampdown 2m`
 
     Active Deploy will:
-    * Ramp-up Phase - Route traffic to `hello_app_2` and start ramping up instances of `hello_app_2`
-    * Test Phase - Turn off the route to `hello_app_1` once the number of instances of `hello_app_2` is the same as for `hello_app_1`
-    * Ramp-down Phase - Reduce the number of instances of `hello_app_1` to 1
+    * **Ramp-up Phase** - Route traffic to `hello_app_2` and start ramping up instances of `hello_app_2`
+    * **Test Phase** - Turn off the route to `hello_app_1` once the number of instances of `hello_app_2` is the same as for `hello_app_1`
+    * **Ramp-down Phase** - Reduce the number of instances of `hello_app_1` to 1
 
 
 ## Task 4: Watch and validate the deployment
 
 The execution of the deployment takes the total time of your specificed phase times. The interesting part is the first part, where you get traffic from both versions of your application as the service adjusts traffic on the same URL route. Users never lose the functionality of the application as it is updated. You will see the following process:
 
- 1. Verify that Bluemix starts routing traffic to both versions:
-
-    a. Use the `cf apps` command to list all the applications in your Bluemix space. During the _Ramp-up_ phase, you should see both versions of the application have an assigned route at the **URL**
-
-    b. In your browser, you can go to **URL** for your application. During the _Ramp-up_ phase, you should see the text alternate between "BROKEN" and "FIXED"
-
-	c. (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application repeatedly, to watch it change as you deploy. You should see the text alternate between "BROKEN" and "FIXED" and the color changes.
-
-    `./loop-curl-app.sh URL`
+ 1. Verify that Bluemix starts routing traffic to both versions
+ 
+    In this next step you will examine 3 things:
+	* Use the `cf apps` command to list all the applications in your Bluemix space
+	* Use a browser to go to your **URL** for your application to see its status
+	* (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application values repeatedly: `./loop-curl-app.sh URL`	
 
 <div class="page-break"></div>
 
- 2. List the deployments of the Active Deploys service using the `cf active-deploy-list` command
+ 2. List the deployments of the Active Deploy service and the specific details
 
-    a. See the Active Deploy List
-
+    a. See the Active Deploy List - you should see your new deployment "activedeploy_lab"
+	
 	`cf active-deploy-list`
-
-	b. See information on your deployment
-
+	
+	b. See information on your deployment - you should see all the details for your deployment
+		
 	`cf active-deploy-show activedeploy_lab`
 
-    When the phase is _rampup_:  
-      * `cf apps` should show both that `hello_app_1` and `hello_app_2` are assigned the same route
-      * Reloading your browser should show both responses "Hello, here is your application - BROKEN" and "Hello, here is your application - FIXED"
-      * Queries using `'./loop-curl-app.sh URL` should alternate between "BROKEN" and "FIXED" and the color changes
+ 3. Examine the deployment phases and how your application changes
+	  
+	Execute the 3 examine methods mentioned above:
+		
+    **Ramp-up Phase**
+      * `cf apps` => Show that both `hello_app_1` and `hello_app_2` are assigned the same route - `hello_app_2` instances are increasing
+      * Browser & F5 => Show both responses "Hello, here is your application - BROKEN" and "Hello, here is your application - FIXED"
+      * `'./loop-curl-app.sh URL` => should alternate between "BROKEN" and "FIXED" and the color changes
 
-    When the phase is _test_:  
-      * `cf apps` should show that only `hello_app_2` has a route assigned to it
-      * Reloading your browser should show only the response "Hello, here is your application - FIXED"
-      * Queries using `'./loop-curl-app.sh URL` should return only "Hello, here is your application - FIXED"
+    **Test Phase**
+      * `cf apps` => Show that only `hello_app_2` has a route assigned to it - both versions have 4 instances
+      * Browser & F5 => Show only the response "Hello, here is your application - FIXED"
+      * `'./loop-curl-app.sh URL` => should return only "Hello, here is your application - FIXED"
 
-    When the phase is _rampdown_:  
-      * `cf apps` should show that only `hello_app_2` has a route assigned to it
-      * Reloading your browser should show only the response "Hello, here is your application - FIXED"
-      * Queries using `'./loop-curl-app.sh URL` should return only "Hello, here is your application - FIXED"
+    **Ramp-down Phase**
+      * `cf apps` => Show that only `hello_app_2` has a route assigned to it - `hello_app_1` instances are increasing
+      * Browser & F5 => Should show only the response "Hello, here is your application - FIXED"
+      * `'./loop-curl-app.sh URL` => should return only "Hello, here is your application - FIXED"
 
-    When the Active Deploy is complete:  
-      * `cf apps` should show that the original group `hello_app_1` has only a single instance and the new group `hello_app_2` has 4 instances
+    **When the Active Deploy is complete**
+      * `cf apps` => Show that the original group `hello_app_1` has only a single instance and the new group `hello_app_2` has 4 instances
 
- 3. Since the deploy has completed, you can now delete the first version of `hello_app_1` using the `cf delete` command:
+ 4. Since the deploy has completed, you can now delete the first version of your application
 
     `cf delete -f hello_app_1`
 
