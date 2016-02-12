@@ -98,15 +98,12 @@ This will launch the Active Deploy with phase times that allow you to see progre
 
 The execution of the deployment takes the total time of your specificed phase times. The interesting part is the first part, where you get traffic from both versions of your application as the service adjusts traffic on the same URL route. Users never lose the functionality of the application as it is updated. You will see the following process:
 
- 1. Verify that Bluemix starts routing traffic to both versions:
+ 1. Verify that Bluemix starts routing traffic to both versions
  
-    a. Use the `cf apps` command to list all the applications in your Bluemix space. During the _Ramp-up_ phase, you should see both versions of the application have an assigned route at the **URL**
-	
-    b. In your browser, you can go to **URL** for your application. During the _Ramp-up_ phase, hit F5 repeatedly and you should see the text alternate between "BROKEN" and "FIXED"
-	
-	c. (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application repeatedly, to watch it change as you deploy. You should see the text alternate between "BROKEN" and "FIXED" and the color changes.
-		
-    `./loop-curl-app.sh URL`	
+    In this next step you will examine 3 things:
+	* Use the `cf apps` command to list all the applications in your Bluemix space
+	* A browser to go to your **URL** for your application
+	* (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application values repeatedly: `./loop-curl-app.sh URL`	
 
  2. List the deployments of the Active Deploys service using the `cf active-deploy-list` command
 
