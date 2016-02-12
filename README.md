@@ -43,7 +43,7 @@ In this lab, you will create a container recovery group, and understand how scal
 
 ## Lab 5 (stretch assignment): [Zero-Downtime with the Active Deployment Service](5-Zero-Downtime-with-Active-Deployment-CF.md)
 **Difficulty**: Intermediate  
-**Time Required**: 15 minutes
+**Time Required**: 20 minutes
 
 In this lab, you will leverage the Active Deploy service to perform maintenance on a Cloud Foundry app without requiring any downtime to your production app. Active Deploy uses standard Bluemix technology and techniques (and is also called Red/Black deployment).
 

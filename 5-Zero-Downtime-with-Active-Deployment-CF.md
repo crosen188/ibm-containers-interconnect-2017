@@ -3,7 +3,7 @@
 
 > **Difficulty**: Intermediate
 
-> **Time**: 15 minutes
+> **Time**: 20 minutes
 
 > **Tasks**:
 >- [Prerequisites](#prerequisites)
