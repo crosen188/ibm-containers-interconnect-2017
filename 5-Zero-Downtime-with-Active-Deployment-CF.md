@@ -80,16 +80,11 @@ You have now deployed your initial sample application.
 
 Now that the updated application is compiled and uploaded to Bluemix, you are ready to deploy it by using Active Deploy. We will show you the Active Deploy **CLI** commands, but you can also do this with the Active Deploy **Dashboard GUI**.
 
-During the deploy, Active Deploy will:
- * Route traffic to `APPNAME2` and start instances of `APPNAME2` (the Ramp-up Phase)
- * Turn off the route to `APPNAME` after the number of instances of `APPNAME2` is the same as for `APPNAME` (the Test Phase)
- * Finally, reduce the number of instances of `APPNAME` to 1 (the Ramp-down Phase)
-
 Launch the Active Deploy with phase times that allow you to see progress fairly quickly. You can also see the status of the deployment.
 
  1. Use the **cf active-deploy-create** command to create a new deployment
 	
-	It requires the names of the current (routed) version of the application and the new (unrouted) version. Label and phases are optional but convenient.
+	It requires the names of the current (routed) version of the application and the new (unrouted) version. `Label` and `phases` are optional but convenient.
 
     `cf active-deploy-create hello_app_1 hello_app_2 --label activedeploy_lab --rampup 5m --test 5m --rampdown 2m`
 	
