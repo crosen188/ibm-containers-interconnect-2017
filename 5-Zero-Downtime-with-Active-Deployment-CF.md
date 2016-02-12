@@ -19,14 +19,14 @@ This lab helps show you the capability of using the Active Deploy service with B
 
 The Active Deploy service provides fully controlled and customized application update deployments, with zero downtime, with your own Bluemix cloud delivery applications. This allows users to update container or cloud foundry applications on IBM Bluemix with zero downtime, by using intelligent update deployment capabilities. It allows full control over the deployment configuration and allows mid-stream acceptance testing.
 
-This lab will show you how to create a sample app, modify it, upload it, and then run the Active Deploy with various options. At the end of this lab, you will know how to use Active Deploy with your cloud applications.
+This lab will show you how to create a sample Cloud Foundry app, modify it, upload it, and then run Active Deploy with various options. At the end of this lab, you will know how to use Active Deploy with your cloud applications.
 
 ## Prerequisites
  1. Optional: For more information, reference the [Active Deploy documentation](https://www.ng.bluemix.net/docs/services/ActiveDeploy/index.html).
  
 ## Task 1: Prepare to deploy your updated application
 
-This task walks you through setting up a sample application. If you already have an application, you can use that application instead of using this sample application.
+This task walks you through setting up a sample application. If you already have a Cloud Foundry application, you can use that instead of using this sample.
 
  1. Get the application code to use for this lab and log in to Bluemix
 
@@ -41,15 +41,14 @@ This task walks you through setting up a sample application. If you already have
     `cf push hello_app_1 -i 4`
 
 	This pushes 4 instances of the application to your Bluemix space and assigns it the name `hello_app_1`.
-
-	b. Note the route **URL** that is assigned to the application.
-	
 	Look for a line near the end such as: `urls: hello-app-1-[silly unique name].mybluemix.net`
 
-	c. Verify the application is started and working and routing traffic
+	b. Verify the application is started and routing traffic
 	
-    `cf app hello_app_1`
+    `cf app hello_app_1` - you should see the URL route here as well
 		
+	b. Test the application is running
+	
 	Go to the **URL** `hello-app-1-[silly unique name].mybluemix.net` you noted above. You should see a "broken" application.
 		
 	d. (Optional) In the lab directory you can execute `loop-curl-app.sh` and `curl` the application repeatedly, to watch it change as you deploy. You should see curl return the text "Hello, here is your application - BROKEN".
