@@ -35,6 +35,8 @@ In this lab, you will learn how to push images to your hosted private registry o
 
 In this lab, you will learn how to bind Bluemix Services to Docker containers, deploy existing applications with one-click via the *Deploy to Bluemix Button*, and understand how the IBM Bluemix DevOps Pipeline can build & deploy your container images automatically.
 
+<div class="page-break"></div>
+
 ## Lab 4: [Container Group Scaling and Recoverability]()
 **Difficulty**: Intermediate  
 **Time Required**: 20 minutes

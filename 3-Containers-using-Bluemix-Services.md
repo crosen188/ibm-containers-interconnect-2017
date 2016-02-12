@@ -172,4 +172,4 @@ To continue with another lab, you need to clean up your container instances.  Th
 - Created a Bluemix application with the MongoDB service by Compose
 - Deployed the Let's Chat container bound to that Bluemix app for persistent storage
 
-### Next: [Lab 4 Container Group Scaling and Recoverability](4-Container-Group-Scaling-and-Recoverability.md)
+### Time to continue with [Lab 4 - Container Group Scaling and Recoverability]()
