@@ -15,7 +15,7 @@
 
 ## Overview
 
-This lab helps show you the capability of using the Active Deploy service with Bluemix Cloud Foundry Apps.
+This lab helps show you the capability of using the Active Deploy service with Bluemix Cloud Foundry Apps.  Today Active Deploy only supports CF apps, but stay tuned for beta support of IBM Containers!
 
 The Active Deploy service provides fully controlled and customized application update deployments, with zero downtime, with your own Bluemix cloud delivery applications. This allows users to update container or cloud foundry applications on IBM Bluemix with zero downtime, by using intelligent update deployment capabilities. It allows full control over the deployment configuration and allows mid-stream acceptance testing.
 
