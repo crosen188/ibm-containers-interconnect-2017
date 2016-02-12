@@ -245,11 +245,13 @@ To continue with another lab, you need to clean up your container group.  This c
 $ cf ic group rm -f spring-boot
   ```
 
-##Congratulations!!!  You have successfully accomplished Lab 5.
+##Congratulations!!!  You have successfully accomplished Lab 4.
 
 ####Let's recap what you've accomplished thus far in this lab:
 
 - Created a Container Group
 - Verified scalability and load balancing of the container instances in the group
 - Verified recoverability by forcibly deleting an instance and noticing that another instance gets recreated.
+
+##If you are still feeling ambitious, you can test [zero downtime upgrades to a Cloud Foundry app.](5-Zero-Downtime-with-Active-Deployment.md)
 
