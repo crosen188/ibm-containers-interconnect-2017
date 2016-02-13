@@ -273,8 +273,8 @@ To ensure you have enough free quota to continue with the lab, let's clean up yo
   ```
   $ cf ic stop lets-chat
   $ cf ic stop lc-mongo
-  $ cf if rm -f lets-chat
-  $ cf if rm -f lc-mongo
+  $ cf ic rm -f lets-chat
+  $ cf ic rm -f lc-mongo
   ```
 
 ## Congratulations!!!  You have successfully accomplished Lab 2.
