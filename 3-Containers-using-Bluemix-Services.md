@@ -53,10 +53,10 @@ In lab 2, we used a MongoDB that was running inside a container.  This was fast 
 
 ![mongoinfo](https://github.com/crosen188/ibm-containers-interconnect-2016/blob/master/screenshots/24-mongo-connection.jpg)
 
-- **Host:** c795.candidate.53.mongolayer.com
+- **Host:** xxx.candidate.53.mongolayer.com
 - **Port:** 10795
-- **Username:** ibmcontainers
-- **Password:** containers
+- **Username:** account
+- **Password:** password
 
 - Alternatively, you can sign up for a *Free 30-Day Trial* at [Compose](https://compose.io) and use all of the features beyond just today.  If you are interested in cloud application development, I'd highly recommend signing up for your own Compose account, as they provide a number of offerings that are critical for efficient application development - MongoDB, PostgreSQL, Redis, etcd, and many more!
 
